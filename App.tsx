@@ -13,17 +13,15 @@ import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
 
 declare var global: { HermesInternal: null | {} };
 
-const App: React.FC = (): JSX.Element => {
-  return (
-    <>
-      <SafeAreaView>
-        <View>
-          <Text>Word Traner</Text>
-        </View>
-      </SafeAreaView>
-    </>
-  );
-};
+const App: React.FC = (): JSX.Element => (
+  <>
+    <SafeAreaView>
+      <View>
+        <Text>Word Traner</Text>
+      </View>
+    </SafeAreaView>
+  </>
+);
 
 const styles = StyleSheet.create({
   root: {

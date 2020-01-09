@@ -1,9 +1,12 @@
 module.exports = {
   root: true,
-  extends: '@react-native-community',
+  extends: ['@react-native-community', 'eslint:recommended', 'plugin:react/recommended'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'react', 'jsx-a11y'],
   rules: {
-    'comma-dangle': ['never']
+    "comma-dangle": [1, "never"],
+    "arrow-parens": ["error", "as-needed"],
+    "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
+    "react/prefer-es6-class": [1, "always"]
   }
 };
