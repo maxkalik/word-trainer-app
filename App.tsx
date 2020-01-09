@@ -1,21 +1,19 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import HomeScreen from './screens/HomeScreen';
+import TrainerScreen from './screens/TrainerScreen';
+import AddWordScreen from './screens/AddWordScreen';
+import VocabularyScreen from './screens/VocabularyScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
-declare var global: { HermesInternal: null | {} };
-
-const App: React.FC = (): JSX.Element => (
-  <SafeAreaView>
-    <View>
-      <Text>Word Traners</Text>
-    </View>
-  </SafeAreaView>
-);
-
-const styles = StyleSheet.create({
-  root: {
-    width: '100%',
-    height: '100%'
-  }
+const TabNavigator = createBottomTabNavigator({
+  Home: HomeScreen,
+  Trainer: TrainerScreen,
+  ['Add Word']: AddWordScreen,
+  Vocabulary: VocabularyScreen,
+  Profile: ProfileScreen
 });
+
+const App = createAppContainer(TabNavigator);
 
 export default App;
