@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 
-const initFirebase = () => {
+const initFirebase = (): void => {
   const firebaseConfig = {
     apiKey: 'AIzaSyAc9dGadPjZQhQnve-MzSM74JN0f-2MORQ',
     authDomain: 'word-trainer-app.firebaseapp.com',

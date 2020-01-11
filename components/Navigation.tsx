@@ -8,7 +8,7 @@ import AddWordScreen from '../screens/AddWordScreen';
 import VocabularyScreen from '../screens/VocabularyScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
-const TabBarComponent: React.FC = (props): any => <BottomTabBar {...props} />;
+const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} />;
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -20,11 +20,10 @@ const TabNavigator = createBottomTabNavigator(
   },
   {
     tabBarComponent: props => (
-      <TabBarComponent {...props} style={{ borderTopColor: '#605F60' }} />
+      <TabBarComponent {...props} style={styles.container} />
     ),
     defaultNavigationOptions: ({ navigation }) => {
       const { routeName } = navigation.state;
-      console.log(routeName);
       return {
         tabBarIcon: ({ tintColor }) => (
           <View style={{ ...styles.icon, backgroundColor: tintColor }} />
@@ -45,9 +44,10 @@ const TabNavigator = createBottomTabNavigator(
 );
 
 const styles = StyleSheet.create({
+  container: { height: 70 },
   icon: { width: 18, height: 18, marginTop: 5 }
 });
 
-const Navigator = (): any => createAppContainer(TabNavigator);
+const Navigation = createAppContainer(TabNavigator);
 
-export default Navigator;
+export default Navigation;
