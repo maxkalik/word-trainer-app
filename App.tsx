@@ -1,10 +1,8 @@
 import './fixtimerbug';
-import React, { useEffect, useState } from 'react';
-import firebase from 'firebase';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
 import initFirebase from './initFirebase';
-import Navigation from './components/Navigation';
-import { objectToArray } from './helpers';
+import { StateProvider } from './state/useStateValue';
+import Content from './components/Content';
 
 interface Words {
   id: string;
@@ -13,38 +11,31 @@ interface Words {
 }
 
 const App: React.FC = (): JSX.Element => {
-  const [spinner, setSpinner] = useState(true);
-  const [words, setWords] = useState<null | Words[]>(null);
-  console.log(words);
-  console.log(spinner);
+  const initialState = {
+    words: []
+  };
 
   useEffect(() => {
     initFirebase();
-    const database = firebase.database().ref('words');
-    database.once('value', snapshot => {
-      const data = snapshot.val();
-      console.log(data);
-      if (data !== null) {
-        setWords(objectToArray(data).reverse());
-        setSpinner(false);
-      } else {
-        console.log('Error while fetching data');
-      }
-    });
   }, []);
 
-  if (spinner) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="black" />
-      </View>
-    );
-  }
-  return <Navigation theme="light" />;
-};
+  const reducer = (state: object, action: any) => {
+    switch (action.type) {
+      case 'FETCHING_WORDS':
+        return {
+          ...state,
+          words: action.words
+        };
+      default:
+        return state;
+    }
+  };
 
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center' }
-});
+  return (
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <Content />
+    </StateProvider>
+  );
+};
 
 export default App;
