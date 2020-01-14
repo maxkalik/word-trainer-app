@@ -30,7 +30,7 @@ const TrainerDeskItems: React.FC<DeskProps> = ({
       setSelection(INITIAL_STATE);
     }, 1000);
     if (word === headerWord) {
-      return setSelection({ answer: 'right', id });
+      return setSelection({ answer: 'correct', id });
     }
     return setSelection({ answer: 'failed', id });
   };

@@ -15,19 +15,26 @@ const TrainerDeskItem: React.FC<TrainerDeskItemProps> = ({
   disabled
 }): JSX.Element => {
   const deskStyles = [
-    styles.container,
-    isActive === 'right' && styles.right,
-    isActive === 'failed' && styles.failed
+    deskItemStyle.container,
+    isActive === 'correct' && deskItemStyle.correct,
+    isActive === 'failed' && deskItemStyle.failed,
+    disabled && isActive === null && deskItemStyle.disabled
+  ];
+
+  const deskTextStyles = [
+    itemTextStyle.container,
+    (isActive !== null && itemTextStyle.active) ||
+      (disabled && isActive === null && itemTextStyle.disabled)
   ];
 
   return (
     <TouchableOpacity disabled={disabled} onPress={onPress} style={deskStyles}>
-      <Text>{name || 'Some Word'}</Text>
+      <Text style={deskTextStyles}>{name || 'Some Word'}</Text>
     </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
+const deskItemStyle = StyleSheet.create({
   container: {
     padding: 15,
     fontSize: 12,
@@ -35,8 +42,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'silver'
   },
-  right: { backgroundColor: 'green', color: 'white' },
-  failed: { backgroundColor: 'red', color: 'white' }
+  correct: { backgroundColor: 'green' },
+  failed: { backgroundColor: 'red' },
+  disabled: { backgroundColor: '#d8d8d8' }
+});
+
+const itemTextStyle = StyleSheet.create({
+  container: {
+    textAlign: 'center',
+    color: 'black'
+  },
+  active: { color: 'white' },
+  disabled: { color: 'grey' }
 });
 
 export default TrainerDeskItem;
