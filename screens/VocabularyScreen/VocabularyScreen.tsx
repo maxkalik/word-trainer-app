@@ -1,10 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { useStateValue } from '../state/useStateValue';
+import { useStateValue } from '../../state';
 
 const VocabularyScreen: React.FC = (): JSX.Element => {
   const [{ words }] = useStateValue();
-  console.log('words array:', words);
   return (
     <View style={styles.root}>
       <Text>Vocabulary Screen</Text>

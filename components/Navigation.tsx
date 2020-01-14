@@ -2,11 +2,11 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
-import HomeScreen from '../screens/HomeScreen';
-import TrainerScreen from '../screens/TrainerScreen';
-import AddWordScreen from '../screens/AddWordScreen';
-import VocabularyScreen from '../screens/VocabularyScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import TrainerScreen from '../screens/TrainerScreen/TrainerScreen';
+import AddWordScreen from '../screens/AddWordScreen/AddWordScreen';
+import VocabularyScreen from '../screens/VocabularyScreen/VocabularyScreen';
+import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 
 const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} />;
 

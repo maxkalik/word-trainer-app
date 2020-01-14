@@ -1,7 +1,6 @@
 import './fixtimerbug';
-import React, { useEffect } from 'react';
-import initFirebase from './initFirebase';
-import { StateProvider } from './state/useStateValue';
+import React from 'react';
+import { StateProvider } from './state';
 import Content from './components/Content';
 
 interface Words {
@@ -14,10 +13,6 @@ const App: React.FC = (): JSX.Element => {
   const initialState = {
     words: []
   };
-
-  useEffect(() => {
-    initFirebase();
-  }, []);
 
   const reducer = (state: object, action: any) => {
     switch (action.type) {

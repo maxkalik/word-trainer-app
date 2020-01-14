@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import firebase from 'firebase';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import firebase from '../firebase';
 import Navigation from '../components/Navigation';
-import { useStateValue } from '../state/useStateValue';
+import { useStateValue } from '../state';
 import { objectToArray } from '../helpers';
 
 const Content: React.FC = (): JSX.Element => {
@@ -12,7 +12,7 @@ const Content: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     const database = firebase.database().ref('words');
-    database.on('value', snapshot => {
+    database.on('value', (snapshot: any) => {
       const data = snapshot.val();
       if (data !== null) {
         dispatch({
