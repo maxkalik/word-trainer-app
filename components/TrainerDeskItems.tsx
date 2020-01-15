@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import TrainerDeskItem from './TrainerDeskItem';
+import { WordTypes } from '../types';
 
 interface InitialStateProps {
   answer: null | string;
@@ -8,12 +9,12 @@ interface InitialStateProps {
 }
 
 interface DeskProps {
-  wordsArr: [];
-  updateWordsState: () => InitialStateProps;
-  headerWord: object;
+  wordsArr: WordTypes[];
+  updateWordsState: () => void;
+  headerWord: string;
 }
 
-const INITIAL_STATE: InitialStateProps = { answer: null, id: null };
+const INITIAL_STATE = { answer: null, id: null };
 
 const TrainerDeskItems: React.FC<DeskProps> = ({
   wordsArr,
@@ -21,10 +22,8 @@ const TrainerDeskItems: React.FC<DeskProps> = ({
   headerWord
 }): JSX.Element => {
   const [selection, setSelection] = useState<InitialStateProps>(INITIAL_STATE);
-  const handleSelection = (
-    word: object,
-    id: string
-  ): { answer: string; id: string } => {
+
+  const handleSelection = (word: string, id: string): void => {
     setTimeout(() => {
       updateWordsState();
       setSelection(INITIAL_STATE);
@@ -36,7 +35,7 @@ const TrainerDeskItems: React.FC<DeskProps> = ({
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       {wordsArr.map(({ word, translation, id }) => (
         <TrainerDeskItem
           key={id}
@@ -49,5 +48,16 @@ const TrainerDeskItems: React.FC<DeskProps> = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    borderColor: 'black',
+    borderWidth: 1
+  }
+});
 
 export default TrainerDeskItems;

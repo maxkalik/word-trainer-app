@@ -25,7 +25,7 @@ const TabNavigator = createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation }) => {
       const { routeName } = navigation.state;
       return {
-        tabBarIcon: ({ tintColor }) => (
+        tabBarIcon: ({ tintColor }): JSX.Element => (
           <View style={{ ...styles.icon, backgroundColor: tintColor }} />
         )
       };

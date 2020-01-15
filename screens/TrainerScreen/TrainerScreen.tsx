@@ -3,25 +3,30 @@ import { StyleSheet, View, Text } from 'react-native';
 import { useStateValue } from '../../state';
 import { randomItem, makeWordsDesk } from './helpers';
 import TrainerDeskItems from '../../components/TrainerDeskItems';
+import TrainerWord from '../../components/TrainerWord';
+// import { WordTypes } from '../../types';
 
 const TrainerScreen: React.FC = (): JSX.Element => {
   const [{ words }] = useStateValue();
   const wordsLength: boolean = words.length >= 10;
-  const getWordsDesk = (): [] => (wordsLength ? makeWordsDesk(4, words) : []);
+  const getWordsDesk = (): any => (wordsLength ? makeWordsDesk(5, words) : []);
   const [wordsDesk, setWordsDesk] = useState(getWordsDesk);
+
+  if (!wordsLength) {
+    return <Text>Message</Text>;
+  }
 
   const renderDesk = () => {
     const showedWord = randomItem(wordsDesk);
+
     return (
       <>
-        <Text>{showedWord.word}</Text>
-        <View>
-          <TrainerDeskItems
-            wordsArr={wordsDesk}
-            updateWordsState={() => setWordsDesk(getWordsDesk)}
-            headerWord={showedWord.word}
-          />
-        </View>
+        <TrainerWord word={showedWord.word} />
+        <TrainerDeskItems
+          wordsArr={wordsDesk}
+          updateWordsState={() => setWordsDesk(getWordsDesk)}
+          headerWord={showedWord.word}
+        />
       </>
     );
   };

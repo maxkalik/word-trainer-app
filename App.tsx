@@ -2,19 +2,14 @@ import './fixtimerbug';
 import React from 'react';
 import { StateProvider } from './state';
 import Content from './components/Content';
+import { WordTypes } from './types';
 
-interface Words {
-  id: string;
-  word: string;
-  translation: string;
-}
+const initialState = {
+  words: []
+};
 
 const App: React.FC = (): JSX.Element => {
-  const initialState = {
-    words: []
-  };
-
-  const reducer = (state: object, action: any) => {
+  const reducer = (state: { words: WordTypes[] }, action: any) => {
     switch (action.type) {
       case 'FETCHING_WORDS':
         return {

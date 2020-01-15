@@ -4,10 +4,11 @@ import firebase from '../firebase';
 import Navigation from '../components/Navigation';
 import { useStateValue } from '../state';
 import { objectToArray } from '../helpers';
+// import { WordType } from '../types';
 
 const Content: React.FC = (): JSX.Element => {
   // const [words, setWords] = useState<null | Words[]>(null);
-  const [spinner, setSpinner] = useState(true);
+  const [spinner, setSpinner] = useState<boolean>(true);
   const [{ words }, dispatch] = useStateValue();
 
   useEffect(() => {
