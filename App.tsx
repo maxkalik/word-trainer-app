@@ -16,6 +16,11 @@ const App: React.FC = (): JSX.Element => {
           ...state,
           words: action.words
         };
+      case 'FETCHING_FAILED':
+        return {
+          ...state,
+          error: action.error
+        };
       default:
         return state;
     }

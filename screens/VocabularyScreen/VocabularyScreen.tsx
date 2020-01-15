@@ -1,34 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import firebase from 'firebase';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ActivityIndicator,
-  Platform,
-  CheckBox
-} from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, View } from 'react-native';
+import VocabularyItem from '../../components/VocabularyItem';
 import { useStateValue } from '../../state';
-
-console.log(Platform.OS);
+import { WordTypes } from '../../types';
 
 const VocabularyScreen: React.FC = (): JSX.Element => {
   const [{ words }] = useStateValue();
+  const [checkedItems, setCheckedItems] = useState<string[]>([]);
+  console.log(checkedItems);
+
+  const handleCheckChange = (id: string) => {
+    if (!checkedItems.includes(id)) {
+      setCheckedItems([...checkedItems, id]);
+    } else {
+      const updatedCheckedItems = checkedItems.filter(
+        (itemId: string) => itemId !== id
+      );
+      setCheckedItems(updatedCheckedItems);
+    }
+  };
+
+  if (words.length === 0) {
+    return <View>Add your words</View>;
+  }
   return (
-    <View style={styles.root}>
-      {words.map(({ id, word, translation }) => (
-        <View key={id} style={styles.wordItem}>
-          {Platform.OS === 'android' && <CheckBox />}
-          <Text style={styles.word}>{word}</Text>
-          <Text style={styles.translation}>{translation}</Text>
-        </View>
-      ))}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={words}
+        renderItem={({ item }: { item: WordTypes }) => (
+          <VocabularyItem
+            wordItem={item}
+            checkBox
+            checked={checkedItems.includes(item.id)}
+            onPress={() => handleCheckChange(item.id)}
+          />
+        )}
+        keyExtractor={({ id }) => id}
+      />
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  root: { flex: 1, flexDirection: 'column' },
+  container: { flex: 1 },
+  list: { flex: 1, flexDirection: 'column' },
   wordItem: { flexDirection: 'row' },
   word: { flex: 1 },
   translation: { flex: 1 }

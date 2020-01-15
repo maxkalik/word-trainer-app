@@ -9,7 +9,7 @@ import { objectToArray } from '../helpers';
 const Content: React.FC = (): JSX.Element => {
   // const [words, setWords] = useState<null | Words[]>(null);
   const [spinner, setSpinner] = useState<boolean>(true);
-  const [{ words }, dispatch] = useStateValue();
+  const [{ words, error }, dispatch] = useStateValue();
 
   useEffect(() => {
     const database = firebase.database().ref('words');
@@ -22,7 +22,10 @@ const Content: React.FC = (): JSX.Element => {
         });
         setSpinner(false);
       } else {
-        console.log('Error while fetching data');
+        dispatch({
+          type: 'FETCHING_FAILED',
+          error: 'Fetching error'
+        });
       }
     });
   }, [dispatch]);

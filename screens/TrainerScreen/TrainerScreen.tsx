@@ -12,9 +12,7 @@ const TrainerScreen: React.FC = (): JSX.Element => {
   const getWordsDesk = (): any => (wordsLength ? makeWordsDesk(5, words) : []);
   const [wordsDesk, setWordsDesk] = useState(getWordsDesk);
 
-  if (!wordsLength) {
-    return <Text>Message</Text>;
-  }
+  const renderMessage = () => <Text>Add more words</Text>;
 
   const renderDesk = () => {
     const showedWord = randomItem(wordsDesk);
@@ -31,7 +29,11 @@ const TrainerScreen: React.FC = (): JSX.Element => {
     );
   };
 
-  return <View style={styles.root}>{renderDesk()}</View>;
+  return (
+    <View style={styles.root}>
+      {wordsLength ? renderDesk() : renderMessage()}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
