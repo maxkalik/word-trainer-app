@@ -1,41 +1,33 @@
 import React from 'react';
-// import firebase from 'firebase';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Checkbox } from './common';
+import VocabularyWordItem from './VocabularyWordItem';
 import { WordTypes } from '../types';
 
 interface VocabularyItemProps {
   wordItem: WordTypes;
   checkBox?: boolean;
-  checked?: boolean;
-  onPress?: () => void;
+  checked: boolean;
+  onCheckmarkPress: () => void;
 }
 
 const VocabularyItem: React.FC<VocabularyItemProps> = ({
-  wordItem: { word, translation },
+  wordItem,
   checkBox,
   checked,
-  onPress
+  onCheckmarkPress
 }): JSX.Element => (
   <View style={styles.container}>
-    {checkBox && (
-      <TouchableOpacity style={styles.checkboxContainer} onPress={onPress}>
-        <View style={styles.checkbox}>
-          {checked && <View style={styles.mark} />}
-        </View>
-      </TouchableOpacity>
-    )}
-    <View style={styles.wordItem}>
-      <Text style={{ flex: 1 }}>{word}</Text>
-      <Text style={{ flex: 1 }}>{translation}</Text>
-    </View>
+    {checkBox && <Checkbox checked={checked} onPress={onCheckmarkPress} />}
+    <VocabularyWordItem item={wordItem} />
   </View>
 );
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
+    // borderBottomColor: 'black',
+    // borderBottomWidth: 1,
     height: 50,
     alignItems: 'center'
   },
@@ -44,23 +36,7 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    alignItems: 'center',
-    paddingLeft: 10
-  },
-  checkboxContainer: {
-    paddingLeft: 10,
-    paddingRight: 10
-  },
-  checkbox: {
-    width: 18,
-    height: 18,
-    borderWidth: 1,
-    borderColor: 'black'
-  },
-  mark: {
-    width: 10,
-    height: 10,
-    backgroundColor: 'black'
+    alignItems: 'center'
   }
 });
 

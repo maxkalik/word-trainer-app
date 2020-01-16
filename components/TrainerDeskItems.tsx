@@ -52,6 +52,7 @@ const TrainerDeskItems: React.FC<DeskProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignSelf: 'stretch',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',

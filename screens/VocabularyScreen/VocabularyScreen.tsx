@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // import firebase from 'firebase';
 import { StyleSheet, SafeAreaView, FlatList, View } from 'react-native';
+import VocabularyHeader from '../../components/VocabularyHeader';
 import VocabularyItem from '../../components/VocabularyItem';
 import { useStateValue } from '../../state';
 import { WordTypes } from '../../types';
@@ -26,6 +27,7 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
   }
   return (
     <SafeAreaView style={styles.container}>
+      <VocabularyHeader />
       <FlatList
         data={words}
         renderItem={({ item }: { item: WordTypes }) => (
@@ -33,7 +35,7 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
             wordItem={item}
             checkBox
             checked={checkedItems.includes(item.id)}
-            onPress={() => handleCheckChange(item.id)}
+            onCheckmarkPress={() => handleCheckChange(item.id)}
           />
         )}
         keyExtractor={({ id }) => id}
