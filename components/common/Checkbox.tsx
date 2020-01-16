@@ -19,7 +19,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 10,
+    // paddingLeft: 10,
     paddingRight: 16,
     alignSelf: 'stretch',
     justifyContent: 'center'
