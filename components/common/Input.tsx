@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   TextInput,
   TouchableOpacity,
@@ -29,25 +29,32 @@ const Input: React.FC<InputProps> = ({
   value,
   onClearBtnPress,
   style
-}): JSX.Element => (
-  <View style={[styles.container, style]}>
-    <TextInput
-      style={styles.inputField}
-      onChangeText={onChangeText}
-      value={value}
-      placeholder={placeholder}
-      placeholderTextColor={'grey'}
-    />
-    {value.length > 0 && <ClearButton onClearBtnPress={onClearBtnPress} />}
-  </View>
-);
+}): JSX.Element => {
+  const [focus, setFocus] = useState<boolean>(false);
+  return (
+    <View style={[styles.container, focus && styles.focused, style]}>
+      <TextInput
+        style={styles.inputField}
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
+        onChangeText={onChangeText}
+        value={value}
+        placeholder={placeholder}
+        placeholderTextColor={'grey'}
+      />
+      {value.length > 0 && <ClearButton onClearBtnPress={onClearBtnPress} />}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     height: 40,
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    alignItems: 'center',
+    alignItems: 'center'
+  },
+  focused: {
     borderBottomColor: 'black',
     borderBottomWidth: 1
   },

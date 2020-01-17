@@ -5,10 +5,12 @@ import {
   SafeAreaView,
   FlatList,
   View,
-  ActivityIndicator
+  ActivityIndicator,
+  Keyboard
 } from 'react-native';
 import VocabularyHeader from '../../components/VocabularyHeader';
 import VocabularyItem from '../../components/VocabularyItem';
+import BottomToolBar from '../../components/BottomToolBar';
 import { useStateValue } from '../../state';
 import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
@@ -20,6 +22,10 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [editMode, setEditMode] = useState<boolean>(false);
+
+  useEffect(() => {
+    setEditMode(false);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -39,6 +45,12 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
     }
   };
 
+  const handleEditBtnPress = () => {
+    Keyboard.dismiss();
+    setCheckedItems([]);
+    setEditMode(!editMode);
+  };
+
   if (loading) {
     return <ActivityIndicator size="large" />;
   }
@@ -53,7 +65,7 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
         onChangeInputText={(value: string) => setInputValue(value)}
         value={inputValue}
         onClearBtnPress={() => setInputValue('')}
-        onEditBtnPress={() => setEditMode(!editMode)}
+        onEditBtnPress={handleEditBtnPress}
         isEditBtnPressed={editMode}
       />
       <FlatList
@@ -69,6 +81,14 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
         )}
         keyExtractor={({ id }) => id}
       />
+      {checkedItems.length > 0 && (
+        <BottomToolBar
+          acceptBtnTitle="Remove Words"
+          acceptBtnOnPress={() => console.log('remove')}
+          cancelBtnTitle="Cancel"
+          cancelBtnOnPress={handleEditBtnPress}
+        />
+      )}
     </SafeAreaView>
   );
 };

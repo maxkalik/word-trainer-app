@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+// KeyboardAvoidingView
 
 const AddWordScreen: React.FC = (): JSX.Element => (
   <View style={styles.root}>

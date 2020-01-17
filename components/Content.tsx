@@ -7,7 +7,6 @@ import { objectToArray } from '../helpers';
 // import { WordType } from '../types';
 
 const Content: React.FC = (): JSX.Element => {
-  // const [words, setWords] = useState<null | Words[]>(null);
   const [spinner, setSpinner] = useState<boolean>(true);
   const [{ words, error }, dispatch] = useStateValue();
 

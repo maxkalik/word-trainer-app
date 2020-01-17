@@ -27,7 +27,7 @@ const VocabularyHeader: React.FC<VocabularyHeaderProps> = ({
       onClearBtnPress={onClearBtnPress}
     />
     <TouchableOpacity style={styles.editBtn} onPress={onEditBtnPress}>
-      <Text style={styles.editBtnText}>
+      <Text style={[styles.editBtnTxt, isEditBtnPressed && styles.doneBtnTxt]}>
         {isEditBtnPressed ? 'Done' : 'Edit'}
       </Text>
     </TouchableOpacity>
@@ -46,8 +46,11 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'black'
   },
-  editBtnText: {
+  editBtnTxt: {
     fontSize: 16
+  },
+  doneBtnTxt: {
+    color: 'royalblue'
   }
 });
 
