@@ -13,6 +13,8 @@ interface InputProps {
   value: string;
   placeholder: string;
   style?: object;
+  styleInputField?: object;
+  autoFocus?: boolean;
 }
 
 const ClearButton: React.FC<{ onClearBtnPress: (() => void) | undefined }> = ({
@@ -28,13 +30,16 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   value,
   onClearBtnPress,
-  style
+  styleInputField,
+  style,
+  autoFocus
 }): JSX.Element => {
   const [focus, setFocus] = useState<boolean>(false);
   return (
     <View style={[styles.container, focus && styles.focused, style]}>
       <TextInput
-        style={styles.inputField}
+        style={[styles.inputField, styleInputField]}
+        autoFocus={autoFocus}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onChangeText={onChangeText}
