@@ -9,11 +9,10 @@ import {
   TextInput,
   View
 } from 'react-native';
-import { Scene, Message } from '../../components/common';
+import { Scene, Message, Btn } from '../../components/common';
 
 interface AddWordScreenProps {
-  word: string;
-  translation: string;
+  [key: string]: string;
 }
 
 interface MessageProps {
@@ -26,6 +25,22 @@ const initialState = {
   translation: ''
 };
 
+interface TextInputsProps {
+  name: string | keyof typeof initialState;
+  placeholder: string;
+}
+
+const inputFields: TextInputsProps[] = [
+  {
+    name: 'word',
+    placeholder: 'Word'
+  },
+  {
+    name: 'translation',
+    placeholder: 'Translation'
+  }
+];
+
 const AddWordScreen: React.FC = (): JSX.Element => {
   const [newWord, setNewWord] = useState<AddWordScreenProps>(initialState);
   const [message, setMessage] = useState<MessageProps>({
@@ -33,11 +48,6 @@ const AddWordScreen: React.FC = (): JSX.Element => {
     title: ''
   });
   const [loading, setLoading] = useState<boolean>(false);
-  useEffect(() => {
-    setTimeout(() => {
-      setMessage({ ...message, visible: false });
-    }, 10000);
-  }, [message]);
 
   const handleInputChangeText = (value: string, inputField: string): void => {
     setNewWord({ ...newWord, [inputField]: value });
@@ -76,31 +86,19 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 
   return (
     <Scene keyboardAvoidingView={true}>
-      <View style={styles.inner}>
-        <TextInput
-          style={styles.input}
-          placeholder="Word"
-          placeholderTextColor={'grey'}
-          autoFocus
-          onChangeText={(value: string) => handleInputChangeText(value, 'word')}
-          value={newWord.word}
-        />
-        <TextInput
-          style={[styles.input, styles.translation]}
-          placeholder="Translation"
-          placeholderTextColor={'grey'}
-          onChangeText={(value: string) =>
-            handleInputChangeText(value, 'translation')
-          }
-          value={newWord.translation}
-        />
-        <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
-          {loading ? (
-            <ActivityIndicator size="small" />
-          ) : (
-            <Text style={styles.btnTitle}>Add Word</Text>
-          )}
-        </TouchableOpacity>
+      <View style={styles.container}>
+        {inputFields.map(({ name, placeholder }) => (
+          <TextInput
+            key={name}
+            style={styles.input}
+            placeholder={placeholder}
+            placeholderTextColor={'grey'}
+            onChangeText={(value: string) => handleInputChangeText(value, name)}
+            value={newWord[name]}
+          />
+        ))}
+
+        <Btn loading={loading} onPress={handleButtonPress} title="Add Word" />
         <Button title="Clear fields" onPress={() => setNewWord(initialState)} />
       </View>
     </Scene>
@@ -108,14 +106,7 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 };
 
 const styles = StyleSheet.create({
-  avoidingView: {
-    flex: 1
-  },
   container: {
-    flex: 1,
-    justifyContent: 'center'
-  },
-  inner: {
     height: 300,
     padding: 20,
     justifyContent: 'space-between'
@@ -128,23 +119,6 @@ const styles = StyleSheet.create({
   },
   translation: {
     marginTop: 20
-  },
-  button: {
-    // padding: 20,
-    height: 70,
-    borderRadius: 35,
-    justifyContent: 'center',
-    marginVertical: 20,
-    width: '100%',
-    backgroundColor: 'black',
-    alignSelf: 'flex-end'
-  },
-  btnTitle: {
-    // flex: 1,
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 24,
-    paddingBottom: 2
   }
 });
 
