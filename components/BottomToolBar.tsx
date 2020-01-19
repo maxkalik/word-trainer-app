@@ -4,9 +4,9 @@ import { BottomBarSection, Btn } from '../components/common';
 
 interface BottomToolBarProps {
   acceptBtnTitle: string;
-  acceptBtnOnPress: (event: GestureResponderEvent) => {};
+  acceptBtnOnPress: (event: GestureResponderEvent) => void;
   cancelBtnTitle: string;
-  cancelBtnOnPress: (event: GestureResponderEvent) => {};
+  cancelBtnOnPress: (event: GestureResponderEvent) => void;
 }
 
 const BottomToolBar: React.FC<BottomToolBarProps> = ({
@@ -16,8 +16,8 @@ const BottomToolBar: React.FC<BottomToolBarProps> = ({
   cancelBtnOnPress
 }): JSX.Element => (
   <BottomBarSection>
-    <Btn filled title={acceptBtnTitle} onPress={acceptBtnOnPress} />
-    <Btn size="small" title={cancelBtnTitle} onPress={cancelBtnOnPress} />
+    <Btn filled title={acceptBtnTitle} onPress={() => acceptBtnOnPress} />
+    <Btn size="small" title={cancelBtnTitle} onPress={() => cancelBtnOnPress} />
   </BottomBarSection>
 );
 

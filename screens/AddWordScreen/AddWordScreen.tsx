@@ -88,12 +88,14 @@ const AddWordScreen: React.FC = (): JSX.Element => {
         ))}
         <Btn
           filled
+          addStyle={styles.acceptBtn}
           loading={loading}
           onPress={handleButtonPress}
           title="Add Word"
         />
         <Btn
           size="small"
+          addStyle={styles.clearBtn}
           onPress={() => setNewWord(initialState)}
           title="Clear Fields"
         />
@@ -105,11 +107,9 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    height: 300,
+    justifyContent: 'space-between',
+    height: 360,
     padding: 20,
-    borderWidth: 1,
-    borderColor: 'black'
   },
   input: {
     fontSize: 24,
@@ -119,6 +119,12 @@ const styles = StyleSheet.create({
   },
   translation: {
     marginTop: 20
+  },
+  acceptBtn: {
+    marginTop: 20
+  },
+  clearBtn: {
+    marginTop: 10
   }
 });
 

@@ -5,13 +5,13 @@ import {
   ActivityIndicator,
   Text,
   StyleProp,
-  ViewStyle,
-  GestureResponderEvent
+  GestureResponderEvent,
+  ViewStyle
 } from 'react-native';
 
 interface ButtonProps {
   title: string;
-  onPress: (event: GestureResponderEvent) => {};
+  onPress: (event: GestureResponderEvent) => void;
   size?: string;
   filled?: boolean;
   loading?: boolean;
@@ -26,8 +26,6 @@ const Btn: React.FC<ButtonProps> = ({
   onPress,
   addStyle
 }): JSX.Element => {
-  // const { container, btnTitle } = largeBtnStyles;
-  // const btnType = [container, btnTitle];
   const smallSize = size === 'small';
   const containerStyles = [
     styles.container,
