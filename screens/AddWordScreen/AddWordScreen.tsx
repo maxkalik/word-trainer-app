@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase';
-import {
-  StyleSheet,
-  TouchableOpacity,
-  ActivityIndicator,
-  Text,
-  Button,
-  TextInput,
-  View
-} from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { Scene, Message, Btn } from '../../components/common';
+import { MessageProps } from '../../components/common/Message';
 
 interface AddWordScreenProps {
   [key: string]: string;
-}
-
-interface MessageProps {
-  visible: boolean;
-  title: string;
 }
 
 const initialState = {
@@ -68,6 +56,7 @@ const AddWordScreen: React.FC = (): JSX.Element => {
         });
       })
       .catch(error => {
+        setLoading(false);
         setMessage({
           visible: true,
           title: `Error: "${error}"`
@@ -78,7 +67,7 @@ const AddWordScreen: React.FC = (): JSX.Element => {
   if (message.visible) {
     return (
       <Message
-        {...message}
+        messageProps={message}
         onPress={() => setMessage({ ...message, visible: false })}
       />
     );
@@ -97,8 +86,17 @@ const AddWordScreen: React.FC = (): JSX.Element => {
             value={newWord[name]}
           />
         ))}
-        <Btn loading={loading} onPress={handleButtonPress} title="Add Word" />
-        <Button title="Clear fields" onPress={() => setNewWord(initialState)} />
+        <Btn
+          filled
+          loading={loading}
+          onPress={handleButtonPress}
+          title="Add Word"
+        />
+        <Btn
+          size="small"
+          onPress={() => setNewWord(initialState)}
+          title="Clear Fields"
+        />
       </View>
     </Scene>
   );
@@ -106,9 +104,12 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
     height: 300,
     padding: 20,
-    justifyContent: 'space-between'
+    borderWidth: 1,
+    borderColor: 'black'
   },
   input: {
     fontSize: 24,

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { BottomBarSection } from '../components/common';
+import { GestureResponderEvent } from 'react-native';
+import { BottomBarSection, Btn } from '../components/common';
 
 interface BottomToolBarProps {
   acceptBtnTitle: string;
-  acceptBtnOnPress: () => void;
+  acceptBtnOnPress: (event: GestureResponderEvent) => {};
   cancelBtnTitle: string;
-  cancelBtnOnPress: () => void;
+  cancelBtnOnPress: (event: GestureResponderEvent) => {};
 }
 
 const BottomToolBar: React.FC<BottomToolBarProps> = ({
@@ -16,19 +16,9 @@ const BottomToolBar: React.FC<BottomToolBarProps> = ({
   cancelBtnOnPress
 }): JSX.Element => (
   <BottomBarSection>
-    <Button title={acceptBtnTitle} onPress={acceptBtnOnPress} />
-    <TouchableOpacity
-      onPress={cancelBtnOnPress}
-      style={styles.bottomToolBarBtn}>
-      <Text>{cancelBtnTitle}</Text>
-    </TouchableOpacity>
+    <Btn filled title={acceptBtnTitle} onPress={acceptBtnOnPress} />
+    <Btn size="small" title={cancelBtnTitle} onPress={cancelBtnOnPress} />
   </BottomBarSection>
 );
-
-const styles = StyleSheet.create({
-  bottomToolBarBtn: {
-    marginTop: 14
-  }
-});
 
 export default BottomToolBar;

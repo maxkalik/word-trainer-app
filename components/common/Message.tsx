@@ -1,15 +1,18 @@
 import React from 'react';
 import { Modal, Text, View, Alert, StyleSheet, Button } from 'react-native';
 
-interface MessageProps {
+export interface MessageProps {
   visible: boolean;
   title: string;
+}
+
+interface MessageComponentProps {
+  messageProps: MessageProps;
   onPress: () => void;
 }
 
-const Message: React.FC<MessageProps> = ({
-  visible,
-  title,
+const Message: React.FC<MessageComponentProps> = ({
+  messageProps: { visible, title },
   onPress
 }): JSX.Element => (
   <Modal

@@ -5,24 +5,31 @@ import {
   StyleSheet,
   SafeAreaView,
   FlatList,
-  View,
   ActivityIndicator,
-  Keyboard
+  Keyboard,
+  View,
+  Text
 } from 'react-native';
+import { Message, Btn } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader';
 import VocabularyItem from '../../components/VocabularyItem';
 import BottomToolBar from '../../components/BottomToolBar';
+import { MessageProps } from '../../components/common/Message';
 import { useStateValue } from '../../state';
 import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
 
-const VocabularyScreen: React.FC = (): JSX.Element => {
+const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const [{ words }] = useStateValue();
   const [loading, setLoading] = useState(false);
   const [vocabularyWords, setVocabularyWords] = useState(words);
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [editMode, setEditMode] = useState<boolean>(false);
+  const [message, setMessage] = useState<MessageProps>({
+    visible: false,
+    title: ''
+  });
 
   useEffect(() => {
     setLoading(true);
@@ -56,10 +63,20 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
         .ref(`/words/${item}`)
         .remove()
         .then(() => {
-          setCheckedItems([]);
           setLoading(false);
+          setMessage({
+            visible: true,
+            title: 'Words has been successfully removed.'
+          });
+          setCheckedItems([]);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+          setLoading(false);
+          setMessage({
+            visible: true,
+            title: `Error: "${error}"`
+          });
+        });
     });
   };
 
@@ -74,7 +91,24 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
   }
 
   if (words.length === 0) {
-    return <View>Add your words</View>;
+    return (
+      <View>
+        <Text>You have no words yet</Text>
+        <Btn
+          filled
+          onPress={() => props.navigation.navigate('Add Word')}
+          title="Add Word"
+        />
+      </View>
+    );
+  }
+  if (message.visible) {
+    return (
+      <Message
+        messageProps={message}
+        onPress={() => setMessage({ ...message, visible: false })}
+      />
+    );
   }
 
   return (
