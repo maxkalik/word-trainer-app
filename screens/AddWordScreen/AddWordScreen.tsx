@@ -97,7 +97,6 @@ const AddWordScreen: React.FC = (): JSX.Element => {
             value={newWord[name]}
           />
         ))}
-
         <Btn loading={loading} onPress={handleButtonPress} title="Add Word" />
         <Button title="Clear fields" onPress={() => setNewWord(initialState)} />
       </View>

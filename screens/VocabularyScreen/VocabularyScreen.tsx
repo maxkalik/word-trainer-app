@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import firebase from 'firebase';
+import { NavigationEvents } from 'react-navigation';
+import firebase from 'firebase';
 import {
   StyleSheet,
   SafeAreaView,
@@ -24,15 +25,17 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
   const [editMode, setEditMode] = useState<boolean>(false);
 
   useEffect(() => {
-    setEditMode(false);
-  }, []);
-
-  useEffect(() => {
     setLoading(true);
     const result = findMatches(words, inputValue);
     setVocabularyWords(result);
     setLoading(false);
   }, [inputValue, words]);
+
+  const updateUI = () => {
+    setCheckedItems([]);
+    setInputValue('');
+    setEditMode(false);
+  };
 
   const handleCheckChange = (id: string) => {
     if (!checkedItems.includes(id)) {
@@ -43,6 +46,21 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
       );
       setCheckedItems(updatedCheckedItems);
     }
+  };
+
+  const handleRemove = () => {
+    setLoading(true);
+    checkedItems.forEach(item => {
+      firebase
+        .database()
+        .ref(`/words/${item}`)
+        .remove()
+        .then(() => {
+          setCheckedItems([]);
+          setLoading(false);
+        })
+        .catch(error => console.log(error));
+    });
   };
 
   const handleEditBtnPress = () => {
@@ -61,6 +79,7 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <NavigationEvents onWillFocus={updateUI} />
       <VocabularyHeader
         onChangeInputText={(value: string) => setInputValue(value)}
         value={inputValue}
@@ -84,7 +103,7 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
       {checkedItems.length > 0 && (
         <BottomToolBar
           acceptBtnTitle="Remove Words"
-          acceptBtnOnPress={() => console.log('remove')}
+          acceptBtnOnPress={handleRemove}
           cancelBtnTitle="Cancel"
           cancelBtnOnPress={handleEditBtnPress}
         />
