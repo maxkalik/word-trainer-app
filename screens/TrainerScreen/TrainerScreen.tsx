@@ -36,14 +36,14 @@ const TrainerScreen: React.FC = (props: any): JSX.Element => {
   };
 
   return (
-    <View style={styles.root}>
+    <View style={styles.container}>
       {wordsLength ? renderDesk() : renderMessage()}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  root: { flex: 1, justifyContent: 'center', alignItems: 'center' }
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center' }
 });
 
 export default TrainerScreen;

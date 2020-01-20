@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { StyleSheet, TextInput, View } from 'react-native';
-import { Scene, PopUp, Btn } from '../../components/common';
-import { PopUpProps } from '../../components/common/PopUp';
+import { Scene, Notification, Btn } from '../../components/common';
+import { NotificatonProps } from '../../components/common/Notification';
 
 interface AddWordScreenProps {
   [key: string]: string;
@@ -31,11 +31,17 @@ const inputFields: TextInputsProps[] = [
 
 const AddWordScreen: React.FC = (): JSX.Element => {
   const [newWord, setNewWord] = useState<AddWordScreenProps>(initialState);
-  const [popUp, setPopUp] = useState<PopUpProps>({
-    visible: false,
-    title: ''
+  const [notification, setNotification] = useState<NotificatonProps>({
+    visible: true,
+    title: 'text'
   });
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setNotification({ ...notification, visible: false });
+  //   }, 5000);
+  // }, [notification]);
 
   const handleInputChangeText = (value: string, inputField: string): void => {
     setNewWord({ ...newWord, [inputField]: value });
@@ -50,14 +56,14 @@ const AddWordScreen: React.FC = (): JSX.Element => {
       .then(() => {
         setNewWord(initialState);
         setLoading(false);
-        setPopUp({
+        setNotification({
           visible: true,
           title: `Word "${newWord.word}" has been successfully added.`
         });
       })
       .catch(error => {
         setLoading(false);
-        setPopUp({
+        setNotification({
           visible: true,
           title: `Error: "${error}"`
         });
@@ -66,7 +72,12 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 
   return (
     <>
-      {popUp.visible && <PopUp visible={popUp.visible} title={popUp.title} />}
+      {notification.visible && (
+        <Notification
+          // visible={notification.visible}
+          title={notification.title}
+        />
+      )}
       <Scene keyboardAvoidingView={true}>
         <View style={styles.container}>
           {inputFields.map(({ name, placeholder }) => (

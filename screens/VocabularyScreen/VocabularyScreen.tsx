@@ -10,11 +10,11 @@ import {
   View,
   Text
 } from 'react-native';
-import { PopUp, Btn } from '../../components/common';
+import { Notification, Btn } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader';
 import VocabularyItem from '../../components/VocabularyItem';
 import BottomToolBar from '../../components/BottomToolBar';
-import { PopUpProps } from '../../components/common/PopUp';
+import { NotificationProps } from '../../components/common/Notification';
 import { useStateValue } from '../../state';
 import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
@@ -26,7 +26,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [editMode, setEditMode] = useState<boolean>(false);
-  const [popUp, setPopUp] = useState<PopUpProps>({
+  const [notification, setNotification] = useState<NotificationProps>({
     visible: false,
     title: ''
   });
@@ -64,7 +64,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
         .remove()
         .then(() => {
           setLoading(false);
-          setPopUp({
+          setNotification({
             visible: true,
             title: 'Words has been successfully removed.'
           });
@@ -72,7 +72,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
         })
         .catch(error => {
           setLoading(false);
-          setPopUp({
+          setNotification({
             visible: true,
             title: `Error: "${error}"`
           });
@@ -105,7 +105,12 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
 
   return (
     <>
-      {popUp.visible && <PopUp visible={popUp.visible} title={popUp.title} />}
+      {notification.visible && (
+        <Notification
+          visible={notification.visible}
+          title={notification.title}
+        />
+      )}
       <SafeAreaView style={styles.container}>
         <NavigationEvents onWillFocus={updateUI} />
         <VocabularyHeader
