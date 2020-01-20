@@ -2,28 +2,23 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import TrainerScreen from '../screens/TrainerScreen/TrainerScreen';
 import AddWordScreen from '../screens/AddWordScreen/AddWordScreen';
 import VocabularyScreen from '../screens/VocabularyScreen/VocabularyScreen';
-import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 
 const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} />;
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Home: HomeScreen,
     Trainer: TrainerScreen,
     ['Add Word']: AddWordScreen,
-    Vocabulary: VocabularyScreen,
-    Profile: ProfileScreen
+    Vocabulary: VocabularyScreen
   },
   {
     tabBarComponent: props => (
       <TabBarComponent {...props} style={styles.container} />
     ),
-    defaultNavigationOptions: ({ navigation }) => {
-      const { routeName } = navigation.state;
+    defaultNavigationOptions: () => {
       return {
         tabBarIcon: ({ tintColor }): JSX.Element => (
           <View style={{ ...styles.icon, backgroundColor: tintColor }} />

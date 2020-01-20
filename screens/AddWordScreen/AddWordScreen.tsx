@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { Scene, Notification, Btn } from '../../components/common';
 import { NotificatonProps } from '../../components/common/Notification';
-
-interface AddWordScreenProps {
-  [key: string]: string;
-}
+import { styles } from './style';
 
 const initialState = {
   word: '',
   translation: ''
 };
+
+interface AddWordScreenProps {
+  [key: string]: string;
+}
 
 interface TextInputsProps {
   name: string | keyof typeof initialState;
@@ -100,27 +101,5 @@ const AddWordScreen: React.FC = (): JSX.Element => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: 320,
-    padding: 20
-  },
-  input: {
-    fontSize: 24,
-    color: 'black',
-    textAlign: 'center'
-  },
-  buttons: {
-    height: 120,
-    justifyContent: 'space-between'
-  },
-  btnClear: {
-    alignSelf: 'center',
-    marginTop: 20
-  }
-});
 
 export default AddWordScreen;
