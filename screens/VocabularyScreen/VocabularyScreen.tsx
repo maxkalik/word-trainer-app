@@ -10,11 +10,11 @@ import {
   View,
   Text
 } from 'react-native';
-import { Message, Btn } from '../../components/common';
+import { PopUp, Btn } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader';
 import VocabularyItem from '../../components/VocabularyItem';
 import BottomToolBar from '../../components/BottomToolBar';
-import { MessageProps } from '../../components/common/Message';
+import { PopUpProps } from '../../components/common/PopUp';
 import { useStateValue } from '../../state';
 import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
@@ -26,7 +26,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [editMode, setEditMode] = useState<boolean>(false);
-  const [message, setMessage] = useState<MessageProps>({
+  const [popUp, setPopUp] = useState<PopUpProps>({
     visible: false,
     title: ''
   });
@@ -64,7 +64,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
         .remove()
         .then(() => {
           setLoading(false);
-          setMessage({
+          setPopUp({
             visible: true,
             title: 'Words has been successfully removed.'
           });
@@ -72,7 +72,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
         })
         .catch(error => {
           setLoading(false);
-          setMessage({
+          setPopUp({
             visible: true,
             title: `Error: "${error}"`
           });
@@ -102,47 +102,42 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
       </View>
     );
   }
-  if (message.visible) {
-    return (
-      <Message
-        messageProps={message}
-        onPress={() => setMessage({ ...message, visible: false })}
-      />
-    );
-  }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <NavigationEvents onWillFocus={updateUI} />
-      <VocabularyHeader
-        onChangeInputText={(value: string) => setInputValue(value)}
-        value={inputValue}
-        onClearBtnPress={() => setInputValue('')}
-        onEditBtnPress={handleEditBtnPress}
-        isEditBtnPressed={editMode}
-      />
-      <FlatList
-        data={vocabularyWords}
-        style={styles.list}
-        renderItem={({ item }: { item: WordTypes }) => (
-          <VocabularyItem
-            wordItem={item}
-            checkBox={editMode}
-            checked={checkedItems.includes(item.id)}
-            onCheckmarkPress={() => handleCheckChange(item.id)}
+    <>
+      {popUp.visible && <PopUp visible={popUp.visible} title={popUp.title} />}
+      <SafeAreaView style={styles.container}>
+        <NavigationEvents onWillFocus={updateUI} />
+        <VocabularyHeader
+          onChangeInputText={(value: string) => setInputValue(value)}
+          value={inputValue}
+          onClearBtnPress={() => setInputValue('')}
+          onEditBtnPress={handleEditBtnPress}
+          isEditBtnPressed={editMode}
+        />
+        <FlatList
+          data={vocabularyWords}
+          style={styles.list}
+          renderItem={({ item }: { item: WordTypes }) => (
+            <VocabularyItem
+              wordItem={item}
+              checkBox={editMode}
+              checked={checkedItems.includes(item.id)}
+              onCheckmarkPress={() => handleCheckChange(item.id)}
+            />
+          )}
+          keyExtractor={({ id }) => id}
+        />
+        {checkedItems.length > 0 && (
+          <BottomToolBar
+            acceptBtnTitle="Remove Words"
+            acceptBtnOnPress={handleRemove}
+            cancelBtnTitle="Cancel"
+            cancelBtnOnPress={() => setCheckedItems([])}
           />
         )}
-        keyExtractor={({ id }) => id}
-      />
-      {checkedItems.length > 0 && (
-        <BottomToolBar
-          acceptBtnTitle="Remove Words"
-          acceptBtnOnPress={handleRemove}
-          cancelBtnTitle="Cancel"
-          cancelBtnOnPress={handleEditBtnPress}
-        />
-      )}
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 };
 
