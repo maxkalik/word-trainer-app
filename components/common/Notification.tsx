@@ -3,6 +3,11 @@ import { Animated, Text, StyleSheet } from 'react-native';
 
 const height = 120;
 
+export interface NotificatonProps {
+  title: string;
+  visible: boolean;
+}
+
 const Notificaton: React.FC<{ title: string }> = ({ title }): JSX.Element => {
   const [offset] = useState(new Animated.Value(-height));
   useEffect(() => {

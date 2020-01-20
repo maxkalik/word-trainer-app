@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase';
 import { StyleSheet, TextInput, View } from 'react-native';
 import { Scene, Notification, Btn } from '../../components/common';
@@ -32,16 +32,10 @@ const inputFields: TextInputsProps[] = [
 const AddWordScreen: React.FC = (): JSX.Element => {
   const [newWord, setNewWord] = useState<AddWordScreenProps>(initialState);
   const [notification, setNotification] = useState<NotificatonProps>({
-    visible: true,
-    title: 'text'
+    visible: false,
+    title: ''
   });
   const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setNotification({ ...notification, visible: false });
-  //   }, 5000);
-  // }, [notification]);
 
   const handleInputChangeText = (value: string, inputField: string): void => {
     setNewWord({ ...newWord, [inputField]: value });
@@ -72,12 +66,7 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 
   return (
     <>
-      {notification.visible && (
-        <Notification
-          // visible={notification.visible}
-          title={notification.title}
-        />
-      )}
+      {notification.visible && <Notification title={notification.title} />}
       <Scene keyboardAvoidingView={true}>
         <View style={styles.container}>
           {inputFields.map(({ name, placeholder }) => (
@@ -101,6 +90,7 @@ const AddWordScreen: React.FC = (): JSX.Element => {
             />
             <Btn
               size="small"
+              addStyle={styles.btnClear}
               onPress={() => setNewWord(initialState)}
               title="Clear Fields"
             />
@@ -115,19 +105,21 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 360,
+    height: 320,
     padding: 20
   },
   input: {
     fontSize: 24,
     color: 'black',
-    textAlign: 'center',
-    width: '100%'
+    textAlign: 'center'
   },
   buttons: {
     height: 120,
     justifyContent: 'space-between'
+  },
+  btnClear: {
+    alignSelf: 'center',
+    marginTop: 20
   }
 });
 
