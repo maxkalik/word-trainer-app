@@ -6,6 +6,9 @@ I was inspired by [Lingualeo](https://github.com/LinguaLeo). But I need to have 
 [ ] - Notification position absolute in android not working
 [ ] - Modal animation style for Bottom tool bar
 [ ] - Fix keyboard with Add Word View
+[ ] - Activity indicator not in the center
+[ ] - Edit mode with animation
+[ ] - Timer in Word Trainer View
 
 ## How to run
 
