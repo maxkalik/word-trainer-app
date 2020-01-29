@@ -1,7 +1,7 @@
 import './fixtimerbug';
 import React from 'react';
 import { StateProvider } from './state';
-import Content from './components/Content';
+import Content from './components/Content/Content';
 import { WordTypes } from './types';
 
 const initialState = {

@@ -2,22 +2,9 @@ import React, { useState } from 'react';
 import firebase from 'firebase';
 import { TextInput, View } from 'react-native';
 import { Scene, Notification, Btn } from '../../components/common';
-import { NotificatonProps } from '../../components/common/Notification';
-import { styles } from './style';
-
-const initialState = {
-  word: '',
-  translation: ''
-};
-
-interface AddWordScreenProps {
-  [key: string]: string;
-}
-
-interface TextInputsProps {
-  name: string | keyof typeof initialState;
-  placeholder: string;
-}
+import { NotificatonProps } from '../../components/common/Notification/types';
+import { initialState, AddWordScreenProps, TextInputsProps } from './types';
+import { styles } from './styles';
 
 const inputFields: TextInputsProps[] = [
   {
@@ -66,39 +53,37 @@ const AddWordScreen: React.FC = (): JSX.Element => {
   };
 
   return (
-    <>
-      {notification.visible && <Notification title={notification.title} />}
-      <Scene keyboardAvoidingView={true}>
-        <View style={styles.container}>
-          {inputFields.map(({ name, placeholder }) => (
-            <TextInput
-              key={name}
-              style={styles.input}
-              placeholder={placeholder}
-              placeholderTextColor={'grey'}
-              onChangeText={(value: string) =>
-                handleInputChangeText(value, name)
-              }
-              value={newWord[name]}
-            />
-          ))}
-          <View style={styles.buttons}>
-            <Btn
-              filled
-              loading={loading}
-              onPress={handleButtonPress}
-              title="Add Word"
-            />
-            <Btn
-              size="small"
-              addStyle={styles.btnClear}
-              onPress={() => setNewWord(initialState)}
-              title="Clear Fields"
-            />
-          </View>
+    <Scene keyboardAvoidingView={true}>
+      {!loading && notification.visible && (
+        <Notification title={notification.title} />
+      )}
+      <View style={styles.container}>
+        {inputFields.map(({ name, placeholder }) => (
+          <TextInput
+            key={name}
+            style={styles.input}
+            placeholder={placeholder}
+            placeholderTextColor={'grey'}
+            onChangeText={(value: string) => handleInputChangeText(value, name)}
+            value={newWord[name]}
+          />
+        ))}
+        <View style={styles.buttons}>
+          <Btn
+            filled
+            loading={loading}
+            onPress={handleButtonPress}
+            title="Add Word"
+          />
+          <Btn
+            size="small"
+            addStyle={styles.btnClear}
+            onPress={() => setNewWord(initialState)}
+            title="Clear Fields"
+          />
         </View>
-      </Scene>
-    </>
+      </View>
+    </Scene>
   );
 };
 

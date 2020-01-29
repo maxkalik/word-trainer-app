@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useStateValue } from '../../state';
 import { randomItem, makeWordsDesk } from './helpers';
-import TrainerDeskItems from '../../components/TrainerDeskItems';
-import TrainerWord from '../../components/TrainerWord';
-import Message from '../../components/Message';
+import { Message } from '../../components/common';
+import TrainerDeskItems from '../../components/TrainerDeskItems/TrainerDeskItems';
+import TrainerWord from '../../components/TrainerWord/TrainerWord';
+import { styles } from './styles';
 
 const TrainerScreen: React.FC = (props: any): JSX.Element => {
   const [{ words }] = useStateValue();
@@ -41,9 +42,5 @@ const TrainerScreen: React.FC = (props: any): JSX.Element => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center', alignItems: 'center' }
-});
 
 export default TrainerScreen;

@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationEvents } from 'react-navigation';
 import firebase from 'firebase';
-import {
-  StyleSheet,
-  SafeAreaView,
-  FlatList,
-  ActivityIndicator,
-  Keyboard
-} from 'react-native';
-import { Notification } from '../../components/common';
-import VocabularyHeader from '../../components/VocabularyHeader';
-import VocabularyItem from '../../components/VocabularyItem';
-import BottomToolBar from '../../components/BottomToolBar';
-import Message from '../../components/Message';
-import { NotificatonProps } from '../../components/common/Notification';
+import { SafeAreaView, FlatList, Keyboard } from 'react-native';
+import { Notification, Message, Spinner } from '../../components/common';
+import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
+import VocabularyItem from '../../components/VocabularyItem/VocabularyItem';
+import BottomToolBar from '../../components/BottomToolBar/BottomToolBar';
+import { NotificatonProps } from '../../components/common/Notification/types';
 import { useStateValue } from '../../state';
 import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
+import { styles } from './styles';
 
 const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const [{ words }] = useStateValue();
@@ -32,6 +26,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const wordsLength = words.length === 0;
 
   useEffect(() => {
+    // should be fixed
     setLoading(true);
     const result = findMatches(words, inputValue);
     setVocabularyWords(result);
@@ -98,11 +93,13 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
       );
     }
     if (loading) {
-      return <ActivityIndicator size="large" />;
+      return <Spinner />;
     }
     return (
       <>
-        {notification.visible && <Notification title={notification.title} />}
+        {!loading && notification.visible && (
+          <Notification title={notification.title} />
+        )}
         <NavigationEvents onWillFocus={updateUI} />
         <VocabularyHeader
           onChangeInputText={(value: string) => setInputValue(value)}
@@ -140,10 +137,5 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     <SafeAreaView style={styles.container}>{renderContent()}</SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  list: { paddingLeft: 10 }
-});
 
 export default VocabularyScreen;
