@@ -2,22 +2,9 @@ import React, { useState } from 'react';
 import firebase from 'firebase';
 import { TextInput, View } from 'react-native';
 import { Scene, Notification, Btn } from '../../components/common';
-import { NotificatonProps } from '../../components/common/Notification';
-import { styles } from './style';
-
-const initialState = {
-  word: '',
-  translation: ''
-};
-
-interface AddWordScreenProps {
-  [key: string]: string;
-}
-
-interface TextInputsProps {
-  name: string | keyof typeof initialState;
-  placeholder: string;
-}
+import { NotificatonProps } from '../../components/common/Notification/types';
+import { initialState, AddWordScreenProps, TextInputsProps } from './types';
+import { styles } from './styles';
 
 const inputFields: TextInputsProps[] = [
   {
