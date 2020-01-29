@@ -20,13 +20,10 @@ const Scene: React.FC<SceneProps> = ({
   keyboardAvoidingView
 }): JSX.Element => (
   <KeyboardAvoidingView
-    style={{ flex: 1 }}
     behavior="padding"
-    enabled={keyboardAvoidingView}>
-    <TouchableWithoutFeedback
-      style={{ flex: 1 }}
-      onPress={Keyboard.dismiss}
-      accessible={false}>
+    enabled={keyboardAvoidingView}
+    style={{ flex: 1 }}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.container}>
         {(loading && <ActivityIndicator size="large" />) || children}
       </SafeAreaView>

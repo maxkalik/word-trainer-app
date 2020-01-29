@@ -26,6 +26,7 @@ const TabNavigator = createBottomTabNavigator(
       };
     },
     tabBarOptions: {
+      keyboardHidesTabBar: false,
       activeTintColor: 'black',
       inactiveTintColor: 'gray',
       style: { height: 70 },

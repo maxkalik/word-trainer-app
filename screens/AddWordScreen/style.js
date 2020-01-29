@@ -3,21 +3,24 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: 320,
-    padding: 20
+    // justifyContent: 'space-between',
+    height: 280,
+    padding: 20,
+    // borderColor: 'black',
+    // borderWidth: 1
   },
   input: {
-    fontSize: 24,
+    height: 50,
+    fontSize: 20,
     color: 'black',
     textAlign: 'center'
   },
   buttons: {
-    height: 120,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: 15
   },
   btnClear: {
     alignSelf: 'center',
-    marginTop: 20
+    marginTop: 5
   }
 });
