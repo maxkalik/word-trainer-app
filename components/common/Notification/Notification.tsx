@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Animated, View, Text, Platform, NativeModules } from 'react-native';
+import {
+  Animated,
+  Text,
+  Platform,
+  NativeModules,
+  TouchableOpacity
+} from 'react-native';
 import { styles } from './styles';
 
 const { StatusBarManager } = NativeModules;
@@ -7,6 +13,7 @@ const { StatusBarManager } = NativeModules;
 const Notificaton: React.FC<{ title: string }> = ({ title }): JSX.Element => {
   const [offset] = useState(new Animated.Value(-120));
   const [statusIOSBarHeight, setStatusIOSBarHeight] = useState(0);
+
   useEffect(() => {
     if (Platform.OS === 'ios') {
       StatusBarManager.getHeight(({ height }: any) => {
@@ -14,6 +21,14 @@ const Notificaton: React.FC<{ title: string }> = ({ title }): JSX.Element => {
       });
     }
   }, []);
+
+  // should be swipe gesture
+  // react-native-swipe-gestures
+  const handlePressed = () => {
+    Animated.spring(offset, {
+      toValue: -120
+    }).start();
+  };
 
   useEffect(() => {
     Animated.sequence([
@@ -29,9 +44,9 @@ const Notificaton: React.FC<{ title: string }> = ({ title }): JSX.Element => {
   return (
     <Animated.View
       style={[styles.container, { transform: [{ translateY: offset }] }]}>
-      <View style={styles.textContainer}>
+      <TouchableOpacity style={styles.textContainer} onPress={handlePressed}>
         <Text style={styles.title}>{title}</Text>
-      </View>
+      </TouchableOpacity>
     </Animated.View>
   );
 };

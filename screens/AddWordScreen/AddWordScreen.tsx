@@ -31,25 +31,33 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 
   const handleButtonPress = () => {
     setLoading(true);
-    firebase
-      .database()
-      .ref('words')
-      .push(newWord)
-      .then(() => {
-        setNewWord(initialState);
-        setLoading(false);
-        setNotification({
-          visible: true,
-          title: `Word "${newWord.word}" has been successfully added.`
-        });
-      })
-      .catch(error => {
-        setLoading(false);
-        setNotification({
-          visible: true,
-          title: `Error: "${error}"`
-        });
+    if (newWord.word === '' || newWord.translation === '') {
+      setLoading(false);
+      setNotification({
+        visible: true,
+        title: 'Inputs should not be empty'
       });
+    } else {
+      firebase
+        .database()
+        .ref('words')
+        .push(newWord)
+        .then(() => {
+          setNewWord(initialState);
+          setLoading(false);
+          setNotification({
+            visible: true,
+            title: `Word "${newWord.word}" has been successfully added.`
+          });
+        })
+        .catch(error => {
+          setLoading(false);
+          setNotification({
+            visible: true,
+            title: `Error: "${error}"`
+          });
+        });
+    }
   };
 
   return (
