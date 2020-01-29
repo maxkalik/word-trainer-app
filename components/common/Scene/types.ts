@@ -1,5 +1,5 @@
 export interface SceneProps {
   loading?: boolean;
-  children: JSX.Element;
+  children: (false | Element)[];
   keyboardAvoidingView: boolean;
 }

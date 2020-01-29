@@ -53,41 +53,37 @@ const AddWordScreen: React.FC = (): JSX.Element => {
   };
 
   return (
-    <>
+    <Scene keyboardAvoidingView={true}>
       {!loading && notification.visible && (
         <Notification title={notification.title} />
       )}
-      <Scene keyboardAvoidingView={true}>
-        <View style={styles.container}>
-          {inputFields.map(({ name, placeholder }) => (
-            <TextInput
-              key={name}
-              style={styles.input}
-              placeholder={placeholder}
-              placeholderTextColor={'grey'}
-              onChangeText={(value: string) =>
-                handleInputChangeText(value, name)
-              }
-              value={newWord[name]}
-            />
-          ))}
-          <View style={styles.buttons}>
-            <Btn
-              filled
-              loading={loading}
-              onPress={handleButtonPress}
-              title="Add Word"
-            />
-            <Btn
-              size="small"
-              addStyle={styles.btnClear}
-              onPress={() => setNewWord(initialState)}
-              title="Clear Fields"
-            />
-          </View>
+      <View style={styles.container}>
+        {inputFields.map(({ name, placeholder }) => (
+          <TextInput
+            key={name}
+            style={styles.input}
+            placeholder={placeholder}
+            placeholderTextColor={'grey'}
+            onChangeText={(value: string) => handleInputChangeText(value, name)}
+            value={newWord[name]}
+          />
+        ))}
+        <View style={styles.buttons}>
+          <Btn
+            filled
+            loading={loading}
+            onPress={handleButtonPress}
+            title="Add Word"
+          />
+          <Btn
+            size="small"
+            addStyle={styles.btnClear}
+            onPress={() => setNewWord(initialState)}
+            title="Clear Fields"
+          />
         </View>
-      </Scene>
-    </>
+      </View>
+    </Scene>
   );
 };
 

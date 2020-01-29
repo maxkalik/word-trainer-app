@@ -1,26 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { Animated, Text } from 'react-native';
+import { Animated, View, Text, Platform, NativeModules } from 'react-native';
 import { styles } from './styles';
 
-export const height = 120;
+const { StatusBarManager } = NativeModules;
 
 const Notificaton: React.FC<{ title: string }> = ({ title }): JSX.Element => {
-  const [offset] = useState(new Animated.Value(-height));
+  const [offset] = useState(new Animated.Value(-120));
+  const [statusIOSBarHeight, setStatusIOSBarHeight] = useState(0);
+  useEffect(() => {
+    if (Platform.OS === 'ios') {
+      StatusBarManager.getHeight(({ height }: any) => {
+        setStatusIOSBarHeight(height);
+      });
+    }
+  }, []);
+
   useEffect(() => {
     Animated.sequence([
       Animated.spring(offset, {
-        toValue: 0
+        toValue: statusIOSBarHeight
       }),
       Animated.delay(3000),
       Animated.timing(offset, {
-        toValue: -height
+        toValue: -120
       })
     ]).start();
-  }, [offset]);
+  }, [offset, statusIOSBarHeight]);
   return (
     <Animated.View
       style={[styles.container, { transform: [{ translateY: offset }] }]}>
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{title}</Text>
+      </View>
     </Animated.View>
   );
 };

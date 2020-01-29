@@ -26,6 +26,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const wordsLength = words.length === 0;
 
   useEffect(() => {
+    // should be fixed
     setLoading(true);
     const result = findMatches(words, inputValue);
     setVocabularyWords(result);
