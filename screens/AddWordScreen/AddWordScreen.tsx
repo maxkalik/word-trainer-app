@@ -54,7 +54,9 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 
   return (
     <>
-      {notification.visible && <Notification title={notification.title} />}
+      {!loading && notification.visible && (
+        <Notification title={notification.title} />
+      )}
       <Scene keyboardAvoidingView={true}>
         <View style={styles.container}>
           {inputFields.map(({ name, placeholder }) => (

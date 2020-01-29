@@ -96,7 +96,9 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     }
     return (
       <>
-        {notification.visible && <Notification title={notification.title} />}
+        {!loading && notification.visible && (
+          <Notification title={notification.title} />
+        )}
         <NavigationEvents onWillFocus={updateUI} />
         <VocabularyHeader
           onChangeInputText={(value: string) => setInputValue(value)}
