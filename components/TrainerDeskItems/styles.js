@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    borderColor: 'black',
-    borderWidth: 1
+    // borderColor: 'black',
+    // borderWidth: 1
   }
 });
