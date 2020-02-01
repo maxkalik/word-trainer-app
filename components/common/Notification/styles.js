@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     zIndex: 9999,
-    elevation: 3,
+    elevation: 10,
     left: 0,
     top: 0
   },

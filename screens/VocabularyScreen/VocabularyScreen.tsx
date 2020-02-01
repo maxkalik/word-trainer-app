@@ -110,7 +110,6 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
         />
         <FlatList
           data={vocabularyWords}
-          style={styles.list}
           renderItem={({ item }: { item: WordTypes }) => (
             <VocabularyItem
               wordItem={item}

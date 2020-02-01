@@ -3,7 +3,7 @@
 I was inspired by [Lingualeo](https://github.com/LinguaLeo). But I need to have universal model where I can use an application with any laguages.
 
 ## Todo
-[ ] - Notification position absolute everywhere + Animation
+[ ] - Notification position absolute Vocabulary + Animation
 [ ] - Modal animation style for Bottom tool bar
 [x] - Fix keyboard with Add Word View
 [x] - Activity indicator not in the center

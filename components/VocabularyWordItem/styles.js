@@ -6,7 +6,8 @@ export const styles = StyleSheet.create({
     height: 50,
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingLeft: 15
   },
   word: {
     flex: 1

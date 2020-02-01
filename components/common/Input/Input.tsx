@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { TextInput, TouchableOpacity, View, Text } from 'react-native';
+import { TextInput, TouchableOpacity, View } from 'react-native';
+import { Icn16px } from '../../icons';
 import { ClearBtnProps, InputProps } from './types';
-import { styles } from './styles';
+import { styles, clearBtnStyles } from './styles';
 
 const ClearButton: React.FC<ClearBtnProps> = ({
   onClearBtnPress
 }): JSX.Element => (
-  <TouchableOpacity style={styles.clearButton} onPress={onClearBtnPress}>
-    <Text style={styles.clearButtonIcon}>×</Text>
+  <TouchableOpacity style={clearBtnStyles.container} onPress={onClearBtnPress}>
+    <Icn16px name="close" />
   </TouchableOpacity>
 );
 

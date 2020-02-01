@@ -2,20 +2,16 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    // paddingLeft: 10,
-    paddingRight: 16,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  checkbox: {
-    width: 18,
-    height: 18,
+    width: 20,
+    height: 20,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'black'
+    borderColor: 'silver'
   },
-  mark: {
-    width: 10,
-    height: 10,
-    backgroundColor: 'black'
+  checked: {
+    borderWidth: 2,
+    borderColor: 'black'
   }
 });

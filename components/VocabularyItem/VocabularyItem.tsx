@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Checkbox } from '../common';
 import VocabularyWordItem from '../VocabularyWordItem/VocabularyWordItem';
 import { VocabularyItemProps } from './types';
@@ -11,10 +11,10 @@ const VocabularyItem: React.FC<VocabularyItemProps> = ({
   checked,
   onCheckmarkPress
 }): JSX.Element => (
-  <View style={styles.container}>
-    {checkBox && <Checkbox checked={checked} onPress={onCheckmarkPress} />}
+  <TouchableOpacity style={styles.container} onPress={onCheckmarkPress}>
+    {checkBox && <Checkbox checked={checked} />}
     <VocabularyWordItem item={wordItem} />
-  </View>
+  </TouchableOpacity>
 );
 
 export default VocabularyItem;

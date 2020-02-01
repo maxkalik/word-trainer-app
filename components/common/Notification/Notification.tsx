@@ -25,6 +25,7 @@ const Notificaton: React.FC<{ title: string }> = ({ title }): JSX.Element => {
   // should be swipe gesture
   // react-native-swipe-gestures
   const handlePressed = () => {
+    console.log('notification pressed');
     Animated.spring(offset, {
       toValue: -120
     }).start();
