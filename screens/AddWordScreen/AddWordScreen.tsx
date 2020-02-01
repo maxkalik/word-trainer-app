@@ -30,6 +30,7 @@ const AddWordScreen: React.FC = (): JSX.Element => {
   };
 
   const handleButtonPress = () => {
+    console.log('pressed');
     setLoading(true);
     if (newWord.word === '' || newWord.translation === '') {
       setLoading(false);
@@ -62,9 +63,10 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 
   return (
     <Scene keyboardAvoidingView={true}>
-      {!loading && notification.visible && (
-        <Notification title={notification.title} />
-      )}
+      <Notification
+        title={notification.title}
+        visible={!loading && notification.visible}
+      />
       <View style={styles.container}>
         {inputFields.map(({ name, placeholder }) => (
           <TextInput

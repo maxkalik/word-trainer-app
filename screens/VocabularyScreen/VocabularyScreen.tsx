@@ -63,7 +63,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
             visible: true,
             title: 'Words has been successfully removed.'
           });
-          setCheckedItems([]);
+          updateUI();
         })
         .catch(error => {
           setLoading(false);
@@ -97,9 +97,10 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     }
     return (
       <>
-        {!loading && notification.visible && (
-          <Notification title={notification.title} />
-        )}
+        <Notification
+          title={notification.title}
+          visible={!loading && notification.visible}
+        />
         <NavigationEvents onWillFocus={updateUI} />
         <VocabularyHeader
           onChangeInputText={(value: string) => setInputValue(value)}
