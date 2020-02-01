@@ -12,8 +12,8 @@ const VocabularyItem: React.FC<VocabularyItemProps> = ({
   onCheckmarkPress
 }): JSX.Element => (
   <TouchableOpacity style={styles.container} onPress={onCheckmarkPress}>
-    {checkBox && <Checkbox checked={checked} />}
-    <VocabularyWordItem item={wordItem} />
+    {checkBox && <Checkbox checked={checked} onPress={onCheckmarkPress} />}
+    <VocabularyWordItem item={wordItem} isCheckMode={checkBox} />
   </TouchableOpacity>
 );
 

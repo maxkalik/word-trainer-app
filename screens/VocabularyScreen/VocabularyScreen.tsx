@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { SafeAreaView, Keyboard } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import firebase from 'firebase';
-import { SafeAreaView, FlatList, Keyboard } from 'react-native';
 import { Notification, Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
-import VocabularyItem from '../../components/VocabularyItem/VocabularyItem';
+import VocabularyItems from '../../components/VocabularyItems/VocabularyItems';
 import BottomToolBar from '../../components/BottomToolBar/BottomToolBar';
 import { NotificatonProps } from '../../components/common/Notification/types';
 import { useStateValue } from '../../state';
@@ -108,17 +108,11 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
           onEditBtnPress={handleEditBtnPress}
           isEditBtnPressed={editMode}
         />
-        <FlatList
-          data={vocabularyWords}
-          renderItem={({ item }: { item: WordTypes }) => (
-            <VocabularyItem
-              wordItem={item}
-              checkBox={editMode}
-              checked={checkedItems.includes(item.id)}
-              onCheckmarkPress={() => handleCheckChange(item.id)}
-            />
-          )}
-          keyExtractor={({ id }) => id}
+        <VocabularyItems
+          vocabularyWords={vocabularyWords}
+          editMode={editMode}
+          checkedItems={checkedItems}
+          onCheckChange={id => handleCheckChange(id)}
         />
         {checkedItems.length > 0 && (
           <BottomToolBar
