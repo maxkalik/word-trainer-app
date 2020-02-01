@@ -8,7 +8,7 @@ const BottomToolBar: React.FC<BottomToolBarProps> = ({
   cancelBtnTitle,
   cancelBtnOnPress
 }): JSX.Element => (
-  <BottomBarSection offsetValue={50}>
+  <BottomBarSection offsetValue={120}>
     <Btn
       size="small"
       filled

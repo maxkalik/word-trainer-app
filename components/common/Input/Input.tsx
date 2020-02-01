@@ -23,8 +23,10 @@ const Input: React.FC<InputProps> = ({
 }): JSX.Element => {
   const [focus, setFocus] = useState(false);
   const isValue = value.length > 0;
+
   return (
-    <View style={[styles.container, focus && styles.focused, style]}>
+    <View
+      style={[styles.container, (focus || isValue) && styles.focused, style]}>
       <TextInput
         style={[styles.inputField, styleInputField]}
         autoFocus={autoFocus}

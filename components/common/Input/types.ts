@@ -12,4 +12,5 @@ export interface InputProps {
   style?: object;
   styleInputField?: object;
   autoFocus?: boolean;
+  isEditMode?: boolean;
 }

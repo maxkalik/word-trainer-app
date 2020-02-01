@@ -4,10 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 50,
-    alignItems: 'center',
-    // paddingLeft: 15,
-    // borderColor: 'black',
-    // borderWidth: 1
+    alignItems: 'center'
   },
   wordItem: {
     flex: 1,
