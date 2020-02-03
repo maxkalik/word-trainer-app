@@ -13,5 +13,8 @@ export const styles = StyleSheet.create({
   },
   translation: {
     flex: 1
+  },
+  isCheckMode: {
+    paddingLeft: 15
   }
 });

@@ -23,8 +23,6 @@ const Notificaton: React.FC<{ title: string }> = ({
     setVisibility(title.length > 0);
   }, [title]);
 
-  console.log(visibility);
-
   useEffect(() => {
     if (Platform.OS === 'ios') {
       StatusBarManager.getHeight(({ height }: any) => {

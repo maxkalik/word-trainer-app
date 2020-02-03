@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import firebase from 'firebase';
 import { TextInput, View } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { Scene, Notification, Btn } from '../../components/common';
-// import { NotificatonProps } from '../../components/common/Notification/types';
 import { initialState, AddWordScreenProps, TextInputsProps } from './types';
 import { styles } from './styles';
 

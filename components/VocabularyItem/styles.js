@@ -4,7 +4,8 @@ export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     height: 50,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingLeft: 15
   },
   wordItem: {
     flex: 1,
@@ -12,5 +13,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center'
+  },
+  checked: {
+    backgroundColor: 'lightblue'
   }
 });
