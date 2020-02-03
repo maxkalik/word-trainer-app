@@ -10,13 +10,18 @@ import { styles } from './styles';
 
 const { StatusBarManager } = NativeModules;
 
-const Notificaton: React.FC<{ visible: boolean; title: string }> = ({
-  visible,
+const Notificaton: React.FC<{ title: string }> = ({
   title
 }): JSX.Element | null => {
-  const [visibility, setVisibility] = useState(visible);
+  const [titleTxt, setTitleTxt] = useState('');
+  const [visibility, setVisibility] = useState(false);
   const [offset] = useState(new Animated.Value(-120));
   const [statusIOSBarHeight, setStatusIOSBarHeight] = useState(0);
+
+  useEffect(() => {
+    setTitleTxt(title);
+    setVisibility(title.length > 0);
+  }, [title]);
 
   console.log(visibility);
 
@@ -28,18 +33,18 @@ const Notificaton: React.FC<{ visible: boolean; title: string }> = ({
     }
   }, []);
 
-  // should be swipe gesture
-  // react-native-swipe-gestures
   useEffect(() => {
-    Animated.sequence([
-      Animated.spring(offset, {
-        toValue: statusIOSBarHeight
-      }),
-      Animated.delay(3000),
-      Animated.timing(offset, {
-        toValue: -120
-      })
-    ]).start();
+    if (visibility) {
+      Animated.sequence([
+        Animated.spring(offset, {
+          toValue: statusIOSBarHeight
+        }),
+        Animated.delay(3000),
+        Animated.timing(offset, {
+          toValue: -120
+        })
+      ]).start();
+    }
   }, [offset, statusIOSBarHeight, visibility]);
 
   if (!visibility) {
@@ -52,7 +57,7 @@ const Notificaton: React.FC<{ visible: boolean; title: string }> = ({
       <TouchableOpacity
         style={styles.textContainer}
         onPress={() => setVisibility(false)}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{titleTxt}</Text>
       </TouchableOpacity>
     </Animated.View>
   );

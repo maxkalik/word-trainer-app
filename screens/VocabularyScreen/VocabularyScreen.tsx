@@ -6,7 +6,6 @@ import { Notification, Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
 import VocabularyItems from '../../components/VocabularyItems/VocabularyItems';
 import BottomToolBar from '../../components/BottomToolBar/BottomToolBar';
-import { NotificatonProps } from '../../components/common/Notification/types';
 import { useStateValue } from '../../state';
 import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
@@ -19,10 +18,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [editMode, setEditMode] = useState(false);
-  const [notification, setNotification] = useState<NotificatonProps>({
-    visible: false,
-    title: ''
-  });
+  const [notification, setNotification] = useState('');
   const wordsLength = words.length === 0;
 
   useEffect(() => {
@@ -59,18 +55,12 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
         .remove()
         .then(() => {
           setLoading(false);
-          setNotification({
-            visible: true,
-            title: 'Words has been successfully removed.'
-          });
-          updateUI();
+          setNotification('Words has been successfully removed.');
+          setCheckedItems([]);
         })
         .catch(error => {
           setLoading(false);
-          setNotification({
-            visible: true,
-            title: `Error: "${error}"`
-          });
+          setNotification(`Error: "${error}"`);
         });
     });
   };
@@ -97,10 +87,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     }
     return (
       <>
-        <Notification
-          title={notification.title}
-          visible={!loading && notification.visible}
-        />
+        <Notification title={notification} />
         <NavigationEvents onWillFocus={updateUI} />
         <VocabularyHeader
           onChangeInputText={(value: string) => setInputValue(value)}
