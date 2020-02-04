@@ -8,17 +8,14 @@ const TrainerDesk: React.FC<{ words: WordTypes[] }> = ({
   words
 }): JSX.Element => {
   const [wordsDesk, setWordsDesk] = useState(makeWordsDesk(5, words));
-  const [timerLine, setTimerLine] = useState(false);
   const showedWord = randomItem(wordsDesk);
-
   return (
     <>
-      <TrainerWord word={showedWord.word} timerLine={timerLine} />
+      <TrainerWord word={showedWord.word} />
       <TrainerDeskItems
         wordsArr={wordsDesk}
+        headerWordId={showedWord.id}
         updateWordsState={() => setWordsDesk(makeWordsDesk(5, words))}
-        spinnerAfterClick={spinner => setTimerLine(spinner)}
-        headerWord={showedWord.word}
       />
     </>
   );

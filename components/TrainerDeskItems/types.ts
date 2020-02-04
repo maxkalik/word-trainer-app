@@ -8,6 +8,5 @@ export interface InitialStateProps {
 export interface DeskProps {
   wordsArr: WordTypes[];
   updateWordsState: () => void;
-  headerWord: string;
-  spinnerAfterClick: (flag: boolean) => void;
+  headerWordId: string;
 }

@@ -9,6 +9,7 @@ export const deskItemStyle = StyleSheet.create({
     backgroundColor: 'silver'
   },
   correct: { backgroundColor: 'green' },
+  hint: { backgroundColor: 'orange' },
   failed: { backgroundColor: 'red' },
   disabled: { backgroundColor: '#d8d8d8' }
 });
