@@ -1,4 +1,4 @@
-import Icn16px from './Icn16px';
-import Icn24px from './Icn24px';
+import Icon16px from './Icon16px';
+import Icon24px from './Icon24px';
 
-export { Icn16px, Icn24px };
+export { Icon16px, Icon24px };
