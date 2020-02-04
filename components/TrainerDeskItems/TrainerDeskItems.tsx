@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import TrainerDeskItem from '../TrainerDeskItem/TrainerDeskItem';
 import { InitialStateProps, DeskProps } from './types';
@@ -9,12 +9,20 @@ const INITIAL_STATE = { answer: null, id: null };
 const TrainerDeskItems: React.FC<DeskProps> = ({
   wordsArr,
   updateWordsState,
-  headerWord
+  headerWord,
+  spinnerAfterClick
 }): JSX.Element => {
   const [selection, setSelection] = useState<InitialStateProps>(INITIAL_STATE);
+  const [spinner, setSpinner] = useState(false);
+
+  useEffect(() => {
+    spinnerAfterClick(spinner);
+  });
 
   const handleSelection = (word: string, id: string): void => {
+    setSpinner(true);
     setTimeout(() => {
+      setSpinner(false);
       updateWordsState();
       setSelection(INITIAL_STATE);
     }, 1000);

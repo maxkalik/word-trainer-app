@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
   },
   checked: {
     borderWidth: 2,
-    borderColor: 'black'
+    borderColor: 'black',
+    backgroundColor: 'black'
   }
 });

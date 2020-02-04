@@ -11,7 +11,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   <TouchableOpacity
     style={[styles.container, checked && styles.checked]}
     onPress={onPress}>
-    {checked && <Icon16px name="check mark" />}
+    {checked && <Icon16px name="check mark" color="white" />}
   </TouchableOpacity>
 );
 
