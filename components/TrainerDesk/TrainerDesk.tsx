@@ -9,14 +9,13 @@ const TrainerDesk: React.FC<{ words: WordTypes[] }> = ({
 }): JSX.Element => {
   const [wordsDesk, setWordsDesk] = useState(makeWordsDesk(5, words));
   const showedWord = randomItem(wordsDesk);
-  console.log(wordsDesk);
   return (
     <>
       <TrainerWord word={showedWord.word} />
       <TrainerDeskItems
         wordsArr={wordsDesk}
+        headerWordId={showedWord.id}
         updateWordsState={() => setWordsDesk(makeWordsDesk(5, words))}
-        headerWord={showedWord.word}
       />
     </>
   );

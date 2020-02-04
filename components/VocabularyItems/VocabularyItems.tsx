@@ -2,13 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import VocabularyItem from '../../components/VocabularyItem/VocabularyItem';
 import { WordTypes } from '../../types';
-
-interface VocabularyItemsProps {
-  vocabularyWords: WordTypes[];
-  editMode: boolean;
-  checkedItems: string[];
-  onCheckChange: (id: string) => void;
-}
+import { VocabularyItemsProps } from './types';
 
 const VocabularyItems: React.FC<VocabularyItemsProps> = ({
   vocabularyWords,
@@ -27,7 +21,6 @@ const VocabularyItems: React.FC<VocabularyItemsProps> = ({
 
   return (
     <FlatList
-      style={{ paddingLeft: 15 }}
       data={vocabularyWords}
       renderItem={({ item }: { item: WordTypes }) => (
         <VocabularyItem

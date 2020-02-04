@@ -9,6 +9,11 @@ export const styles = StyleSheet.create({
   },
   word: {
     color: 'black',
-    fontSize: 32
+    fontSize: 32,
+    marginBottom: 10
+  },
+  line: {
+    height: 4,
+    backgroundColor: 'black'
   }
 });

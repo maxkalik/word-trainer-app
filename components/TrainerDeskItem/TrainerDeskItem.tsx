@@ -12,6 +12,7 @@ const TrainerDeskItem: React.FC<TrainerDeskItemProps> = ({
   const deskStyles = [
     deskItemStyle.container,
     isActive === 'correct' && deskItemStyle.correct,
+    isActive === 'hint' && deskItemStyle.hint,
     isActive === 'failed' && deskItemStyle.failed,
     disabled && isActive === null && deskItemStyle.disabled
   ];

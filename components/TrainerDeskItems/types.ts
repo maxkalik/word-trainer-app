@@ -8,5 +8,5 @@ export interface InitialStateProps {
 export interface DeskProps {
   wordsArr: WordTypes[];
   updateWordsState: () => void;
-  headerWord: string;
+  headerWordId: string;
 }

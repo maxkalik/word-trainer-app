@@ -8,10 +8,17 @@ export const styles = StyleSheet.create({
     flexWrap: 'nowrap',
     alignItems: 'center'
   },
+  isCheckMode: {
+    paddingLeft: 15
+  },
   word: {
     flex: 1
   },
   translation: {
-    flex: 1
+    flex: 1,
+    color: 'gray'
+  },
+  checkedTranslation: {
+    color: 'black'
   }
 });

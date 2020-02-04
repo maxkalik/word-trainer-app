@@ -2,7 +2,7 @@ export interface iconsType {
   [key: string]: JSX.Element;
 }
 
-export interface IcnProps {
+export interface IconProps {
   name: string;
-  addStyle?: string;
+  color?: string;
 }

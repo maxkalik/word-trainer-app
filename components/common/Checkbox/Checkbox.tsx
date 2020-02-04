@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { CheckboxProps } from './types';
-import { Icn16px } from '../../icons';
+import { Icon16px } from '../../icons';
 import { styles } from './styles';
 
 const Checkbox: React.FC<CheckboxProps> = ({
@@ -11,7 +11,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   <TouchableOpacity
     style={[styles.container, checked && styles.checked]}
     onPress={onPress}>
-    {checked && <Icn16px name="check mark" />}
+    {checked && <Icon16px name="check mark" color="white" />}
   </TouchableOpacity>
 );
 
