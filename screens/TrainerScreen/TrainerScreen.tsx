@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { SafeAreaView, TouchableOpacity } from 'react-native';
 import { useStateValue } from '../../state';
 import { Message, Header } from '../../components/common';
+import { Icon24px } from '../../components/icons';
 import TrainerDesk from '../../components/TrainerDesk/TrainerDesk';
 import { styles } from './styles';
 
@@ -19,12 +20,14 @@ const TrainerScreen: React.FC = (props: any): JSX.Element => {
   );
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header>
-        <Button title="<" onPress={(): void => props.navigation.goBack()} />
+        <TouchableOpacity onPress={(): void => props.navigation.goBack()} style={styles.backBtn}>
+          <Icon24px name="arrow left line" />
+        </TouchableOpacity>
       </Header>
       {wordsLength ? <TrainerDesk words={words} /> : renderMessage()}
-    </View>
+    </SafeAreaView>
   );
 };
 
