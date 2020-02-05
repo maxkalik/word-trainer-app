@@ -13,6 +13,7 @@ const TabNavigator = createBottomTabNavigator(screens, {
   tabBarComponent: props => (
     <TabBarComponent {...props} style={styles.container} />
   ),
+  resetOnBlur: true,
   defaultNavigationOptions: ({ navigation }) => {
     const { routeName } = navigation.state;
     return {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { SafeAreaView, Keyboard } from 'react-native';
-import { NavigationEvents } from 'react-navigation';
+import { withNavigationFocus } from 'react-navigation';
 import firebase from 'firebase';
 import { Notification, Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
@@ -28,6 +28,12 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     setVocabularyWords(result);
     setLoading(false);
   }, [inputValue, words]);
+
+  useLayoutEffect(() => {
+    if (props.isFocused) {
+      updateUI();
+    }
+  }, [props.isFocused]);
 
   const updateUI = () => {
     setCheckedItems([]);
@@ -88,7 +94,6 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     return (
       <>
         <Notification title={notification} />
-        <NavigationEvents onWillFocus={updateUI} />
         <VocabularyHeader
           onChangeInputText={(value: string) => setInputValue(value)}
           value={inputValue}
@@ -119,4 +124,4 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   );
 };
 
-export default VocabularyScreen;
+export default withNavigationFocus(VocabularyScreen);

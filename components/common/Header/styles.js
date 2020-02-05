@@ -7,7 +7,9 @@ export const styles = StyleSheet.create({
     flexWrap: 'nowrap',
     alignItems: 'center',
     alignSelf: 'stretch',
-    padding: 15,
+    padding: 15
+  },
+  withBottomLine: {
     borderBottomColor: 'silver',
     borderBottomWidth: 0.5
   }

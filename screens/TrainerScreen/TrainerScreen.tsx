@@ -1,7 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Button } from 'react-native';
 import { useStateValue } from '../../state';
-import { Message } from '../../components/common';
+import { Message, Header } from '../../components/common';
 import TrainerDesk from '../../components/TrainerDesk/TrainerDesk';
 import { styles } from './styles';
 
@@ -20,6 +20,9 @@ const TrainerScreen: React.FC = (props: any): JSX.Element => {
 
   return (
     <View style={styles.container}>
+      <Header>
+        <Button title="<" onPress={(): void => props.navigation.goBack()} />
+      </Header>
       {wordsLength ? <TrainerDesk words={words} /> : renderMessage()}
     </View>
   );
