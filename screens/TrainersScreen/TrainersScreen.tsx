@@ -7,7 +7,6 @@ import { styles } from './styles';
 const TrainersScreen: React.FC = (props: any): JSX.Element => {
   const [{ words }] = useStateValue();
   const wordsLength = words.length >= 10;
-  console.log(props);
 
   const renderMessage = () => (
     <Message
