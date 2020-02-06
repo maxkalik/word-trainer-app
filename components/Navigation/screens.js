@@ -3,11 +3,12 @@ import TrainersScreen from '../../screens/TrainersScreen/TrainersScreen';
 import TrainerScreen from '../../screens/TrainerScreen/TrainerScreen';
 import AddWordScreen from '../../screens/AddWordScreen/AddWordScreen';
 import VocabularyScreen from '../../screens/VocabularyScreen/VocabularyScreen';
+import VocabularyItemScreen from '../../screens/VocabularyItemScreen/VocabularyItemScreen';
 
 const TrainersStack = createStackNavigator(
   {
-    Trainers: TrainersScreen,
-    Trainer: TrainerScreen
+    ['Trainers']: TrainersScreen,
+    ['Trainer']: TrainerScreen
   },
   {
     initialRouteName: 'Trainers',
@@ -26,8 +27,20 @@ TrainersStack.navigationOptions = ({ navigation }) => {
   };
 };
 
+const VocabularyStack = createStackNavigator(
+  {
+    ['Vocabulary']: VocabularyScreen,
+    ['Vocabulary Item']: VocabularyItemScreen
+  },
+  {
+    initialRouteName: 'Vocabulary',
+    mode: 'card',
+    headerMode: 'none'
+  }
+);
+
 export const screens = {
-  Trainers: TrainersStack,
+  ['Trainers']: TrainersStack,
   ['Add Word']: AddWordScreen,
-  Vocabulary: VocabularyScreen
+  ['Vocabulary']: VocabularyStack
 };

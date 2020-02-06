@@ -4,5 +4,6 @@ export interface VocabularyItemsProps {
   vocabularyWords: WordTypes[];
   editMode: boolean;
   checkedItems: string[];
-  onCheckChange: (id: string) => void;
+  onItemPress: (id: WordTypes) => void;
+  onCheckChange: (item: string) => void;
 }

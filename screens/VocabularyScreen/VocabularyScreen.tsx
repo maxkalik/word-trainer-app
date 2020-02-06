@@ -105,6 +105,9 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
           vocabularyWords={vocabularyWords}
           editMode={editMode}
           checkedItems={checkedItems}
+          onItemPress={item =>
+            props.navigation.navigate('Vocabulary Item', item)
+          }
           onCheckChange={id => handleCheckChange(id)}
         />
         {checkedItems.length > 0 && (

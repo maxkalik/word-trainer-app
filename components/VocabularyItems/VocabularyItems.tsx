@@ -8,14 +8,14 @@ const VocabularyItems: React.FC<VocabularyItemsProps> = ({
   vocabularyWords,
   editMode,
   checkedItems,
+  onItemPress,
   onCheckChange
 }): JSX.Element => {
   const handleItemPress = (item: WordTypes) => {
     if (editMode) {
       onCheckChange(item.id);
     } else {
-      // new screen with edit (similar add word screen)
-      console.log(item);
+      onItemPress(item);
     }
   };
 
@@ -27,7 +27,8 @@ const VocabularyItems: React.FC<VocabularyItemsProps> = ({
           wordItem={item}
           checkBox={editMode}
           checked={checkedItems.includes(item.id)}
-          onCheckmarkPress={() => handleItemPress(item)}
+          onPress={() => handleItemPress(item)}
+          onCheckmarkPress={() => onCheckChange(item.id)}
         />
       )}
       keyExtractor={({ id }) => id}
