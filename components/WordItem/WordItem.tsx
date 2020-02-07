@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { TextInput, View } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { Scene, Notification, Btn } from '../../components/common';
-import { initialState, AddWordScreenProps, TextInputsProps } from './types';
+import { initialState, TextInputsProps, WordItemProps } from './types';
 import { styles } from './styles';
 
 const inputFields: TextInputsProps[] = [
@@ -17,48 +17,44 @@ const inputFields: TextInputsProps[] = [
   }
 ];
 
-interface WordItemProps {
-  mainBtnTitle: string;
-  actionName: string;
-  word?: string | undefined;
-  translation?: string | undefined;
-  id?: string | undefined;
-}
-
 const WordItem: React.FC<WordItemProps> = ({
   mainBtnTitle,
   actionName,
-  word,
-  translation,
-  id
+  item
 }): JSX.Element => {
-  const [newWordItem, setNewWordItem] = useState<AddWordScreenProps>(
-    initialState
-  );
+  const [newWordItem, setNewWordItem] = useState(initialState);
   const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
+  console.log(newWordItem);
   console.log(isFocused);
 
   useEffect(() => {
-    if (id) {
-      setNewWordItem({ id, word, translation });
+    setLoading(true);
+    if (item) {
+      setNewWordItem(item);
+      setLoading(false);
+    } else {
+      setNewWordItem(initialState);
+      setLoading(false);
     }
-  }, [id, translation, word]);
+  }, [item]);
 
   const handleInputChangeText = (value: string, inputField: string): void => {
     setNewWordItem({ ...newWordItem, [inputField]: value });
   };
 
-  const isFieldsEmpty =
-    newWordItem.word === '' && newWordItem.translation === '';
+  const isWordEmpty = newWordItem.word === '';
+  const isTranslationEmpty = newWordItem.translation === '';
+  const isFieldsEmpty = isWordEmpty && isTranslationEmpty;
+  const isEditing = isFocused && !isFieldsEmpty && actionName !== 'set';
 
   const handleButtonPress = () => {
     const flag = actionName;
     setLoading(true);
     setNotification('');
-    if (newWordItem.word === '' || newWordItem.translation === '') {
+    if (isWordEmpty || isTranslationEmpty) {
       setLoading(false);
       setTimeout(() => setNotification('Inputs should not be empty'), 0);
     } else {
@@ -66,7 +62,10 @@ const WordItem: React.FC<WordItemProps> = ({
         firebase
           .database()
           .ref('words')
-          .push(newWordItem)
+          .push({
+            word: newWordItem.word,
+            translation: newWordItem.translation
+          })
           .then(() => {
             setNewWordItem(initialState);
             setLoading(false);
@@ -107,7 +106,7 @@ const WordItem: React.FC<WordItemProps> = ({
       {!loading && <NavigationEvents onWillFocus={updateUI} />}
       <Notification title={notification} />
       <View style={styles.container}>
-        {inputFields.map(({ name, placeholder }) => (
+        {inputFields.map(({ name, placeholder }: TextInputsProps) => (
           <TextInput
             key={name}
             style={styles.input}
@@ -115,18 +114,21 @@ const WordItem: React.FC<WordItemProps> = ({
             placeholderTextColor={'grey'}
             onChangeText={(value: string) => handleInputChangeText(value, name)}
             value={newWordItem[name]}
+            autoFocus={actionName !== 'set'}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
         ))}
         <View style={styles.buttons}>
-          <Btn
-            filled
-            loading={loading}
-            onPress={handleButtonPress}
-            title={mainBtnTitle}
-          />
-          {!isFieldsEmpty && (
+          {isFocused && (
+            <Btn
+              filled
+              loading={loading}
+              onPress={handleButtonPress}
+              title={mainBtnTitle}
+            />
+          )}
+          {isEditing && (
             <Btn
               size="small"
               addStyle={styles.btnClear}

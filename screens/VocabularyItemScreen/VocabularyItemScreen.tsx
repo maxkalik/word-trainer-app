@@ -12,7 +12,7 @@ const VocabularyItemScreen: React.FC<{ navigation: any }> = ({
     <WordItem
       mainBtnTitle="Save"
       actionName="set"
-      {...navigation.state.params}
+      item={navigation.state.params}
     />
   </SafeAreaView>
 );

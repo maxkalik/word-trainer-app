@@ -1,14 +1,18 @@
-export const initialState = {
+import { WordTypes } from 'types';
+
+export const initialState: WordTypes = {
+  id: '',
   word: '',
-  translation: '',
-  id: ''
+  translation: ''
 };
 
-export interface AddWordScreenProps {
-  [key: string]: string;
+export interface WordItemProps {
+  mainBtnTitle: string;
+  actionName: string;
+  item?: WordTypes | undefined;
 }
 
 export interface TextInputsProps {
-  name: string | keyof typeof initialState;
+  name: keyof typeof initialState;
   placeholder: string;
 }

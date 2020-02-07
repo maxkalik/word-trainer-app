@@ -1,27 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { sizes } from '../../constants';
 
 export const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    // justifyContent: 'space-between',
-    height: 280,
-    padding: 20,
+    flex: 1,
+    marginBottom: sizes.HEIGHT_GENERAL,
     backgroundColor: 'white'
-    // borderColor: 'black',
-    // borderWidth: 1
-  },
-  input: {
-    height: 50,
-    fontSize: 20,
-    color: 'black',
-    textAlign: 'center'
-  },
-  buttons: {
-    justifyContent: 'space-between',
-    marginTop: 15
-  },
-  btnClear: {
-    alignSelf: 'center',
-    marginTop: 5
   }
 });
