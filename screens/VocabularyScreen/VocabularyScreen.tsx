@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { SafeAreaView, Keyboard } from 'react-native';
-import { withNavigationFocus } from 'react-navigation';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import firebase from 'firebase';
 import { Notification, Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
@@ -11,7 +11,9 @@ import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
 import { styles } from './styles';
 
-const VocabularyScreen: React.FC = (props: any): JSX.Element => {
+const VocabularyScreen: React.FC = (): JSX.Element => {
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const [{ words }] = useStateValue();
   const [loading, setLoading] = useState(false);
   const [vocabularyWords, setVocabularyWords] = useState<WordTypes[]>(words);
@@ -30,10 +32,10 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   }, [inputValue, words]);
 
   useLayoutEffect(() => {
-    if (props.isFocused) {
+    if (isFocused) {
       updateUI();
     }
-  }, [props.isFocused]);
+  }, [isFocused]);
 
   const updateUI = () => {
     setCheckedItems([]);
@@ -84,7 +86,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
           title="You have no words yet"
           description="Append at least 10 words into your vocabulary"
           btnTitle="Add More Words"
-          btnOnPress={(): void => props.navigation.navigate('Add Word')}
+          btnOnPress={(): void => navigation.navigate('Add Word')}
         />
       );
     }
@@ -105,9 +107,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
           vocabularyWords={vocabularyWords}
           editMode={editMode}
           checkedItems={checkedItems}
-          onItemPress={item =>
-            props.navigation.navigate('Vocabulary Item', item)
-          }
+          onItemPress={item => navigation.navigate('Vocabulary Item', item)}
           onCheckChange={id => handleCheckChange(id)}
         />
         {checkedItems.length > 0 && (
@@ -127,4 +127,4 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   );
 };
 
-export default withNavigationFocus(VocabularyScreen);
+export default VocabularyScreen;

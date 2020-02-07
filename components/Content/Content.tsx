@@ -31,7 +31,7 @@ const Content: React.FC = (): JSX.Element => {
   if (spinner) {
     return <Spinner />;
   }
-  return <Navigation theme="light" />;
+  return <Navigation />;
 };
 
 export default Content;

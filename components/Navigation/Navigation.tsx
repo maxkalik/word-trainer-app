@@ -1,30 +1,29 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
-import { screens } from './screens';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { screens } from './Screens';
 import { tabBarOptions } from './tabBarOptions';
 import { Icon24px } from '../icons';
 import { tabIcons } from './helpers';
-import { styles } from './styles';
 
-const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} />;
+const Tab = createBottomTabNavigator();
 
-const TabNavigator = createBottomTabNavigator(screens, {
-  tabBarComponent: props => (
-    <TabBarComponent {...props} style={styles.container} />
-  ),
-  resetOnBlur: true,
-  defaultNavigationOptions: ({ navigation }) => {
-    const { routeName } = navigation.state;
-    return {
-      tabBarIcon: ({ tintColor, focused }): JSX.Element => (
-        <Icon24px name={tabIcons(routeName, focused)} color={tintColor} />
-      )
-    };
-  },
-  tabBarOptions: tabBarOptions
-});
-
-const Navigation = createAppContainer(TabNavigator);
+const Navigation: React.FC = (): JSX.Element => (
+  <NavigationContainer>
+    <Tab.Navigator
+      screenOptions={({ route }) => {
+        return {
+          tabBarIcon: ({ color, focused }): JSX.Element => (
+            <Icon24px name={tabIcons(route.name, focused)} color={color} />
+          )
+        };
+      }}
+      tabBarOptions={tabBarOptions}>
+      {screens.map(item => (
+        <Tab.Screen {...item} key={item.name} />
+      ))}
+    </Tab.Navigator>
+  </NavigationContainer>
+);
 
 export default Navigation;

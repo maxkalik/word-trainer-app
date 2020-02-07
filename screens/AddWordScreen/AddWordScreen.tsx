@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import firebase from 'firebase';
 import { TextInput, View } from 'react-native';
-import { NavigationEvents } from 'react-navigation';
+import { useIsFocused } from '@react-navigation/native';
+// import { NavigationEvents } from 'react-navigation';
 import { Scene, Notification, Btn } from '../../components/common';
 import { initialState, AddWordScreenProps, TextInputsProps } from './types';
 import { styles } from './styles';
@@ -20,7 +21,14 @@ const inputFields: TextInputsProps[] = [
 const AddWordScreen: React.FC = (): JSX.Element => {
   const [newWord, setNewWord] = useState<AddWordScreenProps>(initialState);
   const [notification, setNotification] = useState('');
+  const isFocused = useIsFocused();
   const [loading, setLoading] = useState(false);
+
+  useLayoutEffect(() => {
+    if (isFocused) {
+      updateUI();
+    }
+  }, [isFocused]);
 
   const handleInputChangeText = (value: string, inputField: string): void => {
     setNewWord({ ...newWord, [inputField]: value });
@@ -58,7 +66,7 @@ const AddWordScreen: React.FC = (): JSX.Element => {
 
   return (
     <Scene keyboardAvoidingView={true}>
-      {!loading && <NavigationEvents onWillFocus={updateUI} />}
+      {/* {!loading && <NavigationEvents onWillFocus={updateUI} />} */}
       <Notification title={notification} />
       <View style={styles.container}>
         {inputFields.map(({ name, placeholder }) => (
