@@ -27,9 +27,6 @@ const WordItem: React.FC<WordItemProps> = ({
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
-  console.log(newWordItem);
-  console.log(isFocused);
-
   useEffect(() => {
     setLoading(true);
     if (item) {
@@ -48,7 +45,9 @@ const WordItem: React.FC<WordItemProps> = ({
   const isWordEmpty = newWordItem.word === '';
   const isTranslationEmpty = newWordItem.translation === '';
   const isFieldsEmpty = isWordEmpty && isTranslationEmpty;
-  const isEditing = isFocused && !isFieldsEmpty && actionName !== 'set';
+  const isEditing = actionName !== 'set';
+  const isShowSaveBtn = isEditing || isFocused;
+  const isShowClearBtn = isEditing && (isFocused || !isFieldsEmpty);
 
   const handleButtonPress = () => {
     const flag = actionName;
@@ -114,13 +113,13 @@ const WordItem: React.FC<WordItemProps> = ({
             placeholderTextColor={'grey'}
             onChangeText={(value: string) => handleInputChangeText(value, name)}
             value={newWordItem[name]}
-            autoFocus={actionName !== 'set'}
+            autoFocus={name === 'word' && actionName !== 'set'}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
         ))}
         <View style={styles.buttons}>
-          {isFocused && (
+          {isShowSaveBtn && (
             <Btn
               filled
               loading={loading}
@@ -128,7 +127,7 @@ const WordItem: React.FC<WordItemProps> = ({
               title={mainBtnTitle}
             />
           )}
-          {isEditing && (
+          {isShowClearBtn && (
             <Btn
               size="small"
               addStyle={styles.btnClear}

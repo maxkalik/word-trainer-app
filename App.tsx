@@ -5,11 +5,15 @@ import Content from './components/Content/Content';
 import { WordTypes } from './types';
 
 const initialState = {
-  words: []
+  words: [],
+  error: null
 };
 
 const App: React.FC = (): JSX.Element => {
-  const reducer = (state: { words: WordTypes[] }, action: any) => {
+  const reducer = (
+    state: { words: WordTypes[]; error: string | null },
+    action: any
+  ) => {
     switch (action.type) {
       case 'FETCHING_WORDS':
         return {

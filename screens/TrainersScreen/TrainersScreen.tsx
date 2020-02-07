@@ -11,7 +11,7 @@ const TrainersScreen: React.FC = (props: any): JSX.Element => {
   const renderMessage = () => (
     <Message
       title={`${words.length}/10 words`}
-      description="You have insufficient words amount"
+      description="You have insufficient words amount to train"
       btnTitle="Add More Words"
       btnOnPress={(): void => props.navigation.navigate('Add Word')}
     />

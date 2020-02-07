@@ -8,7 +8,7 @@ export const initialState: WordTypes = {
 
 export interface WordItemProps {
   mainBtnTitle: string;
-  actionName: string;
+  actionName: 'push' | 'set';
   item?: WordTypes | undefined;
 }
 
