@@ -37,11 +37,14 @@ const VocabularyStackScreen: React.FC = (): JSX.Element => (
 );
 
 export const screens = [
-  { name: 'Trainers', component: TrainerStackScreen },
+  {
+    name: 'Trainers',
+    component: TrainerStackScreen
+    // options: { tabBarVisible: false }
+  },
   { name: 'Add Word', component: AddWordScreen },
   {
     name: 'Vocabulary',
-    component: VocabularyStackScreen,
-    options: { tabBarVisible: false }
+    component: VocabularyStackScreen
   }
 ];

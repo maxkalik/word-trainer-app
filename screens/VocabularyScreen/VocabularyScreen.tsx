@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { SafeAreaView, Keyboard } from 'react-native';
-import { useNavigation, useIsFocused } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 import firebase from 'firebase';
 import { Notification, Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
@@ -11,9 +11,7 @@ import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
 import { styles } from './styles';
 
-const VocabularyScreen: React.FC = (): JSX.Element => {
-  const navigation = useNavigation();
-  const isFocused = useIsFocused();
+const VocabularyScreen: React.FC = ({ navigation }): JSX.Element => {
   const [{ words }] = useStateValue();
   const [loading, setLoading] = useState(false);
   const [vocabularyWords, setVocabularyWords] = useState<WordTypes[]>(words);
@@ -23,6 +21,8 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
   const [notification, setNotification] = useState('');
   const wordsLength = words.length === 0;
 
+  navigation.setOptions({ tabBarVisible: false });
+
   useEffect(() => {
     // should be fixed
     setLoading(true);
@@ -31,11 +31,11 @@ const VocabularyScreen: React.FC = (): JSX.Element => {
     setLoading(false);
   }, [inputValue, words]);
 
-  useLayoutEffect(() => {
-    if (isFocused) {
+  useFocusEffect(
+    useCallback(() => {
       updateUI();
-    }
-  }, [isFocused]);
+    }, [])
+  );
 
   const updateUI = () => {
     setCheckedItems([]);
