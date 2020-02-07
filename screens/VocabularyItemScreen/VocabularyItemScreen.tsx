@@ -1,21 +1,20 @@
 import React from 'react';
-import { SafeAreaView, View, Text } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { Header } from '../../components/common';
+import WordItem from '../../components/WordItem/WordItem';
 import { styles } from './styles';
 
 const VocabularyItemScreen: React.FC<{ navigation: any }> = ({
   navigation
-}): JSX.Element => {
-  const { word, translation } = navigation.state.params;
-  return (
-    <SafeAreaView style={styles.container}>
-      <Header backButton onPressBackButton={(): void => navigation.goBack()} />
-      <View>
-        <Text>{word}</Text>
-        <Text>{translation}</Text>
-      </View>
-    </SafeAreaView>
-  );
-};
+}): JSX.Element => (
+  <SafeAreaView style={styles.container}>
+    <Header backButton onPressBackButton={(): void => navigation.goBack()} />
+    <WordItem
+      mainBtnTitle="Save"
+      actionName="set"
+      {...navigation.state.params}
+    />
+  </SafeAreaView>
+);
 
 export default VocabularyItemScreen;
