@@ -4,15 +4,16 @@ import { sizes } from '../../constants';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: sizes.HEIGHT_GENERAL
+    marginBottom: sizes.HEIGHT_GENERAL,
+    backgroundColor: 'white'
   },
   item: {
+    // borderColor: 'black',
+    // borderWidth: 1
     flex: 1,
     padding: 20,
     alignItems: 'stretch',
-    justifyContent: 'center',
-    // borderColor: 'black',
-    // borderWidth: 1
+    justifyContent: 'center'
   },
   backBtn: {
     width: 40,

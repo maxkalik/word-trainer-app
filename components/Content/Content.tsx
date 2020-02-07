@@ -8,7 +8,6 @@ import { objectToArray } from '../../helpers';
 const Content: React.FC = (): JSX.Element => {
   const [spinner, setSpinner] = useState(true);
   const [{ words, error }, dispatch] = useStateValue();
-
   useEffect(() => {
     const database = firebase.database().ref('words');
     database.on('value', (snapshot: any) => {
@@ -21,9 +20,12 @@ const Content: React.FC = (): JSX.Element => {
         setSpinner(false);
       } else {
         dispatch({
-          type: 'FETCHING_FAILED',
-          error: 'Fetching error'
+          type: 'FETCHING_WORDS',
+          words: objectToArray({
+            '01abc': { word: 'Test Word', translation: 'Test Translation' }
+          })
         });
+        setSpinner(false);
       }
     });
   }, [dispatch]);

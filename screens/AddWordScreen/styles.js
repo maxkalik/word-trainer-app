@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     // justifyContent: 'space-between',
     height: 280,
     padding: 20,
+    backgroundColor: 'white'
     // borderColor: 'black',
     // borderWidth: 1
   },

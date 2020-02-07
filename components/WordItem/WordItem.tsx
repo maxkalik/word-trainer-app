@@ -37,6 +37,9 @@ const WordItem: React.FC<WordItemProps> = ({
   );
   const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+
+  console.log(isFocused);
 
   useEffect(() => {
     if (id) {
@@ -112,6 +115,8 @@ const WordItem: React.FC<WordItemProps> = ({
             placeholderTextColor={'grey'}
             onChangeText={(value: string) => handleInputChangeText(value, name)}
             value={newWordItem[name]}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
         ))}
         <View style={styles.buttons}>
