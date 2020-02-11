@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Button } from 'react-native';
 import { useStateValue } from '../../state';
 import { Message } from '../../components/common';
+import { WordTypes } from '../../types';
 import { styles } from './styles';
 
 const TrainersScreen: React.FC = (props: any): JSX.Element => {
@@ -17,16 +18,16 @@ const TrainersScreen: React.FC = (props: any): JSX.Element => {
     />
   );
 
-  const renderTrainers = () => (
+  const renderTrainers = (wordItmes: WordTypes[]) => (
     <Button
       title="Go to Details"
-      onPress={() => props.navigation.navigate('Trainer')}
+      onPress={() => props.navigation.navigate('Trainer', wordItmes)}
     />
   );
 
   return (
     <View style={styles.container}>
-      {wordsLength ? renderTrainers() : renderMessage()}
+      {wordsLength ? renderTrainers(words) : renderMessage()}
     </View>
   );
 };

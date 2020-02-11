@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
-import { TextInput, View } from 'react-native';
+import { TextInput, View, Keyboard } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { Scene, Notification, Btn } from '../../components/common';
 import { initialState, TextInputsProps, WordItemProps } from './types';
@@ -53,6 +53,7 @@ const WordItem: React.FC<WordItemProps> = ({
     const flag = actionName;
     setLoading(true);
     setNotification('');
+    Keyboard.dismiss();
     if (isWordEmpty || isTranslationEmpty) {
       setLoading(false);
       setTimeout(() => setNotification('Inputs should not be empty'), 0);
@@ -101,43 +102,47 @@ const WordItem: React.FC<WordItemProps> = ({
   };
 
   return (
-    <Scene keyboardAvoidingView={true}>
-      {!loading && <NavigationEvents onWillFocus={updateUI} />}
+    <>
       <Notification title={notification} />
-      <View style={styles.container}>
-        {inputFields.map(({ name, placeholder }: TextInputsProps) => (
-          <TextInput
-            key={name}
-            style={styles.input}
-            placeholder={placeholder}
-            placeholderTextColor={'grey'}
-            onChangeText={(value: string) => handleInputChangeText(value, name)}
-            value={newWordItem[name]}
-            autoFocus={name === 'word' && actionName !== 'set'}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-          />
-        ))}
-        <View style={styles.buttons}>
-          {isShowSaveBtn && (
-            <Btn
-              filled
-              loading={loading}
-              onPress={handleButtonPress}
-              title={mainBtnTitle}
+      <Scene keyboardAvoidingView={true}>
+        {!loading && <NavigationEvents onWillFocus={updateUI} />}
+        <View style={styles.container}>
+          {inputFields.map(({ name, placeholder }: TextInputsProps) => (
+            <TextInput
+              key={name}
+              style={styles.input}
+              placeholder={placeholder}
+              placeholderTextColor={'grey'}
+              onChangeText={(value: string) =>
+                handleInputChangeText(value, name)
+              }
+              value={newWordItem[name]}
+              autoFocus={name === 'word' && actionName !== 'set'}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
             />
-          )}
-          {isShowClearBtn && (
-            <Btn
-              size="small"
-              addStyle={styles.btnClear}
-              onPress={() => setNewWordItem(initialState)}
-              title="Clear Fields"
-            />
-          )}
+          ))}
+          <View style={styles.buttons}>
+            {isShowSaveBtn && (
+              <Btn
+                filled
+                loading={loading}
+                onPress={handleButtonPress}
+                title={mainBtnTitle}
+              />
+            )}
+            {isShowClearBtn && (
+              <Btn
+                size="small"
+                addStyle={styles.btnClear}
+                onPress={() => setNewWordItem(initialState)}
+                title="Clear Fields"
+              />
+            )}
+          </View>
         </View>
-      </View>
-    </Scene>
+      </Scene>
+    </>
   );
 };
 
