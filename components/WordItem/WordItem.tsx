@@ -3,6 +3,8 @@ import firebase from 'firebase';
 import { TextInput, View, Keyboard } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { Scene, Notification, Btn } from '../../components/common';
+import { useStateValue } from '../../state';
+import { checkStringIsPresent } from './helpers';
 import { initialState, TextInputsProps, WordItemProps } from './types';
 import { styles } from './styles';
 
@@ -26,6 +28,7 @@ const WordItem: React.FC<WordItemProps> = ({
   const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [{ words }] = useStateValue();
 
   useEffect(() => {
     setLoading(true);
@@ -58,40 +61,49 @@ const WordItem: React.FC<WordItemProps> = ({
       setLoading(false);
       setTimeout(() => setNotification('Inputs should not be empty'), 0);
     } else {
-      if (flag === 'push') {
-        firebase
-          .database()
-          .ref('words')
-          .push({
-            word: newWordItem.word,
-            translation: newWordItem.translation
-          })
-          .then(() => {
-            setNewWordItem(initialState);
-            setLoading(false);
-            setNotification(
-              `Word "${newWordItem.word}" has been successfully added.`
-            );
-          })
-          .catch(error => {
-            setLoading(false);
-            setNotification(`Error: "${error}"`);
-          });
-      } else if (flag === 'set') {
-        firebase
-          .database()
-          .ref(`words/${newWordItem.id}`)
-          .set({ word: newWordItem.word, translation: newWordItem.translation })
-          .then(() => {
-            setLoading(false);
-            setNotification(
-              `Word "${newWordItem.word}" has been successfully saved.`
-            );
-          })
-          .catch(error => {
-            setLoading(false);
-            setNotification(`Error: "${error}"`);
-          });
+      const isWordPresent = checkStringIsPresent(words, newWordItem.word);
+      if (isWordPresent) {
+        setLoading(false);
+        setNotification(`Word "${newWordItem.word}" is already exsist.`);
+      } else {
+        if (flag === 'push') {
+          firebase
+            .database()
+            .ref('words')
+            .push({
+              word: newWordItem.word,
+              translation: newWordItem.translation
+            })
+            .then(() => {
+              setNewWordItem(initialState);
+              setLoading(false);
+              setNotification(
+                `Word "${newWordItem.word}" has been successfully added.`
+              );
+            })
+            .catch(error => {
+              setLoading(false);
+              setNotification(`Error: "${error}"`);
+            });
+        } else if (flag === 'set') {
+          firebase
+            .database()
+            .ref(`words/${newWordItem.id}`)
+            .set({
+              word: newWordItem.word,
+              translation: newWordItem.translation
+            })
+            .then(() => {
+              setLoading(false);
+              setNotification(
+                `Word "${newWordItem.word}" has been successfully saved.`
+              );
+            })
+            .catch(error => {
+              setLoading(false);
+              setNotification(`Error: "${error}"`);
+            });
+        }
       }
     }
   };
