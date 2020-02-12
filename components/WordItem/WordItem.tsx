@@ -30,6 +30,13 @@ const WordItem: React.FC<WordItemProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const [{ words }] = useStateValue();
 
+  const isWordEmpty = newWordItem.word === '';
+  const isTranslationEmpty = newWordItem.translation === '';
+  const isFieldsEmpty = isWordEmpty && isTranslationEmpty;
+  const isEditing = actionName !== 'set';
+  const isShowSaveBtn = isEditing || isFocused;
+  const isShowClearBtn = isEditing && (isFocused || !isFieldsEmpty);
+
   useEffect(() => {
     if (item) {
       setNewWordItem(item);
@@ -41,13 +48,6 @@ const WordItem: React.FC<WordItemProps> = ({
   const handleInputChangeText = (value: string, inputField: string): void => {
     setNewWordItem({ ...newWordItem, [inputField]: value });
   };
-
-  const isWordEmpty = newWordItem.word === '';
-  const isTranslationEmpty = newWordItem.translation === '';
-  const isFieldsEmpty = isWordEmpty && isTranslationEmpty;
-  const isEditing = actionName !== 'set';
-  const isShowSaveBtn = isEditing || isFocused;
-  const isShowClearBtn = isEditing && (isFocused || !isFieldsEmpty);
 
   const makePushRequest = () => {
     firebase
@@ -71,7 +71,6 @@ const WordItem: React.FC<WordItemProps> = ({
   };
 
   const makeSetRequest = () => {
-    Keyboard.dismiss();
     firebase
       .database()
       .ref(`words/${newWordItem.id}`)
@@ -108,6 +107,16 @@ const WordItem: React.FC<WordItemProps> = ({
     }
   };
 
+  const setSubmit = () => {
+    if (isWordEmpty || isTranslationEmpty) {
+      setLoading(false);
+      setTimeout(() => setNotification('Inputs should not be empty'), 0);
+    } else {
+      Keyboard.dismiss();
+      return makeSetRequest();
+    }
+  };
+
   const handleButtonPress = () => {
     setLoading(true);
     setNotification('');
@@ -115,7 +124,7 @@ const WordItem: React.FC<WordItemProps> = ({
       case 'push':
         return pushSubmit();
       case 'set':
-        return makeSetRequest();
+        return setSubmit();
       default:
         return;
     }
