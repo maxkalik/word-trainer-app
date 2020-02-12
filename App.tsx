@@ -11,7 +11,8 @@ const initialState = {
 
 const App: React.FC = (): JSX.Element => {
   const reducer = (
-    state: { words: WordTypes[]; error: string | null },
+    // state: { words: WordTypes[]; error: string | null },
+    state = initialState,
     action: any
   ) => {
     switch (action.type) {

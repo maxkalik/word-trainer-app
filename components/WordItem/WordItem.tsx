@@ -31,13 +31,10 @@ const WordItem: React.FC<WordItemProps> = ({
   const [{ words }] = useStateValue();
 
   useEffect(() => {
-    setLoading(true);
     if (item) {
       setNewWordItem(item);
-      setLoading(false);
     } else {
       setNewWordItem(initialState);
-      setLoading(false);
     }
   }, [item]);
 
@@ -52,59 +49,75 @@ const WordItem: React.FC<WordItemProps> = ({
   const isShowSaveBtn = isEditing || isFocused;
   const isShowClearBtn = isEditing && (isFocused || !isFieldsEmpty);
 
-  const handleButtonPress = () => {
-    const flag = actionName;
-    setLoading(true);
-    setNotification('');
+  const makePushRequest = () => {
+    firebase
+      .database()
+      .ref('words')
+      .push({
+        word: newWordItem.word,
+        translation: newWordItem.translation
+      })
+      .then(() => {
+        setNewWordItem(initialState);
+        setLoading(false);
+        setNotification(
+          `Word "${newWordItem.word}" has been successfully added.`
+        );
+      })
+      .catch(error => {
+        setLoading(false);
+        setNotification(`Error: "${error}"`);
+      });
+  };
+
+  const makeSetRequest = () => {
     Keyboard.dismiss();
+    firebase
+      .database()
+      .ref(`words/${newWordItem.id}`)
+      .set({
+        word: newWordItem.word,
+        translation: newWordItem.translation
+      })
+      .then(() => {
+        setLoading(false);
+        setNotification(
+          `Word "${newWordItem.word}" has been successfully saved.`
+        );
+      })
+      .catch(error => {
+        setLoading(false);
+        setNotification(`Error: "${error}"`);
+      });
+  };
+
+  const pushSubmit = () => {
+    const isWordPresent = checkStringIsPresent(words, newWordItem.word);
     if (isWordEmpty || isTranslationEmpty) {
       setLoading(false);
       setTimeout(() => setNotification('Inputs should not be empty'), 0);
+    } else if (isWordPresent) {
+      setLoading(false);
+      setTimeout(
+        () => setNotification(`Word "${newWordItem.word}" is already exsist.`),
+        0
+      );
     } else {
-      const isWordPresent = checkStringIsPresent(words, newWordItem.word);
-      if (isWordPresent) {
-        setLoading(false);
-        setNotification(`Word "${newWordItem.word}" is already exsist.`);
-      } else {
-        if (flag === 'push') {
-          firebase
-            .database()
-            .ref('words')
-            .push({
-              word: newWordItem.word,
-              translation: newWordItem.translation
-            })
-            .then(() => {
-              setNewWordItem(initialState);
-              setLoading(false);
-              setNotification(
-                `Word "${newWordItem.word}" has been successfully added.`
-              );
-            })
-            .catch(error => {
-              setLoading(false);
-              setNotification(`Error: "${error}"`);
-            });
-        } else if (flag === 'set') {
-          firebase
-            .database()
-            .ref(`words/${newWordItem.id}`)
-            .set({
-              word: newWordItem.word,
-              translation: newWordItem.translation
-            })
-            .then(() => {
-              setLoading(false);
-              setNotification(
-                `Word "${newWordItem.word}" has been successfully saved.`
-              );
-            })
-            .catch(error => {
-              setLoading(false);
-              setNotification(`Error: "${error}"`);
-            });
-        }
-      }
+      Keyboard.dismiss();
+      return makePushRequest();
+    }
+  };
+
+  const handleButtonPress = () => {
+    setLoading(true);
+    setNotification('');
+    switch (actionName) {
+      case 'push':
+        return pushSubmit();
+      case 'set':
+        return makeSetRequest();
+      default:
+        return;
     }
   };
 
