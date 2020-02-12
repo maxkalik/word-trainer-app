@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
+import { sizes } from '../../constants';
 
 export const styles = StyleSheet.create({
-  container: { height: 70 },
-  icon: { width: 18, height: 18, marginTop: 5 }
+  container: {
+    height: sizes.HEIGHT_GENERAL,
+    position: 'absolute'
+  }
 });

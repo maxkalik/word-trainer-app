@@ -1,28 +1,17 @@
 import React from 'react';
-import { View } from 'react-native';
-import { useStateValue } from '../../state';
-import { Message } from '../../components/common';
+import { SafeAreaView } from 'react-native';
+import { Header } from '../../components/common';
 import TrainerDesk from '../../components/TrainerDesk/TrainerDesk';
 import { styles } from './styles';
 
-const TrainerScreen: React.FC = (props: any): JSX.Element => {
-  const [{ words }] = useStateValue();
-  const wordsLength = words.length >= 10;
-
-  const renderMessage = () => (
-    <Message
-      title={`${words.length}/10 words`}
-      description="You have insufficient words amount"
-      btnTitle="Add More Words"
-      btnOnPress={(): void => props.navigation.navigate('Add Word')}
+const TrainerScreen: React.FC = (props: any): JSX.Element => (
+  <SafeAreaView style={styles.container}>
+    <Header
+      backButton
+      onPressBackButton={(): void => props.navigation.goBack()}
     />
-  );
-
-  return (
-    <View style={styles.container}>
-      {wordsLength ? <TrainerDesk words={words} /> : renderMessage()}
-    </View>
-  );
-};
+    <TrainerDesk words={props.navigation.state.params} />
+  </SafeAreaView>
+);
 
 export default TrainerScreen;

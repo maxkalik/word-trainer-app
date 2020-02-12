@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { View } from 'react-native';
 import TrainerDeskItems from '../../components/TrainerDeskItems/TrainerDeskItems';
 import TrainerWord from '../../components/TrainerWord/TrainerWord';
 import { randomItem, makeWordsDesk } from './helpers';

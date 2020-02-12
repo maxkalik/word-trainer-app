@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Animated } from 'react-native';
+import { sizes } from '../../../constants';
 import { BottomBarSectionProps } from './types';
 import { styles } from './styles';
 
@@ -11,7 +12,7 @@ const BottomBarSection: React.FC<BottomBarSectionProps> = ({
 
   useEffect(() => {
     Animated.spring(offset, {
-      toValue: 0
+      toValue: -sizes.HEIGHT_GENERAL
     }).start();
   }, [offset]);
 
