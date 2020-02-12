@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { SafeAreaView, Keyboard } from 'react-native';
 import { withNavigationFocus } from 'react-navigation';
 import firebase from 'firebase';
-import { Notification, Message, Spinner } from '../../components/common';
+import { Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
 import VocabularyItems from '../../components/VocabularyItems/VocabularyItems';
 import BottomToolBar from '../../components/BottomToolBar/BottomToolBar';
@@ -12,7 +12,7 @@ import { findMatches } from './helpers';
 import { styles } from './styles';
 
 const VocabularyScreen: React.FC = (props: any): JSX.Element => {
-  const [{ words }] = useStateValue();
+  const [{ words }, dispatch] = useStateValue();
   const [loading, setLoading] = useState(false);
   const [vocabularyWords, setVocabularyWords] = useState<WordTypes[]>(words);
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
@@ -61,12 +61,18 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
         .remove()
         .then(() => {
           setLoading(false);
-          setNotification('Words has been successfully removed.');
+          dispatch({
+            type: 'NOTIFICATION',
+            notificationMsg: 'Words has been successfully removed.'
+          });
           setCheckedItems([]);
         })
         .catch(error => {
           setLoading(false);
-          setNotification(`Error: "${error}"`);
+          dispatch({
+            type: 'NOTIFICATION',
+            notificationMsg: `Error: "${error}"`
+          });
         });
     });
   };
@@ -93,7 +99,6 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     }
     return (
       <>
-        <Notification title={notification} />
         <VocabularyHeader
           onChangeInputText={(value: string) => setInputValue(value)}
           value={inputValue}

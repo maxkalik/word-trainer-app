@@ -6,22 +6,31 @@ import {
   NativeModules,
   TouchableOpacity
 } from 'react-native';
+import { useStateValue } from '../../../state';
 import { styles } from './styles';
 
 const { StatusBarManager } = NativeModules;
 
-const Notificaton: React.FC<{ title: string }> = ({
-  title
-}): JSX.Element | null => {
-  const [titleTxt, setTitleTxt] = useState('');
+const Notificaton: React.FC = (): JSX.Element | null => {
+  const [{ notificationMsg }, dispatch] = useStateValue();
+  const isNotificationPresent =
+    notificationMsg !== null && notificationMsg.length > 0;
   const [visibility, setVisibility] = useState(false);
   const [offset] = useState(new Animated.Value(-120));
   const [statusIOSBarHeight, setStatusIOSBarHeight] = useState(0);
 
+  console.log(visibility);
   useEffect(() => {
-    setTitleTxt(title);
-    setVisibility(title.length > 0);
-  }, [title]);
+    setVisibility(isNotificationPresent);
+    if (isNotificationPresent) {
+      setTimeout(() => {
+        dispatch({
+          type: 'NOTIFICATION',
+          notificationMsg: ''
+        });
+      }, 4000);
+    }
+  }, [dispatch, isNotificationPresent]);
 
   useEffect(() => {
     if (Platform.OS === 'ios') {
@@ -55,7 +64,7 @@ const Notificaton: React.FC<{ title: string }> = ({
       <TouchableOpacity
         style={styles.textContainer}
         onPress={() => setVisibility(false)}>
-        <Text style={styles.title}>{titleTxt}</Text>
+        <Text style={styles.title}>{notificationMsg}</Text>
       </TouchableOpacity>
     </Animated.View>
   );

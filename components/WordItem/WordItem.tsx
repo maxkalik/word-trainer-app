@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import firebase from 'firebase';
 import { TextInput, View, Keyboard } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
-import { Scene, Notification, Btn } from '../../components/common';
+import { Scene, Btn } from '../../components/common';
 import { useStateValue } from '../../state';
 import { checkStringIsPresent } from './helpers';
 import { initialState, TextInputsProps, WordItemProps } from './types';
@@ -25,10 +25,9 @@ const WordItem: React.FC<WordItemProps> = ({
   item
 }): JSX.Element => {
   const [newWordItem, setNewWordItem] = useState(initialState);
-  const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [{ words }] = useStateValue();
+  const [{ words }, dispatch] = useStateValue();
 
   const isWordEmpty = newWordItem.word === '';
   const isTranslationEmpty = newWordItem.translation === '';
@@ -60,13 +59,19 @@ const WordItem: React.FC<WordItemProps> = ({
       .then(() => {
         setNewWordItem(initialState);
         setLoading(false);
-        setNotification(
-          `Word "${newWordItem.word}" has been successfully added.`
-        );
+        dispatch({
+          type: 'NOTIFICATION',
+          notificationMsg: `Word "${
+            newWordItem.word
+          }" has been successfully added.`
+        });
       })
       .catch(error => {
         setLoading(false);
-        setNotification(`Error: "${error}"`);
+        dispatch({
+          type: 'NOTIFICATION',
+          notificationMsg: `Error: "${error}"`
+        });
       });
   };
 
@@ -80,13 +85,19 @@ const WordItem: React.FC<WordItemProps> = ({
       })
       .then(() => {
         setLoading(false);
-        setNotification(
-          `Word "${newWordItem.word}" has been successfully saved.`
-        );
+        dispatch({
+          type: 'NOTIFICATION',
+          notificationMsg: `Word "${
+            newWordItem.word
+          }" has been successfully saved.`
+        });
       })
       .catch(error => {
         setLoading(false);
-        setNotification(`Error: "${error}"`);
+        dispatch({
+          type: 'NOTIFICATION',
+          notificationMsg: `Error: "${error}"`
+        });
       });
   };
 
@@ -94,13 +105,16 @@ const WordItem: React.FC<WordItemProps> = ({
     const isWordPresent = checkStringIsPresent(words, newWordItem.word);
     if (isWordEmpty || isTranslationEmpty) {
       setLoading(false);
-      setTimeout(() => setNotification('Inputs should not be empty'), 0);
+      dispatch({
+        type: 'NOTIFICATION',
+        notificationMsg: 'Inputs should not be empty'
+      });
     } else if (isWordPresent) {
       setLoading(false);
-      setTimeout(
-        () => setNotification(`Word "${newWordItem.word}" is already exsist.`),
-        0
-      );
+      dispatch({
+        type: 'NOTIFICATION',
+        notificationMsg: `Word "${newWordItem.word}" is already exsist.`
+      });
     } else {
       Keyboard.dismiss();
       return makePushRequest();
@@ -110,7 +124,10 @@ const WordItem: React.FC<WordItemProps> = ({
   const setSubmit = () => {
     if (isWordEmpty || isTranslationEmpty) {
       setLoading(false);
-      setTimeout(() => setNotification('Inputs should not be empty'), 0);
+      dispatch({
+        type: 'NOTIFICATION',
+        notificationMsg: 'Inputs should not be empty'
+      });
     } else {
       Keyboard.dismiss();
       return makeSetRequest();
@@ -119,7 +136,6 @@ const WordItem: React.FC<WordItemProps> = ({
 
   const handleButtonPress = () => {
     setLoading(true);
-    setNotification('');
     switch (actionName) {
       case 'push':
         return pushSubmit();
@@ -132,51 +148,49 @@ const WordItem: React.FC<WordItemProps> = ({
 
   const updateUI = () => {
     setNewWordItem(initialState);
-    setNotification('');
+    dispatch({
+      type: 'NOTIFICATION',
+      notificationMsg: ''
+    });
   };
 
   return (
-    <>
-      <Notification title={notification} />
-      <Scene keyboardAvoidingView={true}>
-        {!loading && <NavigationEvents onWillFocus={updateUI} />}
-        <View style={styles.container}>
-          {inputFields.map(({ name, placeholder }: TextInputsProps) => (
-            <TextInput
-              key={name}
-              style={styles.input}
-              placeholder={placeholder}
-              placeholderTextColor={'grey'}
-              onChangeText={(value: string) =>
-                handleInputChangeText(value, name)
-              }
-              value={newWordItem[name]}
-              autoFocus={name === 'word' && actionName !== 'set'}
-              onFocus={() => setIsFocused(true)}
-              onBlur={() => setIsFocused(false)}
+    <Scene keyboardAvoidingView={true}>
+      {!loading && <NavigationEvents onWillFocus={updateUI} />}
+      <View style={styles.container}>
+        {inputFields.map(({ name, placeholder }: TextInputsProps) => (
+          <TextInput
+            key={name}
+            style={styles.input}
+            placeholder={placeholder}
+            placeholderTextColor={'grey'}
+            onChangeText={(value: string) => handleInputChangeText(value, name)}
+            value={newWordItem[name]}
+            autoFocus={name === 'word' && actionName !== 'set'}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+          />
+        ))}
+        <View style={styles.buttons}>
+          {isShowSaveBtn && (
+            <Btn
+              filled
+              loading={loading}
+              onPress={handleButtonPress}
+              title={mainBtnTitle}
             />
-          ))}
-          <View style={styles.buttons}>
-            {isShowSaveBtn && (
-              <Btn
-                filled
-                loading={loading}
-                onPress={handleButtonPress}
-                title={mainBtnTitle}
-              />
-            )}
-            {isShowClearBtn && (
-              <Btn
-                size="small"
-                addStyle={styles.btnClear}
-                onPress={() => setNewWordItem(initialState)}
-                title="Clear Fields"
-              />
-            )}
-          </View>
+          )}
+          {isShowClearBtn && (
+            <Btn
+              size="small"
+              addStyle={styles.btnClear}
+              onPress={() => setNewWordItem(initialState)}
+              title="Clear Fields"
+            />
+          )}
         </View>
-      </Scene>
-    </>
+      </View>
+    </Scene>
   );
 };
 
