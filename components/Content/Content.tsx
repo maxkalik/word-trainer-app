@@ -48,7 +48,7 @@ const Content: React.FC = (): JSX.Element => {
   }
   return (
     <>
-      <Notification title={error || notificationMsg} />
+      <Notification />
       <Navigation theme="light" />
     </>
   );

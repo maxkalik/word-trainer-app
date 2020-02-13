@@ -20,6 +20,7 @@ const Notificaton: React.FC = (): JSX.Element | null => {
   const [statusIOSBarHeight, setStatusIOSBarHeight] = useState(0);
 
   console.log(visibility);
+
   useEffect(() => {
     setVisibility(isNotificationPresent);
     if (isNotificationPresent) {
@@ -41,7 +42,7 @@ const Notificaton: React.FC = (): JSX.Element | null => {
   }, []);
 
   useEffect(() => {
-    if (visibility) {
+    if (isNotificationPresent) {
       Animated.sequence([
         Animated.spring(offset, {
           toValue: statusIOSBarHeight
@@ -52,7 +53,7 @@ const Notificaton: React.FC = (): JSX.Element | null => {
         })
       ]).start();
     }
-  }, [offset, statusIOSBarHeight, visibility]);
+  }, [offset, statusIOSBarHeight, isNotificationPresent]);
 
   if (!visibility) {
     return null;
