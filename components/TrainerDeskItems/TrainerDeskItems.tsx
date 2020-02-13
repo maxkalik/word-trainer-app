@@ -6,11 +6,7 @@ import { styles } from './styles';
 
 const INITIAL_STATE = { answer: null, id: null };
 
-const TrainerDeskItems: React.FC<DeskProps> = ({
-  wordsArr,
-  updateWordsState,
-  headerWordId
-}): JSX.Element => {
+const TrainerDeskItems: React.FC<DeskProps> = ({ wordsArr, updateWordsState, headerWordId }): JSX.Element => {
   const [selection, setSelection] = useState<InitialStateProps>(INITIAL_STATE);
 
   const handleSelection = (id: string): void => {

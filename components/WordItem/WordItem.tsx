@@ -19,11 +19,7 @@ const inputFields: TextInputsProps[] = [
   }
 ];
 
-const WordItem: React.FC<WordItemProps> = ({
-  mainBtnTitle,
-  actionName,
-  item
-}): JSX.Element => {
+const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): JSX.Element => {
   const [newWordItem, setNewWordItem] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -61,9 +57,7 @@ const WordItem: React.FC<WordItemProps> = ({
         setLoading(false);
         dispatch({
           type: 'NOTIFICATION',
-          notificationMsg: `Word "${
-            newWordItem.word
-          }" has been successfully added.`
+          notificationMsg: `Word "${newWordItem.word}" has been successfully added.`
         });
       })
       .catch(error => {
@@ -87,9 +81,7 @@ const WordItem: React.FC<WordItemProps> = ({
         setLoading(false);
         dispatch({
           type: 'NOTIFICATION',
-          notificationMsg: `Word "${
-            newWordItem.word
-          }" has been successfully saved.`
+          notificationMsg: `Word "${newWordItem.word}" has been successfully saved.`
         });
       })
       .catch(error => {
@@ -172,14 +164,7 @@ const WordItem: React.FC<WordItemProps> = ({
           />
         ))}
         <View style={styles.buttons}>
-          {isShowSaveBtn && (
-            <Btn
-              filled
-              loading={loading}
-              onPress={handleButtonPress}
-              title={mainBtnTitle}
-            />
-          )}
+          {isShowSaveBtn && <Btn filled loading={loading} onPress={handleButtonPress} title={mainBtnTitle} />}
           {isShowClearBtn && (
             <Btn
               size="small"

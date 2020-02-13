@@ -4,12 +4,7 @@ import Btn from '../Btn/Btn';
 import { MessageProps } from './types';
 import { styles } from './styles';
 
-const Message: React.FC<MessageProps> = ({
-  title,
-  description,
-  btnTitle,
-  btnOnPress
-}): JSX.Element => (
+const Message: React.FC<MessageProps> = ({ title, description, btnTitle, btnOnPress }): JSX.Element => (
   <View style={styles.container}>
     <Text style={styles.title}>{title}</Text>
     <Text style={styles.description}>{description}</Text>

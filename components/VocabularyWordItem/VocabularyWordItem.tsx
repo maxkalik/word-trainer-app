@@ -10,9 +10,7 @@ const VocabularyWordItem: React.FC<VocabularyWordItemProps> = ({
 }): JSX.Element => (
   <View style={[styles.container, isCheckMode && styles.isCheckMode]}>
     <Text style={styles.word}>{word}</Text>
-    <Text style={[styles.translation, checked && styles.checkedTranslation]}>
-      {translation}
-    </Text>
+    <Text style={[styles.translation, checked && styles.checkedTranslation]}>{translation}</Text>
   </View>
 );
 

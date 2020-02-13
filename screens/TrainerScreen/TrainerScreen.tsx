@@ -6,10 +6,7 @@ import { styles } from './styles';
 
 const TrainerScreen: React.FC = (props: any): JSX.Element => (
   <SafeAreaView style={styles.container}>
-    <Header
-      backButton
-      onPressBackButton={(): void => props.navigation.goBack()}
-    />
+    <Header backButton onPressBackButton={(): void => props.navigation.goBack()} />
     <TrainerDesk words={props.navigation.state.params} />
   </SafeAreaView>
 );

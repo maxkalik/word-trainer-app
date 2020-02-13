@@ -5,9 +5,7 @@ import TrainerWord from '../../components/TrainerWord/TrainerWord';
 import { randomItem, makeWordsDesk } from './helpers';
 import { WordTypes } from '../../types';
 
-const TrainerDesk: React.FC<{ words: WordTypes[] }> = ({
-  words
-}): JSX.Element => {
+const TrainerDesk: React.FC<{ words: WordTypes[] }> = ({ words }): JSX.Element => {
   const [wordsDesk, setWordsDesk] = useState(makeWordsDesk(5, words));
   const showedWord = randomItem(wordsDesk);
   return (

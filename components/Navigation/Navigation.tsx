@@ -10,9 +10,7 @@ import { styles } from './styles';
 const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} />;
 
 const TabNavigator = createBottomTabNavigator(screens, {
-  tabBarComponent: props => (
-    <TabBarComponent {...props} style={styles.container} />
-  ),
+  tabBarComponent: props => <TabBarComponent {...props} style={styles.container} />,
   resetOnBlur: true,
   defaultNavigationOptions: ({ navigation }) => {
     const { routeName } = navigation.state;

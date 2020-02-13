@@ -45,9 +45,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     if (!checkedItems.includes(id)) {
       setCheckedItems([...checkedItems, id]);
     } else {
-      const updatedCheckedItems = checkedItems.filter(
-        (itemId: string) => itemId !== id
-      );
+      const updatedCheckedItems = checkedItems.filter((itemId: string) => itemId !== id);
       setCheckedItems(updatedCheckedItems);
     }
   };
@@ -110,9 +108,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
           vocabularyWords={vocabularyWords}
           editMode={editMode}
           checkedItems={checkedItems}
-          onItemPress={item =>
-            props.navigation.navigate('Vocabulary Item', item)
-          }
+          onItemPress={item => props.navigation.navigate('Vocabulary Item', item)}
           onCheckChange={id => handleCheckChange(id)}
         />
         {checkedItems.length > 0 && (
@@ -127,9 +123,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     );
   };
 
-  return (
-    <SafeAreaView style={styles.container}>{renderContent()}</SafeAreaView>
-  );
+  return <SafeAreaView style={styles.container}>{renderContent()}</SafeAreaView>;
 };
 
 export default withNavigationFocus(VocabularyScreen);

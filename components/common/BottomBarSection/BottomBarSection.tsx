@@ -4,10 +4,7 @@ import { sizes } from '../../../constants';
 import { BottomBarSectionProps } from './types';
 import { styles } from './styles';
 
-const BottomBarSection: React.FC<BottomBarSectionProps> = ({
-  offsetValue,
-  children
-}): JSX.Element => {
+const BottomBarSection: React.FC<BottomBarSectionProps> = ({ offsetValue, children }): JSX.Element => {
   const [offset] = useState(new Animated.Value(offsetValue));
 
   useEffect(() => {
@@ -16,12 +13,7 @@ const BottomBarSection: React.FC<BottomBarSectionProps> = ({
     }).start();
   }, [offset]);
 
-  return (
-    <Animated.View
-      style={[styles.container, { transform: [{ translateY: offset }] }]}>
-      {children}
-    </Animated.View>
-  );
+  return <Animated.View style={[styles.container, { transform: [{ translateY: offset }] }]}>{children}</Animated.View>;
 };
 
 export default BottomBarSection;
