@@ -18,7 +18,6 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [editMode, setEditMode] = useState(false);
-  const [notification, setNotification] = useState('');
   const wordsLength = words.length === 0;
 
   useEffect(() => {

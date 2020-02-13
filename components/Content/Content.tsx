@@ -7,8 +7,7 @@ import { objectToArray } from '../../helpers';
 
 const Content: React.FC = (): JSX.Element => {
   const [loading, setLoading] = useState(true);
-  const [{ words, error, notificationMsg }, dispatch] = useStateValue();
-  console.log('notificationMsg from Content:', notificationMsg);
+  const [{ words }, dispatch] = useStateValue();
 
   useEffect(() => {
     const database = firebase.database();
