@@ -31,6 +31,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   const isEditing = actionName !== 'set';
   const isShowSaveBtn = isEditing || isFocused;
   const isShowClearBtn = isEditing && (isFocused || !isFieldsEmpty);
+  const isWordPresent = checkStringIsPresent(words, newWordItem.word);
 
   useEffect(() => {
     if (item) {
@@ -94,7 +95,6 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   };
 
   const pushSubmit = () => {
-    const isWordPresent = checkStringIsPresent(words, newWordItem.word);
     if (isWordEmpty || isTranslationEmpty) {
       setLoading(false);
       dispatch({
@@ -120,6 +120,8 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
         type: 'NOTIFICATION',
         notificationMsg: 'Inputs should not be empty'
       });
+    } else if (isWordPresent) {
+      setLoading(false);
     } else {
       Keyboard.dismiss();
       return makeSetRequest();
