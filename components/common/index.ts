@@ -8,14 +8,4 @@ import Spinner from './Spinner/Spinner';
 import Message from './Message/Message';
 import BottomBarSection from './BottomBarSection/BottomBarSection';
 
-export {
-  Scene,
-  Notification,
-  Input,
-  Btn,
-  Checkbox,
-  Header,
-  Spinner,
-  Message,
-  BottomBarSection
-};
+export { Scene, Notification, Input, Btn, Checkbox, Header, Spinner, Message, BottomBarSection };

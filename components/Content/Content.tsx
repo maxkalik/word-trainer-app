@@ -8,7 +8,6 @@ import { objectToArray } from '../../helpers';
 const Content: React.FC = (): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [{ words }, dispatch] = useStateValue();
-  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     const database = firebase.database();
@@ -33,25 +32,25 @@ const Content: React.FC = (): JSX.Element => {
             setLoading(false);
           } else {
             setLoading(true);
-            setErrorMsg('Connection is lost');
+            dispatch({
+              type: 'FETCHING_FAILED',
+              error: 'Connection is lost'
+            });
           }
         });
       }
     });
   }, [dispatch]);
 
-  if (errorMsg) {
-    return (
-      <>
-        <Notification title={errorMsg} />
-        <Spinner />
-      </>
-    );
-  }
   if (loading) {
     return <Spinner />;
   }
-  return <Navigation theme="light" />;
+  return (
+    <>
+      <Notification />
+      <Navigation theme="light" />
+    </>
+  );
 };
 
 export default Content;

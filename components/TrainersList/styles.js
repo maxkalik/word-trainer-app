@@ -2,26 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: 'white'
-  },
-  trainerContainer: {
-    flex: 1
-  },
-  header: {
-    // borderWidth: 1,
-    // borderColor: 'black',
-    textAlign: 'center',
-    paddingVertical: 40
-  },
-  headerTitle: {
-    textAlign: 'center',
-    fontSize: 24,
-    paddingHorizontal: 10
-  },
-  list: {
     // borderWidth: 1,
     // borderColor: 'black',
     padding: 10

@@ -4,9 +4,7 @@ import { Icon16px } from '../../icons';
 import { ClearBtnProps, InputProps } from './types';
 import { styles, clearBtnStyles } from './styles';
 
-const ClearButton: React.FC<ClearBtnProps> = ({
-  onClearBtnPress
-}): JSX.Element => (
+const ClearButton: React.FC<ClearBtnProps> = ({ onClearBtnPress }): JSX.Element => (
   <TouchableOpacity style={clearBtnStyles.container} onPress={onClearBtnPress}>
     <Icon16px name="close" />
   </TouchableOpacity>
@@ -25,8 +23,7 @@ const Input: React.FC<InputProps> = ({
   const isValue = value.length > 0;
 
   return (
-    <View
-      style={[styles.container, (focus || isValue) && styles.focused, style]}>
+    <View style={[styles.container, (focus || isValue) && styles.focused, style]}>
       <TextInput
         style={[styles.inputField, styleInputField]}
         autoFocus={autoFocus}

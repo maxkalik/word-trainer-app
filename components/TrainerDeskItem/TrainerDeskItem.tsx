@@ -3,12 +3,7 @@ import { TouchableOpacity, Text } from 'react-native';
 import { TrainerDeskItemProps } from './types';
 import { deskItemStyle, itemTextStyle } from './styles';
 
-const TrainerDeskItem: React.FC<TrainerDeskItemProps> = ({
-  name,
-  onPress,
-  isActive,
-  disabled
-}): JSX.Element => {
+const TrainerDeskItem: React.FC<TrainerDeskItemProps> = ({ name, onPress, isActive, disabled }): JSX.Element => {
   const deskStyles = [
     deskItemStyle.container,
     isActive === 'correct' && deskItemStyle.correct,
@@ -19,8 +14,7 @@ const TrainerDeskItem: React.FC<TrainerDeskItemProps> = ({
 
   const deskTextStyles = [
     itemTextStyle.container,
-    (isActive !== null && itemTextStyle.active) ||
-      (disabled && isActive === null && itemTextStyle.disabled)
+    (isActive !== null && itemTextStyle.active) || (disabled && isActive === null && itemTextStyle.disabled)
   ];
 
   return (

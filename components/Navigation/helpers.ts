@@ -1,5 +1,4 @@
-const tabFocusedIcons = (focused: boolean): string =>
-  focused ? 'fill' : 'line';
+const tabFocusedIcons = (focused: boolean): string => (focused ? 'fill' : 'line');
 
 export const tabIcons = (routeName: string, focused: boolean): string => {
   if (routeName === 'Trainers') {
