@@ -12,20 +12,6 @@ const Notificaton: React.FC = (): JSX.Element | null => {
   const [offset] = useState(new Animated.Value(-120));
   const [statusIOSBarHeight, setStatusIOSBarHeight] = useState(0);
 
-  console.log(visibility);
-
-  useEffect(() => {
-    setVisibility(isNotificationPresent);
-    if (isNotificationPresent) {
-      setTimeout(() => {
-        dispatch({
-          type: 'NOTIFICATION',
-          notificationMsg: ''
-        });
-      }, 4000);
-    }
-  }, [dispatch, isNotificationPresent]);
-
   useEffect(() => {
     if (Platform.OS === 'ios') {
       StatusBarManager.getHeight(({ height }: any) => {
@@ -35,6 +21,7 @@ const Notificaton: React.FC = (): JSX.Element | null => {
   }, []);
 
   useEffect(() => {
+    setVisibility(isNotificationPresent);
     if (isNotificationPresent) {
       Animated.sequence([
         Animated.spring(offset, {
@@ -46,7 +33,16 @@ const Notificaton: React.FC = (): JSX.Element | null => {
         })
       ]).start();
     }
-  }, [offset, statusIOSBarHeight, isNotificationPresent]);
+    const timer = setTimeout(() => {
+      if (isNotificationPresent) {
+        dispatch({
+          type: 'NOTIFICATION',
+          notificationMsg: ''
+        });
+      }
+    }, 4500);
+    return () => clearTimeout(timer);
+  }, [offset, statusIOSBarHeight, isNotificationPresent, dispatch]);
 
   if (!visibility) {
     return null;
