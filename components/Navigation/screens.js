@@ -1,21 +1,42 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import TrainersScreen from '../../screens/TrainersScreen/TrainersScreen';
-import TrainerScreen from '../../screens/TrainerScreen/TrainerScreen';
+import { WordToTranslateScreen } from '../../screens/trainers';
 import AddWordScreen from '../../screens/AddWordScreen/AddWordScreen';
 import VocabularyScreen from '../../screens/VocabularyScreen/VocabularyScreen';
 import VocabularyItemScreen from '../../screens/VocabularyItemScreen/VocabularyItemScreen';
 
+const stackOptions = {
+  mode: 'card',
+  headerMode: 'none'
+};
+
 const TrainersStack = createStackNavigator(
   {
     ['Trainers']: TrainersScreen,
-    ['Trainer']: TrainerScreen
+    ['Word to Translate']: WordToTranslateScreen
   },
   {
     initialRouteName: 'Trainers',
-    mode: 'card',
-    headerMode: 'none'
+    ...stackOptions
   }
 );
+
+const VocabularyStack = createStackNavigator(
+  {
+    ['Vocabulary']: VocabularyScreen,
+    ['Vocabulary Item']: VocabularyItemScreen
+  },
+  {
+    initialRouteName: 'Vocabulary',
+    ...stackOptions
+  }
+);
+
+export const screens = {
+  ['Trainers']: TrainersStack,
+  ['Add Word']: AddWordScreen,
+  ['Vocabulary']: VocabularyStack
+};
 
 TrainersStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
@@ -25,22 +46,4 @@ TrainersStack.navigationOptions = ({ navigation }) => {
   return {
     tabBarVisible
   };
-};
-
-const VocabularyStack = createStackNavigator(
-  {
-    ['Vocabulary']: VocabularyScreen,
-    ['Vocabulary Item']: VocabularyItemScreen
-  },
-  {
-    initialRouteName: 'Vocabulary',
-    mode: 'card',
-    headerMode: 'none'
-  }
-);
-
-export const screens = {
-  ['Trainers']: TrainersStack,
-  ['Add Word']: AddWordScreen,
-  ['Vocabulary']: VocabularyStack
 };

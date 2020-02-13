@@ -19,7 +19,7 @@ const TrainersScreen: React.FC = (props: any): JSX.Element => {
   );
 
   const renderTrainers = (wordItmes: WordTypes[]) => (
-    <Button title="Go to Details" onPress={() => props.navigation.navigate('Trainer', wordItmes)} />
+    <Button title="Go to Details" onPress={() => props.navigation.navigate('Word to Translate', wordItmes)} />
   );
 
   return <View style={styles.container}>{wordsLength ? renderTrainers(words) : renderMessage()}</View>;
