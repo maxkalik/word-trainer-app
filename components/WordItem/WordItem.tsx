@@ -20,29 +20,54 @@ const inputFields: TextInputsProps[] = [
 ];
 
 const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): JSX.Element => {
-  const [newWordItem, setNewWordItem] = useState(initialState);
+  const [wordItem, setWordItem] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [{ words }, dispatch] = useStateValue();
 
-  const isWordEmpty = newWordItem.word === '';
-  const isTranslationEmpty = newWordItem.translation === '';
+  const isWordEmpty = wordItem.word === '';
+  const isTranslationEmpty = wordItem.translation === '';
   const isFieldsEmpty = isWordEmpty && isTranslationEmpty;
   const isEditing = actionName !== 'set';
   const isShowSaveBtn = isEditing || isFocused;
   const isShowClearBtn = isEditing && (isFocused || !isFieldsEmpty);
-  const isWordPresent = checkStringIsPresent(words, newWordItem.word);
+  const isWordPresent = checkStringIsPresent(words, wordItem.word);
 
   useEffect(() => {
     if (item) {
-      setNewWordItem(item);
+      setWordItem(item);
     } else {
-      setNewWordItem(initialState);
+      setWordItem(initialState);
     }
   }, [item]);
 
   const handleInputChangeText = (value: string, inputField: string): void => {
-    setNewWordItem({ ...newWordItem, [inputField]: value });
+    setWordItem({ ...wordItem, [inputField]: value });
+  };
+
+  const makeNotification = (msg: string): void => {
+    dispatch({
+      type: 'NOTIFICATION',
+      notificationMsg: msg
+    });
+  };
+
+  const getNotification = (flag: string, payload?: string): void => {
+    setLoading(false);
+    switch (flag) {
+      case 'empty fields':
+        return makeNotification('Inputs should not be empty');
+      case 'same word':
+        return makeNotification(`Word "${payload}" is already exsist.`);
+      case 'error':
+        return makeNotification(`Error: "${payload}"`);
+      case 'success add':
+        return makeNotification(`Word "${payload}" has been successfully added.`);
+      case 'success save':
+        return makeNotification(`Word "${payload}" has been successfully saved.`);
+      default:
+        return;
+    }
   };
 
   const makePushRequest = () => {
@@ -50,63 +75,39 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
       .database()
       .ref('words')
       .push({
-        word: newWordItem.word,
-        translation: newWordItem.translation
+        word: wordItem.word,
+        translation: wordItem.translation
       })
       .then(() => {
-        setNewWordItem(initialState);
-        setLoading(false);
-        dispatch({
-          type: 'NOTIFICATION',
-          notificationMsg: `Word "${newWordItem.word}" has been successfully added.`
-        });
+        setWordItem(initialState);
+        getNotification('success add', wordItem.word);
       })
       .catch(error => {
-        setLoading(false);
-        dispatch({
-          type: 'NOTIFICATION',
-          notificationMsg: `Error: "${error}"`
-        });
+        getNotification('error', error);
       });
   };
 
   const makeSetRequest = () => {
     firebase
       .database()
-      .ref(`words/${newWordItem.id}`)
+      .ref(`words/${wordItem.id}`)
       .set({
-        word: newWordItem.word,
-        translation: newWordItem.translation
+        word: wordItem.word,
+        translation: wordItem.translation
       })
       .then(() => {
-        setLoading(false);
-        dispatch({
-          type: 'NOTIFICATION',
-          notificationMsg: `Word "${newWordItem.word}" has been successfully saved.`
-        });
+        getNotification('success save', wordItem.word);
       })
       .catch(error => {
-        setLoading(false);
-        dispatch({
-          type: 'NOTIFICATION',
-          notificationMsg: `Error: "${error}"`
-        });
+        getNotification('error', error);
       });
   };
 
   const pushSubmit = () => {
     if (isWordEmpty || isTranslationEmpty) {
-      setLoading(false);
-      dispatch({
-        type: 'NOTIFICATION',
-        notificationMsg: 'Inputs should not be empty'
-      });
+      getNotification('empty fields');
     } else if (isWordPresent) {
-      setLoading(false);
-      dispatch({
-        type: 'NOTIFICATION',
-        notificationMsg: `Word "${newWordItem.word}" is already exsist.`
-      });
+      getNotification('same word', wordItem.word);
     } else {
       Keyboard.dismiss();
       return makePushRequest();
@@ -115,13 +116,9 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
 
   const setSubmit = () => {
     if (isWordEmpty || isTranslationEmpty) {
-      setLoading(false);
-      dispatch({
-        type: 'NOTIFICATION',
-        notificationMsg: 'Inputs should not be empty'
-      });
-    } else if (isWordPresent) {
-      setLoading(false);
+      getNotification('empty fields');
+    } else if (item && item.word !== wordItem.word && isWordPresent) {
+      getNotification('same word', wordItem.word);
     } else {
       Keyboard.dismiss();
       return makeSetRequest();
@@ -141,7 +138,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   };
 
   const updateUI = () => {
-    setNewWordItem(initialState);
+    setWordItem(initialState);
     dispatch({
       type: 'NOTIFICATION',
       notificationMsg: ''
@@ -159,7 +156,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
             placeholder={placeholder}
             placeholderTextColor={'grey'}
             onChangeText={(value: string) => handleInputChangeText(value, name)}
-            value={newWordItem[name]}
+            value={wordItem[name]}
             autoFocus={name === 'word' && actionName !== 'set'}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
@@ -171,7 +168,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
             <Btn
               size="small"
               addStyle={styles.btnClear}
-              onPress={() => setNewWordItem(initialState)}
+              onPress={() => setWordItem(initialState)}
               title="Clear Fields"
             />
           )}
