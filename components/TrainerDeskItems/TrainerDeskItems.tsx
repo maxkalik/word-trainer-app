@@ -6,7 +6,12 @@ import { styles } from './styles';
 
 const INITIAL_STATE = { answer: null, id: null };
 
-const TrainerDeskItems: React.FC<DeskProps> = ({ wordsArr, updateWordsState, headerWordId }): JSX.Element => {
+const TrainerDeskItems: React.FC<DeskProps> = ({
+  wordsArr,
+  updateWordsState,
+  headerWordId,
+  translateToWord
+}): JSX.Element => {
   const [selection, setSelection] = useState<InitialStateProps>(INITIAL_STATE);
 
   const handleSelection = (id: string): void => {
@@ -35,13 +40,13 @@ const TrainerDeskItems: React.FC<DeskProps> = ({ wordsArr, updateWordsState, hea
 
   return (
     <View style={styles.container}>
-      {wordsArr.map(({ translation, id }) => (
+      {wordsArr.map(({ translation, word, id }) => (
         <TrainerDeskItem
           key={id}
           disabled={selection.answer !== null}
           onPress={() => handleSelection(id)}
           isActive={setActive(id)}
-          name={translation}
+          name={translateToWord ? word : translation}
         />
       ))}
     </View>

@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import TrainersScreen from '../../screens/TrainersScreen/TrainersScreen';
-import { WordToTranslateScreen } from '../../screens/trainers';
+import { WordToTranslateScreen, TranslateToWordScreen } from '../../screens/trainers';
 import AddWordScreen from '../../screens/AddWordScreen/AddWordScreen';
 import VocabularyScreen from '../../screens/VocabularyScreen/VocabularyScreen';
 import VocabularyItemScreen from '../../screens/VocabularyItemScreen/VocabularyItemScreen';
@@ -13,7 +13,8 @@ const stackOptions = {
 const TrainersStack = createStackNavigator(
   {
     ['Trainers']: TrainersScreen,
-    ['Word to Translate']: WordToTranslateScreen
+    ['Word to Translate']: WordToTranslateScreen,
+    ['Translate to Word']: TranslateToWordScreen
   },
   {
     initialRouteName: 'Trainers',

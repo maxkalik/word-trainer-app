@@ -137,17 +137,9 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
     }
   };
 
-  const updateUI = () => {
-    setWordItem(initialState);
-    dispatch({
-      type: 'NOTIFICATION',
-      notificationMsg: ''
-    });
-  };
-
   return (
     <Scene keyboardAvoidingView={true}>
-      {!loading && <NavigationEvents onWillFocus={updateUI} />}
+      {!loading && <NavigationEvents onWillFocus={() => setWordItem(initialState)} />}
       <View style={styles.container}>
         {inputFields.map(({ name, placeholder }: TextInputsProps) => (
           <TextInput

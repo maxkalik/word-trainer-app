@@ -1,3 +1,4 @@
 import WordToTranslateScreen from './WordToTranslateScreen/WordToTranslateScreen';
+import TranslateToWordScreen from './TranslateToWordScreen/TranslateToWordScreen';
 
-export { WordToTranslateScreen };
+export { WordToTranslateScreen, TranslateToWordScreen };

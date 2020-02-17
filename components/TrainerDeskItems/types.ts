@@ -9,4 +9,5 @@ export interface DeskProps {
   wordsArr: WordTypes[];
   updateWordsState: () => void;
   headerWordId: string;
+  translateToWord?: boolean;
 }

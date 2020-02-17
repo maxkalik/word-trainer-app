@@ -17,7 +17,7 @@ const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({ words
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      screenName: 'Word to Translate',
+      screenName: 'Translate to Word',
       title: 'Translate from your language',
       words: words
     }
