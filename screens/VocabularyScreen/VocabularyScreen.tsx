@@ -62,7 +62,6 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
             type: 'NOTIFICATION',
             notificationMsg: 'Words has been successfully removed.'
           });
-          setCheckedItems([]);
         })
         .catch(error => {
           setLoading(false);
@@ -72,6 +71,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
           });
         });
     });
+    setCheckedItems([]);
   };
 
   const handleEditBtnPress = () => {
