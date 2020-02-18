@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Animated, Text, Platform, NativeModules, TouchableOpacity } from 'react-native';
-import { useStateValue } from '../../../state';
+import { useNotificationValue } from '../../../state/notification';
 import { styles } from './styles';
 
 const { StatusBarManager } = NativeModules;
 
 const Notificaton: React.FC = (): JSX.Element | null => {
-  const [{ notificationMsg }, dispatch] = useStateValue();
+  const [{ notificationMsg }, dispatchNotification] = useNotificationValue();
   const isNotificationPresent = notificationMsg !== null && notificationMsg.length > 0;
   const [visibility, setVisibility] = useState(false);
   const [offset] = useState(new Animated.Value(-120));
@@ -32,9 +32,9 @@ const Notificaton: React.FC = (): JSX.Element | null => {
         Animated.timing(offset, {
           toValue: -120
         })
-      ]).start(() => dispatch(notificationsFinished));
+      ]).start(() => dispatchNotification(notificationsFinished));
     }
-  }, [offset, statusIOSBarHeight, isNotificationPresent, dispatch, visibility, notificationsFinished]);
+  }, [offset, statusIOSBarHeight, isNotificationPresent, dispatchNotification, visibility, notificationsFinished]);
 
   if (!visibility) {
     return null;
@@ -42,7 +42,7 @@ const Notificaton: React.FC = (): JSX.Element | null => {
 
   return (
     <Animated.View style={[styles.container, { transform: [{ translateY: offset }] }]}>
-      <TouchableOpacity style={styles.textContainer} onPress={() => dispatch(notificationsFinished)}>
+      <TouchableOpacity style={styles.textContainer} onPress={() => dispatchNotification(notificationsFinished)}>
         <Text style={styles.title}>{notificationMsg}</Text>
       </TouchableOpacity>
     </Animated.View>

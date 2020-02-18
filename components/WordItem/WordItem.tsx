@@ -3,7 +3,9 @@ import firebase from 'firebase';
 import { TextInput, View, Keyboard } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { Scene, Btn } from '../../components/common';
-import { useStateValue } from '../../state';
+// import { useStateValue } from '../../state';
+import { useNotificationValue } from '../../state/notification';
+import { useWordsValue } from '../../state/words';
 import { checkStringIsPresent } from './helpers';
 import { initialState, TextInputsProps, WordItemProps } from './types';
 import { styles } from './styles';
@@ -23,7 +25,8 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   const [wordItem, setWordItem] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [{ words }, dispatch] = useStateValue();
+  const [{ words }] = useWordsValue();
+  const [{ notificationMsg }, dispatchNotification] = useNotificationValue();
 
   const isWordEmpty = wordItem.word === '';
   const isTranslationEmpty = wordItem.translation === '';
@@ -46,7 +49,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   };
 
   const makeNotification = (msg: string): void => {
-    dispatch({
+    dispatchNotification({
       type: 'NOTIFICATION',
       notificationMsg: msg
     });

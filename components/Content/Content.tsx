@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../../firebase';
 import Navigation from '../Navigation/Navigation';
 import { Spinner, Notification } from '../common';
-import { useStateValue } from '../../state';
+// import { useStateValue } from '../../state';
+import { useWordsValue } from '../../state/words';
 import { objectToArray } from '../../helpers';
+import { useNotificationValue } from '../../state/notification';
 
 const Content: React.FC = (): JSX.Element => {
   const [loading, setLoading] = useState(true);
-  const [{ words }, dispatch] = useStateValue();
+  // const [{ words }, wordsDispatch] = useStateValue();
+  const [{ words }, wordsDispatch] = useWordsValue();
+  const [{ notificationMsg }, dispatchNotification] = useNotificationValue();
 
   useEffect(() => {
     const database = firebase.database();
@@ -17,7 +21,7 @@ const Content: React.FC = (): JSX.Element => {
     dataRef.on('value', (snapshot: any) => {
       const data = snapshot.val();
       if (data !== null) {
-        dispatch({
+        wordsDispatch({
           type: 'FETCHING_WORDS',
           words: objectToArray(data).reverse()
         });
@@ -25,22 +29,22 @@ const Content: React.FC = (): JSX.Element => {
       } else {
         connectedRef.on('value', snap => {
           if (snap.val() === true) {
-            dispatch({
+            wordsDispatch({
               type: 'FETCHING_WORDS',
               words: []
             });
             setLoading(false);
           } else {
             setLoading(true);
-            dispatch({
-              type: 'FETCHING_FAILED',
-              error: 'Connection is lost'
+            dispatchNotification({
+              type: 'NOTIFICATION',
+              notificationMsg: 'Connection is lost'
             });
           }
         });
       }
     });
-  }, [dispatch]);
+  }, [wordsDispatch, dispatchNotification]);
 
   if (loading) {
     return <Spinner />;

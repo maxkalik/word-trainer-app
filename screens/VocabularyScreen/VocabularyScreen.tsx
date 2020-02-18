@@ -6,13 +6,15 @@ import { Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
 import VocabularyItems from '../../components/VocabularyItems/VocabularyItems';
 import BottomToolBar from '../../components/BottomToolBar/BottomToolBar';
-import { useStateValue } from '../../state';
+import { useWordsValue } from '../../state/words';
+import { useNotificationValue } from '../../state/notification';
 import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
 import { styles } from './styles';
 
 const VocabularyScreen: React.FC = (props: any): JSX.Element => {
-  const [{ words }, dispatch] = useStateValue();
+  const [{ words }] = useWordsValue();
+  const [{ notificationMsg }, dispatchNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
   const [vocabularyWords, setVocabularyWords] = useState<WordTypes[]>(words);
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
@@ -58,14 +60,14 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
         .remove()
         .then(() => {
           setLoading(false);
-          dispatch({
+          dispatchNotification({
             type: 'NOTIFICATION',
             notificationMsg: 'Words has been successfully removed.'
           });
         })
         .catch(error => {
           setLoading(false);
-          dispatch({
+          dispatchNotification({
             type: 'NOTIFICATION',
             notificationMsg: `Error: "${error}"`
           });

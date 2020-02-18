@@ -1,12 +1,12 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import TrainersList from '../../components/TrainersList/TrainersList';
-import { useStateValue } from '../../state';
+import { useWordsValue } from '../../state/words';
 import { Message } from '../../components/common';
 import { styles } from './styles';
 
 const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Element => {
-  const [{ words }] = useStateValue();
+  const [{ words }] = useWordsValue();
   const wordsLength = words.length >= 10;
 
   const renderMessage = () => (
