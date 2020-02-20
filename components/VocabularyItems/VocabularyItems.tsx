@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import VocabularyItem from '../../components/VocabularyItem/VocabularyItem';
+import { sizes } from '../../constants';
 import { WordTypes } from '../../types';
 import { VocabularyItemsProps } from './types';
 
@@ -21,6 +22,7 @@ const VocabularyItems: React.FC<VocabularyItemsProps> = ({
 
   return (
     <FlatList
+      style={{ marginBottom: sizes.HEIGHT_GENERAL }}
       data={vocabularyWords}
       renderItem={({ item }: { item: WordTypes }) => (
         <VocabularyItem
