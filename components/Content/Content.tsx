@@ -2,44 +2,36 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../../firebase';
 import Navigation from '../Navigation/Navigation';
 import { Spinner, Notification } from '../common';
-// import { useStateValue } from '../../state';
 import { useWordsValue } from '../../state/words';
 import { objectToArray } from '../../helpers';
 import { useNotificationValue } from '../../state/notification';
 
 const Content: React.FC = (): JSX.Element => {
   const [loading, setLoading] = useState(true);
-  // const [{ words }, wordsDispatch] = useStateValue();
-  const [{ words }, wordsDispatch] = useWordsValue();
-  const [{ notificationMsg }, dispatchNotification] = useNotificationValue();
+  const [, wordsDispatch] = useWordsValue();
+  const [, dispatchNotification] = useNotificationValue();
 
   useEffect(() => {
     const database = firebase.database();
     var connectedRef = database.ref('.info/connected');
     var dataRef = database.ref('words');
 
+    const fetchingWords = (data: object[]): void => {
+      wordsDispatch({ words: data });
+      setLoading(false);
+    };
+
     dataRef.on('value', (snapshot: any) => {
       const data = snapshot.val();
       if (data !== null) {
-        wordsDispatch({
-          type: 'FETCHING_WORDS',
-          words: objectToArray(data).reverse()
-        });
-        setLoading(false);
+        fetchingWords(objectToArray(data).reverse());
       } else {
         connectedRef.on('value', snap => {
           if (snap.val() === true) {
-            wordsDispatch({
-              type: 'FETCHING_WORDS',
-              words: []
-            });
-            setLoading(false);
+            fetchingWords([]);
           } else {
             setLoading(true);
-            dispatchNotification({
-              type: 'NOTIFICATION',
-              notificationMsg: 'Connection is lost'
-            });
+            dispatchNotification({ msg: 'Connection is lost' });
           }
         });
       }

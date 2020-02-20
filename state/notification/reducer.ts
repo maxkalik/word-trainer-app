@@ -1,15 +1,10 @@
 export const initialState = {
-  notificationMsg: ''
+  msg: ''
 };
 
 export const reducer = (state = initialState, action: any) => {
-  switch (action.type) {
-    case 'NOTIFICATION':
-      return {
-        ...state,
-        notificationMsg: action.notificationMsg
-      };
-    default:
-      return state;
-  }
+  return {
+    ...state,
+    msg: action.msg
+  };
 };

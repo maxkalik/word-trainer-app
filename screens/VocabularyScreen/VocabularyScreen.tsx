@@ -14,7 +14,7 @@ import { styles } from './styles';
 
 const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const [{ words }] = useWordsValue();
-  const [{ notificationMsg }, dispatchNotification] = useNotificationValue();
+  const [, dispatchNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
   const [vocabularyWords, setVocabularyWords] = useState<WordTypes[]>(words);
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
@@ -51,6 +51,11 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     }
   };
 
+  const onGetNotification = (message: string): void => {
+    setLoading(false);
+    dispatchNotification({ msg: message });
+  };
+
   const handleRemove = () => {
     setLoading(true);
     checkedItems.forEach(item => {
@@ -59,18 +64,10 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
         .ref(`/words/${item}`)
         .remove()
         .then(() => {
-          setLoading(false);
-          dispatchNotification({
-            type: 'NOTIFICATION',
-            notificationMsg: 'Words has been successfully removed.'
-          });
+          onGetNotification('Words has been successfully removed.');
         })
         .catch(error => {
-          setLoading(false);
-          dispatchNotification({
-            type: 'NOTIFICATION',
-            notificationMsg: `Error: "${error}"`
-          });
+          onGetNotification(`Error: "${error}"`);
         });
     });
     setCheckedItems([]);

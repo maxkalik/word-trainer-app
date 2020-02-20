@@ -3,7 +3,6 @@ import firebase from 'firebase';
 import { TextInput, View, Keyboard } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { Scene, Btn } from '../../components/common';
-// import { useStateValue } from '../../state';
 import { useNotificationValue } from '../../state/notification';
 import { useWordsValue } from '../../state/words';
 import { checkStringIsPresent } from './helpers';
@@ -26,7 +25,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [{ words }] = useWordsValue();
-  const [{ notificationMsg }, dispatchNotification] = useNotificationValue();
+  const [, dispatchNotification] = useNotificationValue();
 
   const isWordEmpty = wordItem.word === '';
   const isTranslationEmpty = wordItem.translation === '';
@@ -48,26 +47,19 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
     setWordItem({ ...wordItem, [inputField]: value });
   };
 
-  const makeNotification = (msg: string): void => {
-    dispatchNotification({
-      type: 'NOTIFICATION',
-      notificationMsg: msg
-    });
-  };
-
   const getNotification = (flag: string, payload?: string): void => {
     setLoading(false);
     switch (flag) {
       case 'empty fields':
-        return makeNotification('Inputs should not be empty');
+        return dispatchNotification({ msg: 'Inputs should not be empty' });
       case 'same word':
-        return makeNotification(`Word "${payload}" is already exsist.`);
+        return dispatchNotification({ msg: `Word "${payload}" is already exsist.` });
       case 'error':
-        return makeNotification(`Error: "${payload}"`);
+        return dispatchNotification({ msg: `Error: "${payload}"` });
       case 'success add':
-        return makeNotification(`Word "${payload}" has been successfully added.`);
+        return dispatchNotification({ msg: `Word "${payload}" has been successfully added.` });
       case 'success save':
-        return makeNotification(`Word "${payload}" has been successfully saved.`);
+        return dispatchNotification({ msg: `Word "${payload}" has been successfully saved.` });
       default:
         return;
     }
