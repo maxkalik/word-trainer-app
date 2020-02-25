@@ -1,30 +1,35 @@
 import './fixtimerbug';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import firebase from './firebase';
+import { Spinner } from './components/common';
 import Content from './components/Content/Content';
 import SignInScreen from './screens/SignInScreen/SignInScreen';
 import WordsProvider from './state/words';
 import NotificationProvider from './state/notification';
-import UserProvider from './state/user';
-import { useUserValue } from './state/user';
 
-const Main: React.FC = (): JSX.Element => (
+const Main: React.FC<{ userUID: string }> = ({ userUID }): JSX.Element => (
   <NotificationProvider>
     <WordsProvider>
-      <Content />
+      <Content userUID={userUID} />
     </WordsProvider>
   </NotificationProvider>
 );
 
-const Auth: React.FC = (): JSX.Element => {
-  const [{ user }] = useUserValue();
-  console.log(user);
-  return user ? <Main /> : <SignInScreen />;
-};
+const App: React.FC = (): JSX.Element => {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<any>(null);
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((userData: any) => {
+      userData ? setUser(userData) : setUser(null);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
-const App: React.FC = (): JSX.Element => (
-  <UserProvider>
-    <Auth />
-  </UserProvider>
-);
+  if (loading) {
+    return <Spinner />;
+  }
+  return user ? <Main userUID={user.uid} /> : <SignInScreen />;
+};
 
 export default App;

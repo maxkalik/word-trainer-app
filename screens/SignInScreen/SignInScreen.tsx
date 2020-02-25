@@ -20,6 +20,10 @@ const SignInScreen: React.FC = (): JSX.Element => {
     }
   };
 
+  const handleBtnSignOut = () => {
+    firebase.auth().signOut();
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Scene keyboardAvoidingView={true}>
@@ -38,6 +42,7 @@ const SignInScreen: React.FC = (): JSX.Element => {
           />
         </View>
         <Btn filled title="Sign In" onPress={handleBtnAuthPressed} />
+        <Btn filled title="Sign Out" onPress={handleBtnSignOut} />
       </Scene>
     </SafeAreaView>
   );
