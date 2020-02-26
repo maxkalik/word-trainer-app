@@ -4,6 +4,7 @@ import { WordToTranslateScreen, TranslateToWordScreen } from '../../screens/trai
 import AddWordScreen from '../../screens/AddWordScreen/AddWordScreen';
 import VocabularyScreen from '../../screens/VocabularyScreen/VocabularyScreen';
 import VocabularyItemScreen from '../../screens/VocabularyItemScreen/VocabularyItemScreen';
+import ProfileScreen from '../../screens/ProfileScreen/ProfileScreen';
 
 const stackOptions = {
   mode: 'card',
@@ -36,7 +37,8 @@ const VocabularyStack = createStackNavigator(
 export const screens = {
   ['Trainers']: TrainersStack,
   ['Add Word']: AddWordScreen,
-  ['Vocabulary']: VocabularyStack
+  ['Vocabulary']: VocabularyStack,
+  ['Profile']: ProfileScreen
 };
 
 TrainersStack.navigationOptions = ({ navigation }) => {

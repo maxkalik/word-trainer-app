@@ -4,7 +4,7 @@ import { View, TextInput, SafeAreaView } from 'react-native';
 import { Scene, Btn } from '../../components/common';
 import { styles } from './styles';
 
-const SignInScreen: React.FC = (): JSX.Element => {
+const SignUpScreen: React.FC = (): JSX.Element => {
   const [user, setUser] = useState({ email: '', password: '' });
   // const validMsg = checkValidity(value, controls[type].validation);
 
@@ -12,8 +12,8 @@ const SignInScreen: React.FC = (): JSX.Element => {
     if (user.email !== '' && user.password !== '') {
       firebase
         .auth()
-        .signInWithEmailAndPassword(user.email, user.password)
-        .then(() => console.log('sign in succsess'))
+        .createUserWithEmailAndPassword(user.email, user.password)
+        .then(() => console.log('sign up succsess'))
         .catch(error => console.log(error));
     }
   };
@@ -35,10 +35,10 @@ const SignInScreen: React.FC = (): JSX.Element => {
             // value={}
           />
         </View>
-        <Btn filled title="Sign In" onPress={handleBtnAuthPressed} />
+        <Btn filled title="Sign Up" onPress={handleBtnAuthPressed} />
       </Scene>
     </SafeAreaView>
   );
 };
 
-export default SignInScreen;
+export default SignUpScreen;
