@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import firebase from './firebase';
 import { Spinner } from './components/common';
 import Content from './components/Content/Content';
-import SignInScreen from './screens/SignInScreen/SignInScreen';
+import AuthScreen from './screens/AuthScreen/AuthScreen';
 import WordsProvider from './state/words';
 import NotificationProvider from './state/notification';
 
@@ -29,7 +29,7 @@ const App: React.FC = (): JSX.Element => {
   if (loading) {
     return <Spinner />;
   }
-  return user ? <Main userUID={user.uid} /> : <SignInScreen />;
+  return user ? <Main userUID={user.uid} /> : <AuthScreen />;
 };
 
 export default App;

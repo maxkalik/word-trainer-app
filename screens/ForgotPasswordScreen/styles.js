@@ -7,11 +7,5 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  fields: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderColor: 'black',
-    borderWidth: 1,
   }
 });

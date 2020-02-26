@@ -4,7 +4,7 @@ import { View, TextInput, SafeAreaView } from 'react-native';
 import { Scene, Btn } from '../../components/common';
 import { styles } from './styles';
 
-const SignInScreen: React.FC = (props: any): JSX.Element => {
+const ForgotPasswordScreen: React.FC = (): JSX.Element => {
   const [user, setUser] = useState({ email: '', password: '' });
   // const validMsg = checkValidity(value, controls[type].validation);
 
@@ -23,23 +23,16 @@ const SignInScreen: React.FC = (props: any): JSX.Element => {
       <Scene keyboardAvoidingView={true}>
         <View style={styles.fields}>
           <TextInput
-            placeholder="login"
+            placeholder="new password"
             placeholderTextColor={'grey'}
             onChangeText={(value: string) => setUser({ ...user, email: value })}
             // value={}
           />
-          <TextInput
-            placeholder="password"
-            placeholderTextColor={'grey'}
-            onChangeText={(value: string) => setUser({ ...user, password: value })}
-            // value={}
-          />
         </View>
-        <Btn filled title="Sign In" onPress={handleBtnAuthPressed} />
-        <Btn size="small" title="Forgot Password?" onPress={(): void => props.navigation.navigate('Forgot Password')} />
+        <Btn filled title="Send confirm" onPress={handleBtnAuthPressed} />
       </Scene>
     </SafeAreaView>
   );
 };
 
-export default SignInScreen;
+export default ForgotPasswordScreen;
