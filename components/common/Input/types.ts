@@ -1,16 +1,20 @@
 import { GestureResponderEvent } from 'react-native';
 
-export interface ClearBtnProps {
-  onClearBtnPress: ((event: GestureResponderEvent) => void) | undefined;
+export interface IconProps {
+  onIconPress?: ((event: GestureResponderEvent) => void) | undefined;
 }
 
 export interface InputProps {
   onChangeText: (_: string) => void;
-  onClearBtnPress?: (event: GestureResponderEvent) => void;
+  onIconPress?: (event: GestureResponderEvent) => void;
   value: string;
   placeholder: string;
   style?: object;
   styleInputField?: object;
   autoFocus?: boolean;
+  withIcon?: boolean;
   isEditMode?: boolean;
+  secureTextEntry?: boolean;
+  textContentType?: 'emailAddress' | 'password';
+  keyboardType?: 'email-address' | 'default';
 }

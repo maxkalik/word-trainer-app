@@ -17,8 +17,9 @@ const VocabularyHeader: React.FC<VocabularyHeaderProps> = ({
       style={styles.input}
       onChangeText={onChangeInputText}
       value={value}
-      onClearBtnPress={onClearBtnPress}
       isEditMode={isEditBtnPressed}
+      withIcon
+      onIconPress={onClearBtnPress}
     />
     <TouchableOpacity style={styles.editBtn} onPress={onEditBtnPress}>
       <Text style={[styles.editBtnTxt, isEditBtnPressed && styles.doneBtnTxt]}>
