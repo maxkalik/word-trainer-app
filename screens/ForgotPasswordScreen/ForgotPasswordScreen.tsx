@@ -1,35 +1,34 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
 import { View, TextInput, SafeAreaView } from 'react-native';
-import { Scene, Btn } from '../../components/common';
+import { Scene, Btn, Header } from '../../components/common';
 import { styles } from './styles';
 
-const ForgotPasswordScreen: React.FC = (): JSX.Element => {
-  const [user, setUser] = useState({ email: '', password: '' });
-  // const validMsg = checkValidity(value, controls[type].validation);
-
+const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Element => {
+  const [email, setEmail] = useState('');
   const handleBtnAuthPressed = () => {
-    if (user.email !== '' && user.password !== '') {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(user.email, user.password)
-        .then(() => console.log('sign in succsess'))
-        .catch(error => console.log(error));
-    }
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        navigation.goBack();
+      })
+      .catch(error => console.log(error));
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <Scene keyboardAvoidingView={true}>
-        <View style={styles.fields}>
+        <Header backButton onPressBackButton={(): void => navigation.goBack()} />
+        <View style={styles.container}>
           <TextInput
-            placeholder="new password"
+            placeholder="email"
             placeholderTextColor={'grey'}
-            onChangeText={(value: string) => setUser({ ...user, email: value })}
-            // value={}
+            onChangeText={(value: string) => setEmail(value)}
+            value={email}
           />
+          <Btn filled title="Send new password" onPress={handleBtnAuthPressed} />
         </View>
-        <Btn filled title="Send confirm" onPress={handleBtnAuthPressed} />
       </Scene>
     </SafeAreaView>
   );

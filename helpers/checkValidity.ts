@@ -1,4 +1,4 @@
-export const checkValidity = (value: string, rules: any) => {
+const checkValidity = (value: string, rules: any) => {
   let isValidMessage = null;
 
   if (!rules) {
@@ -39,3 +39,5 @@ export const checkValidity = (value: string, rules: any) => {
 
   return isValidMessage;
 };
+
+export default checkValidity;

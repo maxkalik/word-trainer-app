@@ -1,10 +1,10 @@
 import React from 'react';
-import NavigationAuth from '../../components/NavigationAuth/NavigationAuth';
-// import { Notification } from '../../components/common';
+import { NavigationAuth } from '../../components/navigation';
+import { Notification } from '../../components/common';
 
 const Content: React.FC = (): JSX.Element => (
   <>
-    {/* <Notification /> */}
+    <Notification />
     <NavigationAuth theme="light" />
   </>
 );

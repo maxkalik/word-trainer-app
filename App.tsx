@@ -8,11 +8,9 @@ import WordsProvider from './state/words';
 import NotificationProvider from './state/notification';
 
 const Main: React.FC<{ userUID: string }> = ({ userUID }): JSX.Element => (
-  <NotificationProvider>
-    <WordsProvider>
-      <Content userUID={userUID} />
-    </WordsProvider>
-  </NotificationProvider>
+  <WordsProvider>
+    <Content userUID={userUID} />
+  </WordsProvider>
 );
 
 const App: React.FC = (): JSX.Element => {
@@ -29,7 +27,7 @@ const App: React.FC = (): JSX.Element => {
   if (loading) {
     return <Spinner />;
   }
-  return user ? <Main userUID={user.uid} /> : <AuthScreen />;
+  return <NotificationProvider>{user ? <Main userUID={user.uid} /> : <AuthScreen />}</NotificationProvider>;
 };
 
 export default App;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import firebase from '../../firebase';
-import Navigation from '../Navigation/Navigation';
+import { NavigationMain } from '../navigation';
 import { Spinner, Notification } from '../common';
 import { useWordsValue } from '../../state/words';
 import { objectToArray } from '../../helpers';
@@ -46,7 +46,7 @@ const Content: React.FC<{ userUID: string }> = ({ userUID }): JSX.Element => {
   return (
     <>
       <Notification />
-      <Navigation theme="light" />
+      <NavigationMain theme="light" />
     </>
   );
 };

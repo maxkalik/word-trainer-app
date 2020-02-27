@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import { screens } from './screens';
 import { tabBarOptions } from './tabBarOptions';
-import { Icon24px } from '../icons';
+import { Icon24px } from '../../icons';
 import { tabIcons } from './helpers';
 import { styles } from './styles';
 
