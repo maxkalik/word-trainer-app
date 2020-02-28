@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-// import firebase from 'firebase';
-import { View, TextInput, SafeAreaView } from 'react-native';
+import firebase from 'firebase';
+import { View, SafeAreaView } from 'react-native';
 import { Scene, Input, Btn } from '../../components/common';
+import { useNotificationValue } from '../../state/notification';
 import { checkValidity } from '../../helpers';
 import { SignInTextInputProps } from './types';
 import { inputFields } from './states';
 import { styles } from './styles';
 
 const SignInScreen: React.FC = (props: any): JSX.Element => {
-  const [user, setUser] = useState({ email: '', password: '' });
+  const [, dispatchNotification] = useNotificationValue();
   const [signInValues, setSignInValues] = useState({
     email: {
       value: '',
@@ -32,20 +33,20 @@ const SignInScreen: React.FC = (props: any): JSX.Element => {
       }
     });
   };
-  console.log(signInValues);
 
   const handleBtnAuthPressed = () => {
-    const { email, password } = user;
-
-    /*
-    if (user.email !== '' && user.password !== '') {
+    const { email, password } = signInValues;
+    console.log(email.validMsg);
+    console.log(password.validMsg);
+    if (email.validMsg !== null || password.validMsg !== null) {
+      dispatchNotification({ msg: 'Please fill correct all fields' });
+    } else {
       firebase
         .auth()
-        .signInWithEmailAndPassword(user.email, user.password)
+        .signInWithEmailAndPassword(email.value, password.value)
         .then(() => console.log('sign in succsess'))
-        .catch(error => console.log(error));
+        .catch(error => dispatchNotification({ msg: error }));
     }
-    */
   };
 
   return (
