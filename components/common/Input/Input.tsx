@@ -4,19 +4,15 @@ import { Icon16px } from '../../icons';
 import { IconProps, InputProps } from './types';
 import { styles, clearBtnStyles } from './styles';
 
-interface IconInFiledProps extends IconProps {
-  touchableIcon?: boolean;
-}
-
-const Icon: React.FC<IconInFiledProps> = ({ onIconPress, touchableIcon }): JSX.Element => {
+const Icon: React.FC<IconProps> = ({ onIconPress, touchableIcon, iconName }): JSX.Element => {
   if (touchableIcon) {
     return (
       <TouchableOpacity style={clearBtnStyles.container} onPress={onIconPress}>
-        <Icon16px name="close" />
+        <Icon16px name={iconName} />
       </TouchableOpacity>
     );
   }
-  return <Icon16px name="close" />;
+  return <Icon16px name={iconName} />;
 };
 
 const Input: React.FC<InputProps> = ({
@@ -26,12 +22,12 @@ const Input: React.FC<InputProps> = ({
   onIconPress,
   styleInputField,
   style,
-  withIcon,
   autoFocus,
   secureTextEntry,
   keyboardType,
   textContentType,
-  touchableIcon
+  touchableIcon,
+  iconName
 }): JSX.Element => {
   const [focus, setFocus] = useState(false);
   const isValue = value.length > 0;
@@ -51,7 +47,7 @@ const Input: React.FC<InputProps> = ({
         keyboardType={keyboardType}
         textContentType={textContentType}
       />
-      {withIcon && isValue && <Icon onIconPress={onIconPress} touchableIcon={touchableIcon} />}
+      {iconName && isValue && <Icon onIconPress={onIconPress} touchableIcon={touchableIcon} iconName={iconName} />}
     </View>
   );
 };

@@ -3,8 +3,9 @@ import { sizes } from '../../../constants';
 
 export const styles = StyleSheet.create({
   container: {
-    height: sizes.HEIGHT_GENERAL,
+    height: sizes.HEIGHT_GENERAL + 20,
     position: 'absolute',
-    borderTopColor: 'transparent'
+    borderTopColor: 'transparent',
+    padding: 24
   }
 });

@@ -18,7 +18,7 @@ const VocabularyHeader: React.FC<VocabularyHeaderProps> = ({
       onChangeText={onChangeInputText}
       value={value}
       isEditMode={isEditBtnPressed}
-      withIcon
+      iconName="close"
       touchableIcon
       onIconPress={onClearBtnPress}
     />

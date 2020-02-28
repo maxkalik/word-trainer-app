@@ -2,6 +2,8 @@ import { GestureResponderEvent } from 'react-native';
 
 export interface IconProps {
   onIconPress?: ((event: GestureResponderEvent) => void) | undefined;
+  touchableIcon?: boolean;
+  iconName: 'close' | 'check mark';
 }
 
 export interface InputProps {
@@ -12,10 +14,10 @@ export interface InputProps {
   style?: object;
   styleInputField?: object;
   autoFocus?: boolean;
-  withIcon?: boolean;
-  touchableIcon: boolean;
+  touchableIcon?: boolean;
   isEditMode?: boolean;
   secureTextEntry?: boolean;
   textContentType?: 'emailAddress' | 'password';
   keyboardType?: 'email-address' | 'default';
+  iconName?: 'close' | 'check mark' | null;
 }
