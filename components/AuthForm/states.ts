@@ -1,5 +1,16 @@
 import { SignInTextInputProps, SignInFieldsValueProps } from './types';
 
+export const initialState: SignInFieldsValueProps = {
+  email: {
+    value: '',
+    validMsg: null
+  },
+  password: {
+    value: '',
+    validMsg: null
+  }
+};
+
 export const inputFields: SignInTextInputProps[] = [
   {
     name: 'email',
@@ -25,8 +36,3 @@ export const inputFields: SignInTextInputProps[] = [
     }
   }
 ];
-
-export const initialState: SignInFieldsValueProps = {
-  email: '',
-  password: ''
-};

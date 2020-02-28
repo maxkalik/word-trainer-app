@@ -2,10 +2,22 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    // borderColor: 'black',
-    // borderWidth: 1,
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: 'white'
+  },
+  section: {
+    flex: 1,
+    padding: 35
+  },
+  input: {
+    height: 50,
+    fontSize: 16,
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    borderColor: 'silver'
+  },
+  submitBtn: {
+    marginTop: 20
   }
 });

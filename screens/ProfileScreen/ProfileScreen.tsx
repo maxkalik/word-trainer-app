@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import firebase from 'firebase';
-import { View, Text, TextInput, Button, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
 import { Scene, Btn } from '../../components/common';
 import { styles } from './styles';
 

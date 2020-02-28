@@ -9,7 +9,7 @@ const SignInScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Elemen
     <Scene keyboardAvoidingView={true}>
       <AuthForm
         submitButtonName="Sign In"
-        onForgotPasswordPress={(): void => navigation.navigate('Forgot Password')}
+        onForgotPasswordPress={() => navigation.navigate('Forgot Password')}
         requestType="signin"
       />
     </Scene>

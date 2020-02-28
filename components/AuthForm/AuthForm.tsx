@@ -5,22 +5,13 @@ import { Input, Btn } from '../../components/common';
 import { useNotificationValue } from '../../state/notification';
 import { checkValidity } from '../../helpers';
 import { SignInTextInputProps, AuthFormProps } from './types';
-import { inputFields } from './states';
+import { initialState, inputFields } from './states';
 import { styles } from './styles';
 
 const AuthForm: React.FC<AuthFormProps> = ({ onForgotPasswordPress, submitButtonName, requestType }): JSX.Element => {
   const [, dispatchNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
-  const [signInValues, setSignInValues] = useState({
-    email: {
-      value: '',
-      validMsg: null
-    },
-    password: {
-      value: '',
-      validMsg: null
-    }
-  });
+  const [signInValues, setSignInValues] = useState(initialState);
 
   const { email, password } = signInValues;
   const isEmptyFields = email.value === '' || password.value === '';
@@ -42,15 +33,15 @@ const AuthForm: React.FC<AuthFormProps> = ({ onForgotPasswordPress, submitButton
   const getRequest = (type: 'signin' | 'signup') => {
     switch (type) {
       case 'signin':
-        return signInRequest();
+        return onSignInRequest();
       case 'signup':
-        return singUpRequest();
+        return onSignUpRequest();
       default:
         break;
     }
   };
 
-  const signInRequest = () => {
+  const onSignInRequest = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email.value, password.value)
@@ -61,7 +52,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onForgotPasswordPress, submitButton
       });
   };
 
-  const singUpRequest = () => {
+  const onSignUpRequest = () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email.value, password.value)
@@ -115,9 +106,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onForgotPasswordPress, submitButton
           loading={loading}
           addStyle={styles.submitBtn}
         />
-        {requestType === 'signin' && (
-          <Btn size="small" title="Forgot Password?" onPress={() => onForgotPasswordPress} />
-        )}
+        {requestType === 'signin' && <Btn size="small" title="Forgot Password?" onPress={onForgotPasswordPress} />}
       </View>
     </View>
   );
