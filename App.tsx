@@ -7,9 +7,9 @@ import AuthScreen from './screens/AuthScreen/AuthScreen';
 import WordsProvider from './state/words';
 import NotificationProvider from './state/notification';
 
-const Main: React.FC<{ userUID: string }> = ({ userUID }): JSX.Element => (
+const Main: React.FC<{ user: string }> = ({ user }): JSX.Element => (
   <WordsProvider>
-    <Content userUID={userUID} />
+    <Content user={user} />
   </WordsProvider>
 );
 
@@ -27,7 +27,7 @@ const App: React.FC = (): JSX.Element => {
   if (loading) {
     return <Spinner />;
   }
-  return <NotificationProvider>{user ? <Main userUID={user.uid} /> : <AuthScreen />}</NotificationProvider>;
+  return <NotificationProvider>{user ? <Main user={user} /> : <AuthScreen />}</NotificationProvider>;
 };
 
 export default App;

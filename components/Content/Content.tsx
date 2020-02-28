@@ -6,12 +6,13 @@ import { useWordsValue } from '../../state/words';
 import { objectToArray } from '../../helpers';
 import { useNotificationValue } from '../../state/notification';
 
-const Content: React.FC<{ userUID: string }> = ({ userUID }): JSX.Element => {
+const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [, wordsDispatch] = useWordsValue();
   const [, dispatchNotification] = useNotificationValue();
 
-  console.log(userUID);
+  console.log(user.email);
+  console.log(user.uid);
 
   useEffect(() => {
     const database = firebase.database();

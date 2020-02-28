@@ -4,9 +4,9 @@ import { View, Text, SafeAreaView } from 'react-native';
 import { Scene, Btn } from '../../components/common';
 import { styles } from './styles';
 
-const ProfileScreen: React.FC = (): JSX.Element => {
+const ProfileScreen: React.FC = (props: any): JSX.Element => {
   // const validMsg = checkValidity(value, controls[type].validation);
-
+  console.log(props);
   const handleBtnSignOut = () => {
     firebase.auth().signOut();
   };
