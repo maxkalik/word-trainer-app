@@ -13,13 +13,13 @@ const checkValidity = (value: string, rules: any) => {
 
   if (rules.minLength) {
     if (value.length <= rules.minLength) {
-      isValidMessage = 'Should be more than 6 characters';
+      isValidMessage = 'should be more than 6 characters';
     }
   }
 
   if (rules.maxLength) {
     if (value.length >= rules.maxLength) {
-      isValidMessage = 'Should be less than 25 characters';
+      isValidMessage = 'should be less than 25 characters';
     }
   }
 

@@ -19,6 +19,7 @@ const VocabularyHeader: React.FC<VocabularyHeaderProps> = ({
       value={value}
       isEditMode={isEditBtnPressed}
       withIcon
+      touchableIcon
       onIconPress={onClearBtnPress}
     />
     <TouchableOpacity style={styles.editBtn} onPress={onEditBtnPress}>

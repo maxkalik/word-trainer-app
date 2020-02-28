@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import firebase from 'firebase';
+import firebase from '../../firebase';
 import { View, SafeAreaView } from 'react-native';
 import { Scene, Input, Btn } from '../../components/common';
 import { useNotificationValue } from '../../state/notification';
@@ -21,10 +21,14 @@ const SignInScreen: React.FC = (props: any): JSX.Element => {
     }
   });
 
+  const { email, password } = signInValues;
+  const isEmptyFields = email.value === '' || password.value === '';
+  const isValidMessages = email.validMsg !== null || password.validMsg !== null;
+
   const handleInputChangeText = (value: string, fieldName: string): void => {
     const inputValue = fieldName === 'password' ? value : value.toLowerCase();
-    const field = inputFields.find(({ name }) => name === fieldName);
-    const validMsg = field ? checkValidity(value, field.validation) : null;
+    const curField = inputFields.find(({ name }) => name === fieldName);
+    const validMsg = curField ? checkValidity(inputValue, curField.validation) : null;
     setSignInValues({
       ...signInValues,
       [fieldName]: {
@@ -35,17 +39,21 @@ const SignInScreen: React.FC = (props: any): JSX.Element => {
   };
 
   const handleBtnAuthPressed = () => {
-    const { email, password } = signInValues;
-    console.log(email.validMsg);
-    console.log(password.validMsg);
-    if (email.validMsg !== null || password.validMsg !== null) {
-      dispatchNotification({ msg: 'Please fill correct all fields' });
+    if (isEmptyFields) {
+      dispatchNotification({ msg: 'Please fill all fields' });
+    }
+    if (isValidMessages) {
+      dispatchNotification({ msg: email.validMsg || 'Password ' + password.validMsg });
     } else {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email.value, password.value)
-        .then(() => console.log('sign in succsess'))
-        .catch(error => dispatchNotification({ msg: error }));
+      try {
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value)
+          .then(() => console.log('sign in succsess'))
+          .catch(error => dispatchNotification({ msg: error.message }));
+      } catch (err) {
+        console.log('error', err);
+      }
     }
   };
 

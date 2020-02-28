@@ -13,6 +13,7 @@ export interface InputProps {
   styleInputField?: object;
   autoFocus?: boolean;
   withIcon?: boolean;
+  touchableIcon: boolean;
   isEditMode?: boolean;
   secureTextEntry?: boolean;
   textContentType?: 'emailAddress' | 'password';
