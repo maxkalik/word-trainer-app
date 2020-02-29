@@ -7,6 +7,8 @@ export const tabIcons = (routeName: string, focused: boolean): string => {
     return `plus ${tabFocusedIcons(focused)}`;
   } else if (routeName === 'Vocabulary') {
     return `dictionary ${tabFocusedIcons(focused)}`;
+  } else if (routeName === 'Profile') {
+    return `profile ${tabFocusedIcons(focused)}`;
   }
   return 'default';
 };
