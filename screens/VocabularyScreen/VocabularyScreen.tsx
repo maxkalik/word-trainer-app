@@ -6,15 +6,16 @@ import { Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
 import VocabularyItems from '../../components/VocabularyItems/VocabularyItems';
 import BottomToolBar from '../../components/BottomToolBar/BottomToolBar';
-import { useWordsValue } from '../../state/words';
-import { useNotificationValue } from '../../state/notification';
+import { useNotificationValue, useUserValue, useWordsValue } from '../../state';
 import { WordTypes } from '../../types';
 import { findMatches } from './helpers';
 import { styles } from './styles';
 
 const VocabularyScreen: React.FC = (props: any): JSX.Element => {
-  const [{ words }] = useWordsValue();
   const [, dispatchNotification] = useNotificationValue();
+  const [{ user }] = useUserValue();
+  const [{ words }] = useWordsValue();
+
   const [loading, setLoading] = useState(false);
   const [vocabularyWords, setVocabularyWords] = useState<WordTypes[]>(words);
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
@@ -61,7 +62,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     checkedItems.forEach(item => {
       firebase
         .database()
-        .ref(`/words/${item}`)
+        .ref(`${user.uid}/words/${item}`)
         .remove()
         .then(() => {
           onGetNotification('Words has been successfully removed.');

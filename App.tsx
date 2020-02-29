@@ -4,13 +4,14 @@ import firebase from './firebase';
 import { Spinner } from './components/common';
 import Content from './components/Content/Content';
 import AuthScreen from './screens/AuthScreen/AuthScreen';
-import WordsProvider from './state/words';
-import NotificationProvider from './state/notification';
+import { NotificationProvider, UserProvider, WordsProvider } from './state';
 
 const Main: React.FC<{ user: string }> = ({ user }): JSX.Element => (
-  <WordsProvider>
-    <Content user={user} />
-  </WordsProvider>
+  <UserProvider>
+    <WordsProvider>
+      <Content user={user} />
+    </WordsProvider>
+  </UserProvider>
 );
 
 const App: React.FC = (): JSX.Element => {

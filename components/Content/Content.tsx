@@ -2,22 +2,23 @@ import React, { useEffect, useState } from 'react';
 import firebase from '../../firebase';
 import { NavigationMain } from '../navigation';
 import { Spinner, Notification } from '../common';
-import { useWordsValue } from '../../state/words';
 import { objectToArray } from '../../helpers';
-import { useNotificationValue } from '../../state/notification';
+import { useUserValue, useNotificationValue, useWordsValue } from '../../state';
 
 const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [, wordsDispatch] = useWordsValue();
   const [, dispatchNotification] = useNotificationValue();
+  const [, dispatchUser] = useUserValue();
 
-  console.log(user.email);
-  console.log(user.uid);
+  useEffect(() => {
+    dispatchUser({ user });
+  }, [dispatchUser, user]);
 
   useEffect(() => {
     const database = firebase.database();
     var connectedRef = database.ref('.info/connected');
-    var dataRef = database.ref('words');
+    var dataRef = database.ref(`${user.uid}/words`);
 
     const fetchingWords = (data: object[]): void => {
       wordsDispatch({ words: data });
@@ -39,7 +40,7 @@ const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
         });
       }
     });
-  }, [wordsDispatch, dispatchNotification]);
+  }, [wordsDispatch, dispatchNotification, user.uid]);
 
   if (loading) {
     return <Spinner />;
@@ -47,7 +48,7 @@ const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
   return (
     <>
       <Notification />
-      <NavigationMain theme="light" />
+      <NavigationMain theme="light" user={user} />
     </>
   );
 };

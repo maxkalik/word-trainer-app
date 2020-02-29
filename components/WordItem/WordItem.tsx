@@ -3,8 +3,7 @@ import firebase from 'firebase';
 import { TextInput, View, Keyboard } from 'react-native';
 import { NavigationEvents } from 'react-navigation';
 import { Scene, Btn } from '../../components/common';
-import { useNotificationValue } from '../../state/notification';
-import { useWordsValue } from '../../state/words';
+import { useNotificationValue, useUserValue, useWordsValue } from '../../state';
 import { checkStringIsPresent } from './helpers';
 import { initialState, TextInputsProps, WordItemProps } from './types';
 import { styles } from './styles';
@@ -26,6 +25,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   const [isFocused, setIsFocused] = useState(false);
   const [{ words }] = useWordsValue();
   const [, dispatchNotification] = useNotificationValue();
+  const [{ user }] = useUserValue();
 
   const isWordEmpty = wordItem.word === '';
   const isTranslationEmpty = wordItem.translation === '';
@@ -65,10 +65,10 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
     }
   };
 
-  const makePushRequest = () => {
+  const onPushRequest = () => {
     firebase
       .database()
-      .ref('words')
+      .ref(`${user.uid}/words`)
       .push({
         word: wordItem.word,
         translation: wordItem.translation
@@ -82,10 +82,10 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
       });
   };
 
-  const makeSetRequest = () => {
+  const onSetRequest = () => {
     firebase
       .database()
-      .ref(`words/${wordItem.id}`)
+      .ref(`${user.uid}/words/${wordItem.id}`)
       .set({
         word: wordItem.word,
         translation: wordItem.translation
@@ -105,7 +105,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
       getNotification('same word', wordItem.word);
     } else {
       Keyboard.dismiss();
-      return makePushRequest();
+      return onPushRequest();
     }
   };
 
@@ -116,7 +116,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
       getNotification('same word', wordItem.word);
     } else {
       Keyboard.dismiss();
-      return makeSetRequest();
+      return onSetRequest();
     }
   };
 
