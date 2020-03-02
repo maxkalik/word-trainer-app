@@ -6,14 +6,10 @@ export const tabBarOptions = {
   activeBackgroundColor: '#F5F5F5',
   adaptive: false,
   labelStyle: {
-    // justifyContent: 'center',
-    fontSize: 16,
-    // borderWidth: 2,
-    flex: 1
+    fontSize: 16
   },
   tabStyle: {
-    // borderWidth: 2,
-    borderRadius: 10,
-    flex: 1
+    justifyContent: 'center',
+    borderRadius: 10
   }
 };
