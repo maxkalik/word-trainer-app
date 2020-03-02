@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     // borderWidth: 1,
     // borderColor: 'black',
     textAlign: 'center',
-    paddingVertical: 40
+    paddingVertical: 20
   },
   title: {
     textAlign: 'center',

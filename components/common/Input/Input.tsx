@@ -1,23 +1,33 @@
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
 import { Icon16px } from '../../icons';
-import { ClearBtnProps, InputProps } from './types';
+import { IconProps, InputProps } from './types';
 import { styles, clearBtnStyles } from './styles';
 
-const ClearButton: React.FC<ClearBtnProps> = ({ onClearBtnPress }): JSX.Element => (
-  <TouchableOpacity style={clearBtnStyles.container} onPress={onClearBtnPress}>
-    <Icon16px name="close" />
-  </TouchableOpacity>
-);
+const Icon: React.FC<IconProps> = ({ onIconPress, touchableIcon, iconName }): JSX.Element => {
+  if (touchableIcon) {
+    return (
+      <TouchableOpacity style={clearBtnStyles.container} onPress={onIconPress}>
+        <Icon16px name={iconName} />
+      </TouchableOpacity>
+    );
+  }
+  return <Icon16px name={iconName} />;
+};
 
 const Input: React.FC<InputProps> = ({
   onChangeText,
   placeholder,
   value,
-  onClearBtnPress,
+  onIconPress,
   styleInputField,
   style,
-  autoFocus
+  autoFocus,
+  secureTextEntry,
+  keyboardType,
+  textContentType,
+  touchableIcon,
+  iconName
 }): JSX.Element => {
   const [focus, setFocus] = useState(false);
   const isValue = value.length > 0;
@@ -33,8 +43,11 @@ const Input: React.FC<InputProps> = ({
         value={value}
         placeholder={placeholder}
         placeholderTextColor={'grey'}
+        secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
+        textContentType={textContentType}
       />
-      {isValue && <ClearButton onClearBtnPress={onClearBtnPress} />}
+      {iconName && isValue && <Icon onIconPress={onIconPress} touchableIcon={touchableIcon} iconName={iconName} />}
     </View>
   );
 };

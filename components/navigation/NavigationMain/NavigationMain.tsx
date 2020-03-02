@@ -2,8 +2,7 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import { screens } from './screens';
-import { tabBarOptions } from './tabBarOptions';
-import { Icon24px } from '../icons';
+import { Icon24px } from '../../icons';
 import { tabIcons } from './helpers';
 import { styles } from './styles';
 
@@ -20,7 +19,17 @@ const TabNavigator = createBottomTabNavigator(screens, {
       )
     };
   },
-  tabBarOptions: tabBarOptions
+  tabBarOptions: {
+    keyboardHidesTabBar: false,
+    activeTintColor: 'royalblue',
+    inactiveTintColor: 'black',
+    style: { height: 70 },
+    activeBackgroundColor: 'none',
+    labelStyle: {
+      fontSize: 12,
+      paddingBottom: 10
+    }
+  }
 });
 
 const Navigation = createAppContainer(TabNavigator);

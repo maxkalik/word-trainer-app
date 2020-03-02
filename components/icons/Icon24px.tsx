@@ -1,49 +1,24 @@
 import React from 'react';
-import Svg, { Path, Rect } from 'react-native-svg';
+import Svg, { Rect } from 'react-native-svg';
+import { Icon24pxClose } from './icons24px/Icon24pxClose';
+import { Icon24pxDictLine, Icon24pxDictFill } from './icons24px/Icon24pxDict';
+import { Icon24pxTrainerLine, Icon24pxTrainerFill } from './icons24px/Icon24pxTrainer';
+import { Icon24pxPlusLine, Icon24pxPlusFill } from './icons24px/Icon24pxPlus';
+import { Icon24pxProfileLine, Icon24pxProfileFill } from './icons24px/Icon24pxProfile';
+import { Icon24pxArrowLeftLine } from './icons24px/Icon24pxArrow';
 import { IconProps, iconsType } from './types';
 
 const icons: iconsType = {
-  ['close']: (
-    <Path d="m21.7 3.7-1.4-1.4-8.3 8.3-8.3-8.3-1.4 1.4 8.3 8.3-8.3 8.3 1.4 1.4 8.3-8.3 8.3 8.3 1.4-1.4-8.3-8.3z" />
-  ),
-  ['dictionary line']: (
-    <>
-      <Path d="m7 3c.6 0 1 .4 1 1v4c0 .6-.4 1-1 1h-3c-.6 0-1-.4-1-1v-4c0-.6.4-1 1-1zm0-2h-3c-1.7 0-3 1.3-3 3v4c0 1.7 1.3 3 3 3h3c1.7 0 3-1.3 3-3v-4c0-1.7-1.3-3-3-3z" />
-      <Path d="m22 3h-9c-.6 0-1-.4-1-1 0-.6.4-1 1-1h9c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 11h-9c-.6 0-1-.4-1-1 0-.6.4-1 1-1h9c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 7h-9c-.6 0-1-.4-1-1 0-.6.4-1 1-1h9c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 15h-20c-.6 0-1-.4-1-1 0-.6.4-1 1-1h20c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 19h-20c-.6 0-1-.4-1-1 0-.6.4-1 1-1h20c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 23h-20c-.6 0-1-.4-1-1 0-.6.4-1 1-1h20c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-    </>
-  ),
-  ['dictionary fill']: (
-    <>
-      <Path d="m7 11h-3c-1.7 0-3-1.3-3-3v-4c0-1.7 1.3-3 3-3h3c1.7 0 3 1.3 3 3v4c0 1.7-1.3 3-3 3z" />
-      <Path d="m22 3h-9c-.6 0-1-.4-1-1 0-.6.4-1 1-1h9c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 11h-9c-.6 0-1-.4-1-1 0-.6.4-1 1-1h9c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 7h-9c-.6 0-1-.4-1-1 0-.6.4-1 1-1h9c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 15h-20c-.6 0-1-.4-1-1 0-.6.4-1 1-1h20c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 19h-20c-.6 0-1-.4-1-1 0-.6.4-1 1-1h20c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-      <Path d="m22 23h-20c-.6 0-1-.4-1-1 0-.6.4-1 1-1h20c.6 0 1 .4 1 1 0 .6-.4 1-1 1z" />
-    </>
-  ),
-  ['trainer line']: (
-    <Path d="m21.9 6.2-8.9-4.8c-.6-.3-1.3-.3-1.9 0l-9 4.8c-.6.4-1 1-1 1.8s.4 1.4 1 1.8l2.9 1.5v3.9c0 1.3.7 2.5 1.8 3.1l1.2.7v4c0 .6.4 1 1 1s1-.4 1-1v-2.9l.2.1c.6.3 1.2.5 1.8.5s1.2-.2 1.8-.5l3.4-1.9c1.1-.6 1.8-1.8 1.8-3.1v-3.9l2.9-1.6c.6-.4 1-1 1-1.8s-.4-1.3-1-1.7zm-14.1 10.4c-.5-.3-.8-.8-.8-1.3v-2.8l1 .5v3.7zm9.2-1.3c0 .6-.3 1.1-.8 1.3l-3.4 1.9c-.5.3-1.1.3-1.6 0l-1.2-.7v-3.8l1 .6c.3.2.6.2 1 .2.3 0 .7-.1 1-.2l4-2.2zm-5-2.4-8.9-4.9 8.9-4.9 8.9 4.9z" />
-  ),
-  ['trainer fill']: (
-    <Path d="m21.9 6.2-8.9-4.8c-.6-.3-1.3-.3-1.9 0l-9 4.8c-.6.4-1 1-1 1.8s.4 1.4 1 1.8l2.9 1.5v3.9c0 1.3.7 2.5 1.8 3.1l1.2.7v4c0 .6.4 1 1 1s1-.4 1-1v-2.9l.2.1c.6.3 1.2.5 1.8.5s1.2-.2 1.8-.5l3.4-1.9c1.1-.6 1.8-1.8 1.8-3.1v-3.9l2.9-1.6c.6-.4 1-1 1-1.8s-.4-1.3-1-1.7zm-14.1 10.4c-.5-.3-.8-.8-.8-1.3v-2.8l1 .5v3.7zm9.2-1.3c0 .6-.3 1.1-.8 1.3l-3.4 1.9c-.5.3-1.1.3-1.6 0l-1.2-.7v-3.8l1 .6c.3.2.6.2 1 .2.3 0 .7-.1 1-.2l4-2.2z" />
-  ),
-  ['plus line']: (
-    <>
-      <Path d="m15 3c3.3 0 6 2.7 6 6v6c0 3.3-2.7 6-6 6h-6c-3.3 0-6-2.7-6-6v-6c0-3.3 2.7-6 6-6zm0-2h-6c-4.4 0-8 3.6-8 8v6c0 4.4 3.6 8 8 8h6c4.4 0 8-3.6 8-8v-6c0-4.4-3.6-8-8-8z" />
-      <Path d="m17 11h-4v-4c0-.6-.4-1-1-1s-1 .4-1 1v4h-4c-.6 0-1 .4-1 1s.4 1 1 1h4v4c0 .6.4 1 1 1s1-.4 1-1v-4h4c.6 0 1-.4 1-1s-.4-1-1-1z" />
-    </>
-  ),
-  ['plus fill']: (
-    <Path d="m15 1h-6c-4.4 0-8 3.6-8 8v6c0 4.4 3.6 8 8 8h6c4.4 0 8-3.6 8-8v-6c0-4.4-3.6-8-8-8zm2 12h-4v4c0 .6-.4 1-1 1s-1-.4-1-1v-4h-4c-.6 0-1-.4-1-1s.4-1 1-1h4v-4c0-.6.4-1 1-1s1 .4 1 1v4h4c.6 0 1 .4 1 1s-.4 1-1 1z" />
-  ),
-  ['arrow left line']: <Path d="m14 22.4-10.4-10.4 10.4-10.4 1.4 1.4-9 9 9 9z" />,
+  ['close']: Icon24pxClose,
+  ['dictionary line']: Icon24pxDictLine,
+  ['dictionary fill']: Icon24pxDictFill,
+  ['trainer line']: Icon24pxTrainerLine,
+  ['trainer fill']: Icon24pxTrainerFill,
+  ['plus line']: Icon24pxPlusLine,
+  ['plus fill']: Icon24pxPlusFill,
+  ['profile line']: Icon24pxProfileLine,
+  ['profile fill']: Icon24pxProfileFill,
+  ['arrow left line']: Icon24pxArrowLeftLine,
   default: <Rect width={24} height={24} />
 };
 

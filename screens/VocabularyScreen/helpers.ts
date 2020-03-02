@@ -6,9 +6,6 @@ export const findMatches = (arr: WordTypes[], value: string): WordTypes[] => {
   return arr.filter(({ word, translation }) => {
     const preparedWord = normalizeString(word);
     const preparedTranslation = normalizeString(translation);
-    return (
-      preparedWord.includes(preparedValue) ||
-      preparedTranslation.includes(preparedValue)
-    );
+    return preparedWord.includes(preparedValue) || preparedTranslation.includes(preparedValue);
   });
 };

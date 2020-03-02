@@ -22,7 +22,7 @@ const VocabularyItems: React.FC<VocabularyItemsProps> = ({
 
   return (
     <FlatList
-      style={{ marginBottom: sizes.HEIGHT_GENERAL }}
+      contentContainerStyle={{ paddingBottom: sizes.HEIGHT_GENERAL }}
       data={vocabularyWords}
       renderItem={({ item }: { item: WordTypes }) => (
         <VocabularyItem
