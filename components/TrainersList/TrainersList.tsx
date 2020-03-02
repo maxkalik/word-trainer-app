@@ -12,6 +12,8 @@ const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({ words
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       screenName: 'Word to Translate',
+      imgSource: require('../../assets/images/png/trainer-translate-to-word.png'),
+      backgroundImg: require('../../assets/images/png/gradient-blue.png'),
       title: 'Find correct translation',
       words: words
     },
@@ -19,6 +21,8 @@ const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({ words
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
       screenName: 'Translate to Word',
       title: 'Translate from your language',
+      imgSource: require('../../assets/images/png/trainer-word-to-translate.png'),
+      backgroundImg: require('../../assets/images/png/gradient-red.png'),
       words: words
     }
   ];
@@ -30,7 +34,12 @@ const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({ words
       data={trainers}
       ListHeaderComponent={() => <TrainersListHeader offset={offset} />}
       renderItem={({ item }: any) => (
-        <TrainerItem title={item.title} onPress={() => navigation.navigate(item.screenName, item.words)} />
+        <TrainerItem
+          title={item.title}
+          onPress={() => navigation.navigate(item.screenName, item.words)}
+          imgSource={item.imgSource}
+          backgroundImg={item.backgroundImg}
+        />
       )}
       keyExtractor={({ id }: { id: string }) => id}
       onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: offset } } }], {

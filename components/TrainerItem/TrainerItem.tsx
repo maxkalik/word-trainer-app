@@ -1,14 +1,17 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { TrainerItemProps } from './types';
 import { styles } from './styles';
 
-const TrainerItem: React.FC<TrainerItemProps> = ({ title, onPress }): JSX.Element => (
+const TrainerItem: React.FC<TrainerItemProps> = ({ title, onPress, imgSource, backgroundImg }): JSX.Element => (
   <TouchableOpacity style={styles.container} onPress={onPress}>
     <View style={styles.image}>
-      <Text>Image</Text>
+      <Image resizeMode="contain" source={imgSource} style={styles.illustration} />
+      <Text style={styles.title} accessibilityRole="button">
+        {title}
+      </Text>
     </View>
-    <Text style={styles.title}>{title}</Text>
+    <Image resizeMode="stretch" source={backgroundImg} style={{ flex: 1 }} />
   </TouchableOpacity>
 );
 

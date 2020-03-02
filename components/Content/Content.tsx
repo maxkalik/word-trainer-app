@@ -48,7 +48,7 @@ const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
   return (
     <>
       <Notification />
-      <NavigationMain theme="light" user={user} />
+      <NavigationMain theme="light" />
     </>
   );
 };
