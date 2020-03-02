@@ -12,8 +12,8 @@ const TabNavigator = createBottomTabNavigator(screens, {
   tabBarOptions: {
     showIcon: false,
     keyboardHidesTabBar: false,
-    activeTintColor: 'black',
-    inactiveTintColor: 'gray',
+    activeTintColor: 'royalblue',
+    inactiveTintColor: 'black',
     activeBackgroundColor: '#F5F5F5',
     adaptive: false,
     labelStyle: {

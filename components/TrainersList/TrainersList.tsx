@@ -3,6 +3,7 @@ import { Animated } from 'react-native';
 import TrainersListHeader from '../TrainersListHeader/TrainersListHeader';
 import TrainerItem from '../TrainerItem/TrainerItem';
 import { WordTypes } from '../../types';
+import { sizes } from '../../constants';
 import { styles } from './styles';
 
 const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({ words, navigation }): JSX.Element => {
@@ -29,6 +30,7 @@ const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({ words
 
   return (
     <Animated.FlatList
+      contentContainerStyle={{ paddingBottom: sizes.HEIGHT_GENERAL }}
       numColumns={trainers.length > 2 ? 2 : 1}
       style={styles.container}
       data={trainers}

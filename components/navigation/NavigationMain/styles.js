@@ -4,6 +4,7 @@ import { sizes } from '../../../constants';
 export const styles = StyleSheet.create({
   container: {
     height: sizes.HEIGHT_GENERAL,
-    position: 'absolute'
+    position: 'absolute',
+    borderTopColor: 'transparent'
   }
 });

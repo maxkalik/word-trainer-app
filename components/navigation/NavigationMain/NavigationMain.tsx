@@ -21,10 +21,10 @@ const TabNavigator = createBottomTabNavigator(screens, {
   },
   tabBarOptions: {
     keyboardHidesTabBar: false,
-    activeTintColor: 'black',
-    inactiveTintColor: 'gray',
+    activeTintColor: 'royalblue',
+    inactiveTintColor: 'black',
     style: { height: 70 },
-    activeBackgroundColor: '#F5F5F5',
+    activeBackgroundColor: 'none',
     labelStyle: {
       fontSize: 12,
       paddingBottom: 10
