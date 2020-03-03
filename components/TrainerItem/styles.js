@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { sizes } from '../../constants';
 
+const GENERAL_SIZE = 10;
+
 export const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
@@ -8,16 +10,16 @@ export const styles = StyleSheet.create({
     height: 200,
     borderRadius: sizes.RADIUS_ITEMS,
     backgroundColor: 'blue',
-    margin: 10,
-    padding: 10
+    margin: GENERAL_SIZE,
+    padding: GENERAL_SIZE
   },
   illustration: {
     flex: 1
   },
   title: {
     textAlign: 'center',
-    paddingHorizontal: 10,
-    paddingTop: 10,
+    paddingHorizontal: GENERAL_SIZE,
+    paddingTop: GENERAL_SIZE,
     paddingBottom: sizes.PADDING_GENERAL,
     fontSize: 22,
     color: 'white'

@@ -22,7 +22,8 @@ export const sizes = {
 
 // TEXT STYLES
 
-export const textStyle = {
+export const textSizes = {
   HEADER1: 26,
-  HEADER2: 22
+  HEADER2: 22,
+  PARAGRAPH: 16
 };

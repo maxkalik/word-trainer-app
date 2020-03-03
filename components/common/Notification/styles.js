@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { sizes, textSizes } from '../../../constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -15,12 +16,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 20,
     paddingHorizontal: 10,
-    backgroundColor: 'lightblue',
-    borderRadius: 5,
+    backgroundColor: 'rgba(197, 214, 231, 0.9)',
+    borderRadius: sizes.RADIUS_ELEMENTS,
     margin: 10
   },
   title: {
-    fontSize: 16,
-    textAlign: 'center'
+    fontSize: textSizes.PARAGRAPH,
+    textAlign: 'center',
+    color: 'black'
   }
 });
