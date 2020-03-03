@@ -7,7 +7,7 @@ import { styles } from './styles';
 const SignUpScreen: React.FC = (): JSX.Element => (
   <SafeAreaView style={styles.container}>
     <Scene keyboardAvoidingView={true}>
-      <AuthForm submitButtonName="Sign Un" requestType="signup" />
+      <AuthForm submitButtonName="Sign Up" requestType="signup" />
     </Scene>
   </SafeAreaView>
 );

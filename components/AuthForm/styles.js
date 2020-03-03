@@ -11,16 +11,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     height: 120,
-    paddingHorizontal: 20
+    paddingHorizontal: sizes.PADDING_LARGE
   },
   input: {
     height: 50,
     fontSize: 16,
-    borderWidth: 1,
     borderRadius: 10,
-    paddingHorizontal: 10,
-    borderColor: 'silver'
+    paddingHorizontal: 10
   },
+
   buttons: {
     marginTop: 20,
     paddingHorizontal: 20

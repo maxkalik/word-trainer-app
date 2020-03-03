@@ -2,20 +2,24 @@
 
 export const colors = {
   COLOR_PRIMARY: 'black',
-  COLOR_GREY: 'grey',
-  COLOR_THIN_BORDER: 'silver',
-  COLOR_WHITE: 'white',
-  COLOR_RED: 'red',
-  COLOR_ORANGE: 'orange',
-  COLOR_GREEN: 'green'
+  COLOR_BUTTON: 'black',
+  COLOR_INPUT_PLACEHOLDER: 'darkgray',
+  COLOR_ACTIVE: 'royalblue',
+  COLOR_SUCCESS: 'green',
+  COLOR_BORDER: 'silver',
+  COLOR_BACK_ACTIVE: '#F5F5F5'
 };
 
 // SIZES
 
 export const sizes = {
   HEIGHT_GENERAL: 70,
+  HEIGHT_ELEMENTS: 50,
+  PADDING_LARGE: 20,
   PADDING_GENERAL: 15,
+  PADDING_SMALL: 10,
   RADIUS_ELEMENTS: 16,
+  RADIUS_SMALL_ELEMENTS: 10,
   RADIUS_ITEMS: 20,
   BORDER_THIN: 0.5
 };
@@ -25,5 +29,7 @@ export const sizes = {
 export const textSizes = {
   HEADER1: 26,
   HEADER2: 22,
-  PARAGRAPH: 16
+  HEADER3: 18,
+  PARAGRAPH: 16,
+  SMALL: 12
 };

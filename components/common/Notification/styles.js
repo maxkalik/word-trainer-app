@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 10,
     backgroundColor: 'rgba(197, 214, 231, 0.9)',
-    borderRadius: sizes.RADIUS_ELEMENTS,
+    borderRadius: sizes.RADIUS_SMALL_ELEMENTS,
     margin: 10
   },
   title: {

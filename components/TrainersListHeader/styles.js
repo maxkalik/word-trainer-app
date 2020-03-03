@@ -4,7 +4,7 @@ import { sizes, textSizes } from '../../constants';
 export const styles = StyleSheet.create({
   container: {
     textAlign: 'center',
-    paddingVertical: 20,
+    paddingVertical: sizes.PADDING_LARGE,
     paddingHorizontal: sizes.PADDING_GENERAL
   },
   title: {

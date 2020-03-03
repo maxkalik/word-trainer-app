@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { sizes, textSizes, colors } from '../../constants';
 
 export const styles = StyleSheet.create({
   input: {
@@ -7,15 +8,13 @@ export const styles = StyleSheet.create({
   editBtn: {
     alignSelf: 'stretch',
     justifyContent: 'center',
-    paddingRight: 10,
-    paddingLeft: 20
-    // borderWidth: 1,
-    // borderColor: 'black'
+    paddingRight: sizes.PADDING_SMALL,
+    paddingLeft: sizes.PADDING_LARGE
   },
   editBtnTxt: {
-    fontSize: 16
+    fontSize: textSizes.PARAGRAPH
   },
   doneBtnTxt: {
-    color: 'royalblue'
+    color: colors.COLOR_ACTIVE
   }
 });

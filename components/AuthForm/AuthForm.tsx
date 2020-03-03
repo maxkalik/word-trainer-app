@@ -6,9 +6,14 @@ import { useNotificationValue } from '../../state/notification';
 import { checkValidity } from '../../helpers';
 import { SignInTextInputProps, AuthFormProps } from './types';
 import { initialState, inputFields } from './states';
+import { colors } from '../../constants';
 import { styles } from './styles';
 
-const AuthForm: React.FC<AuthFormProps> = ({ onForgotPasswordPress, submitButtonName, requestType }): JSX.Element => {
+const AuthForm: React.FC<AuthFormProps> = ({
+  onForgotPasswordPress,
+  submitButtonName,
+  requestType
+}): JSX.Element => {
   const [, dispatchNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
   const [signInValues, setSignInValues] = useState(initialState);
@@ -76,7 +81,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ onForgotPasswordPress, submitButton
       try {
         getRequest(requestType);
       } catch (err) {
-        dispatchNotification({ msg: 'Oops. Internal error. Probably lost connection. Please, restart an application' });
+        dispatchNotification({
+          msg: 'Oops. Internal error. Probably lost connection. Please, restart an application'
+        });
       }
     }
   };
@@ -88,6 +95,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onForgotPasswordPress, submitButton
           <Input
             key={name}
             style={styles.input}
+            withBorder
             secureTextEntry={name === 'password'}
             keyboardType={keyboardType}
             textContentType={textContentType}
@@ -95,6 +103,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onForgotPasswordPress, submitButton
             onChangeText={(value: string) => handleInputChangeText(value, name)}
             value={signInValues[name].value}
             iconName={signInValues[name].validMsg === null ? 'check mark' : null}
+            iconColor={colors.COLOR_SUCCESS}
           />
         ))}
       </View>
@@ -106,7 +115,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ onForgotPasswordPress, submitButton
           loading={loading}
           addStyle={styles.submitBtn}
         />
-        {requestType === 'signin' && <Btn size="small" title="Forgot Password?" onPress={onForgotPasswordPress} />}
+        {requestType === 'signin' && (
+          <Btn size="small" title="Forgot Password?" onPress={onForgotPasswordPress} />
+        )}
       </View>
     </View>
   );
