@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { sizes } from '../../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,8 +11,8 @@ const styles = StyleSheet.create({
 const largeBtnStyles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    height: 70,
-    borderRadius: 35
+    height: sizes.HEIGHT_GENERAL,
+    borderRadius: sizes.RADIUS_ELEMENTS
   },
   btnTitle: {
     textAlign: 'center',
@@ -24,7 +25,7 @@ const smallBtnStyles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     height: 50,
-    borderRadius: 25
+    borderRadius: sizes.RADIUS_ELEMENTS
   },
   btnTitle: {
     textAlign: 'center',

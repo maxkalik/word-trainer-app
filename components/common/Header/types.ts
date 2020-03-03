@@ -6,7 +6,6 @@ export interface ButtonBackProps {
 
 export interface HeaderProps {
   children?: JSX.Element | JSX.Element[];
-  withBottomLine?: boolean;
   backButton?: boolean;
   onPressBackButton?: (event: GestureResponderEvent) => void;
 }

@@ -32,7 +32,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   const isFieldsEmpty = isWordEmpty && isTranslationEmpty;
   const isEditing = actionName !== 'set';
   const isShowSaveBtn = isEditing || isFocused;
-  const isShowClearBtn = isEditing && (isFocused || !isFieldsEmpty);
+  const isShowClearBtn = isEditing && (isFocused && !isFieldsEmpty);
   const isWordPresent = checkStringIsPresent(words, wordItem.word);
 
   useEffect(() => {

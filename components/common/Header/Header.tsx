@@ -10,8 +10,8 @@ const BackButton: React.FC<ButtonBackProps> = ({ onPress }): JSX.Element => (
   </TouchableOpacity>
 );
 
-const Header: React.FC<HeaderProps> = ({ withBottomLine, backButton, onPressBackButton, children }): JSX.Element => (
-  <View style={[styles.container, withBottomLine && styles.withBottomLine]}>
+const Header: React.FC<HeaderProps> = ({ backButton, onPressBackButton, children }): JSX.Element => (
+  <View style={styles.container}>
     {backButton && <BackButton onPress={onPressBackButton} />}
     {children}
   </View>

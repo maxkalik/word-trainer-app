@@ -11,7 +11,7 @@ const VocabularyHeader: React.FC<VocabularyHeaderProps> = ({
   onEditBtnPress,
   isEditBtnPressed
 }): JSX.Element => (
-  <Header withBottomLine>
+  <Header>
     <Input
       placeholder="Find a word"
       style={styles.input}
