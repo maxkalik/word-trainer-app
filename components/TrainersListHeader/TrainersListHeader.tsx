@@ -18,7 +18,7 @@ const TrainersListHeader: React.FC<{ offset: any }> = ({ offset }): JSX.Element 
       }
     ]}
   >
-    <Text style={styles.title}>Word trainers</Text>
+    <Text style={styles.title}>Trainers</Text>
   </Animated.View>
 );
 

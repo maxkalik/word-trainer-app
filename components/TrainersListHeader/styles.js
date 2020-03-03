@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     fontSize: 24,
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    fontWeight: '600'
   }
 });
