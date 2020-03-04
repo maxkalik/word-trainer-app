@@ -2,11 +2,13 @@
 
 export const colors = {
   COLOR_PRIMARY: 'black',
+  COLOR_SECONDARY: 'gray',
   COLOR_PRIMARY_ON_BG: 'white',
   COLOR_PRIMARY_BACK: 'white',
   COLOR_BUTTON: 'black',
   COLOR_INPUT_PLACEHOLDER: 'darkgray',
   COLOR_ACTIVE: 'royalblue',
+  COLOR_ACTIVE_CHECKED: 'lightblue',
   COLOR_ACTIVE_BACK: '#F5F5F5',
   COLOR_BORDER: 'silver',
   COLOR_SUCCESS: 'green'

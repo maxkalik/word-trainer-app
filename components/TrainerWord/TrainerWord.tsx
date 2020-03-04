@@ -4,7 +4,7 @@ import { styles } from './styles';
 
 const TrainerWord: React.FC<{ word: string; color?: string }> = ({ word, color }): JSX.Element => (
   <View style={styles.container}>
-    <Text style={[styles.word, { color: color }]}>{word}</Text>
+    <Text style={[styles.word, { color }]}>{word}</Text>
   </View>
 );
 

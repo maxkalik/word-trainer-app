@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { sizes, colors } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,16 +10,16 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   isCheckMode: {
-    paddingLeft: 15
+    paddingLeft: sizes.PADDING_GENERAL
   },
   word: {
     flex: 1
   },
   translation: {
     flex: 1,
-    color: 'gray'
+    color: colors.COLOR_SECONDARY
   },
   checkedTranslation: {
-    color: 'black'
+    color: colors.COLOR_PRIMARY
   }
 });
