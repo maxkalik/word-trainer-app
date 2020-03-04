@@ -72,7 +72,9 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }): JS
       try {
         onForgotPasswordRequest();
       } catch (err) {
-        dispatchNotification({ msg: 'Oops. Internal error. Probably lost connection. Please, restart an application' });
+        dispatchNotification({
+          msg: 'Oops. Internal error. Probably lost connection. Please, restart an application'
+        });
       }
     }
   };
@@ -80,7 +82,7 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }): JS
   return (
     <SafeAreaView style={styles.container}>
       <Header backButton onPressBackButton={(): void => navigation.goBack()} />
-      <Scene keyboardAvoidingView={true} addStyle={styles.section}>
+      <Scene keyboardAvoidingView={true} addStyle={styles.scene}>
         <Input
           style={styles.input}
           keyboardType="email-address"

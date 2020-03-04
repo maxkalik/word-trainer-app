@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, textSizes, colors } from '../../../constants';
+import { sizes, textSizes, colors } from '../../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,17 +11,12 @@ export const styles = StyleSheet.create({
   focused: {
     backgroundColor: colors.COLOR_BACK_ACTIVE,
     borderRadius: sizes.RADIUS_SMALL_ELEMENTS,
-    paddingHorizontal: sizes.PADDING_SMALL,
-    // borderWidth: 2
+    paddingHorizontal: sizes.PADDING_SMALL
   },
   inputField: {
     flex: 1,
     fontSize: textSizes.PARAGRAPH,
     color: colors.COLOR_PRIMARY
-  },
-  bordered: {
-    borderWidth: 1,
-    borderColor: colors.COLOR_BORDER
   }
 });
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, Animated } from 'react-native';
+import { Animated } from 'react-native';
+import { Title } from '../common';
 import { styles } from './styles';
 
 const TrainersListHeader: React.FC<{ offset: any }> = ({ offset }): JSX.Element => (
@@ -18,7 +19,7 @@ const TrainersListHeader: React.FC<{ offset: any }> = ({ offset }): JSX.Element 
       }
     ]}
   >
-    <Text style={styles.title}>Trainers</Text>
+    <Title>Trainers</Title>
   </Animated.View>
 );
 

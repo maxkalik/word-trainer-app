@@ -1,23 +1,18 @@
 import { StyleSheet } from 'react-native';
+import { backgroundColors, sizes } from '../../util/constants';
+import { inputBordered } from '../../util/styles';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: backgroundColors.BACK_FORGOT_PASSWORD
   },
-  section: {
+  scene: {
     flex: 1,
-    padding: 35
+    padding: sizes.PADDING_LARGE + sizes.PADDING_SMALL
   },
-  input: {
-    height: 50,
-    fontSize: 16,
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    borderColor: 'silver'
-  },
+  input: inputBordered,
   submitBtn: {
-    marginTop: 20
+    marginTop: sizes.PADDING_LARGE
   }
 });

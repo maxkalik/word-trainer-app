@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { sizes } from '../../constants';
+import { sizes } from '../../util/constants';
+import { inputBordered } from '../../util/styles';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,18 +14,12 @@ export const styles = StyleSheet.create({
     height: 120,
     paddingHorizontal: sizes.PADDING_LARGE
   },
-  input: {
-    height: 50,
-    fontSize: 16,
-    borderRadius: 10,
-    paddingHorizontal: 10
-  },
-
+  input: inputBordered,
   buttons: {
-    marginTop: 20,
-    paddingHorizontal: 20
+    marginTop: sizes.PADDING_LARGE,
+    paddingHorizontal: sizes.PADDING_LARGE
   },
   submitBtn: {
-    marginBottom: 10
+    marginBottom: sizes.PADDING_SMALL
   }
 });

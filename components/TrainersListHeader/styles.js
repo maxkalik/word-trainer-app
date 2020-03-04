@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, textSizes } from '../../constants';
+import { sizes, textSizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,6 +9,6 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: textSizes.HEADER1,
-    fontWeight: '600'
+    fontWeight: '500'
   }
 });

@@ -6,7 +6,7 @@ import { useNotificationValue } from '../../state/notification';
 import { checkValidity } from '../../helpers';
 import { SignInTextInputProps, AuthFormProps } from './types';
 import { initialState, inputFields } from './states';
-import { colors } from '../../constants';
+import { colors } from '../../util/constants';
 import { styles } from './styles';
 
 const AuthForm: React.FC<AuthFormProps> = ({
@@ -95,7 +95,6 @@ const AuthForm: React.FC<AuthFormProps> = ({
           <Input
             key={name}
             style={styles.input}
-            withBorder
             secureTextEntry={name === 'password'}
             keyboardType={keyboardType}
             textContentType={textContentType}

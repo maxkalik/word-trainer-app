@@ -5,7 +5,7 @@ import { screens } from './screens';
 import { Icon24px } from '../../icons';
 import { tabIcons } from './helpers';
 import { styles } from './styles';
-import { colors, sizes, textSizes } from '../../../constants';
+import { colors, sizes, textSizes } from '../../../util/constants';
 
 const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} />;
 

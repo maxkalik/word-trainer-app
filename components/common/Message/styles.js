@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     height: 200
   },
-  title: { fontSize: 24, paddingBottom: 10, textAlign: 'center' },
+  title: { paddingBottom: 10, textAlign: 'center' },
   description: { fontSize: 18, paddingBottom: 10, textAlign: 'center' },
   btn: { marginTop: 20 }
 });

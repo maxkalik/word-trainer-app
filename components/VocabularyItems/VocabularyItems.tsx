@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import VocabularyItem from '../../components/VocabularyItem/VocabularyItem';
-import { sizes } from '../../constants';
+import { sizes } from '../../util/constants';
 import { WordTypes } from '../../types';
 import { VocabularyItemsProps } from './types';
 

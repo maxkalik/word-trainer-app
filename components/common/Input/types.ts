@@ -14,7 +14,6 @@ export interface InputProps {
   placeholder: string;
   style?: StyleProp<ViewStyle>;
   styleInputField?: StyleProp<ViewStyle>;
-  withBorder?: boolean;
   autoFocus?: boolean;
   touchableIcon?: boolean;
   isEditMode?: boolean;

@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import { screens } from './screens';
 import { styles } from './styles';
-import { colors, textSizes, sizes } from '../../../constants';
+import { colors, textSizes, sizes } from '../../../util/constants';
 
 const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} style={styles.container} />;
 

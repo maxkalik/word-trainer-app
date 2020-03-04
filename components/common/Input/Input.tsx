@@ -3,7 +3,7 @@ import { TextInput, TouchableOpacity, View } from 'react-native';
 import { Icon16px } from '../../icons';
 import { IconProps, InputProps } from './types';
 import { styles, clearBtnStyles } from './styles';
-import { colors } from '../../../constants';
+import { colors } from '../../../util/constants';
 
 const Icon: React.FC<IconProps> = ({ onIconPress, touchableIcon, iconName, iconColor }): JSX.Element => {
   if (touchableIcon) {
@@ -27,7 +27,6 @@ const Input: React.FC<InputProps> = ({
   onIconPress,
   styleInputField,
   style,
-  withBorder,
   autoFocus,
   secureTextEntry,
   keyboardType,
@@ -40,9 +39,7 @@ const Input: React.FC<InputProps> = ({
   const isValue = value.length > 0;
 
   return (
-    <View
-      style={[styles.container, withBorder && styles.bordered, (focus || isValue) && styles.focused, style]}
-    >
+    <View style={[styles.container, (focus || isValue) && styles.focused, style]}>
       <TextInput
         style={[styles.inputField, styleInputField]}
         autoFocus={autoFocus}

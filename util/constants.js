@@ -2,6 +2,7 @@
 
 export const colors = {
   COLOR_PRIMARY: 'black',
+  COLOR_PRIMARY_BACK: 'white',
   COLOR_BUTTON: 'black',
   COLOR_INPUT_PLACEHOLDER: 'darkgray',
   COLOR_ACTIVE: 'royalblue',
@@ -32,4 +33,12 @@ export const textSizes = {
   HEADER3: 18,
   PARAGRAPH: 16,
   SMALL: 12
+};
+
+// BACKGROUND COLORS
+
+export const backgroundColors = {
+  BACK_FORGOT_PASSWORD: colors.COLOR_PRIMARY_BACK,
+  BACK_SIGNIN: colors.COLOR_PRIMARY_BACK,
+  BACK_SIGNUP: colors.COLOR_PRIMARY_BACK
 };

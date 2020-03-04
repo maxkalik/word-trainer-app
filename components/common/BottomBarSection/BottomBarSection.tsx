@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Animated } from 'react-native';
-import { sizes } from '../../../constants';
+import { sizes } from '../../../util/constants';
 import { BottomBarSectionProps } from './types';
 import { styles } from './styles';
 
