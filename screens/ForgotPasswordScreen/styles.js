@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { backgroundColors, sizes } from '../../util/constants';
+import { colors, sizes } from '../../util/constants';
 import { inputBordered } from '../../util/styles';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: backgroundColors.BACK_FORGOT_PASSWORD
+    backgroundColor: colors.COLOR_PRIMARY_BACK
   },
   scene: {
     flex: 1,

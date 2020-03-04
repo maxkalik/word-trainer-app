@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 import TrainersListHeader from '../TrainersListHeader/TrainersListHeader';
 import TrainerItem from '../TrainerItem/TrainerItem';
 import { WordTypes } from '../../types';
-import { sizes } from '../../util/constants';
+import { sizes, trainerColors } from '../../util/constants';
 import { styles } from './styles';
 
 const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({
@@ -14,20 +14,16 @@ const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({
 
   const trainers = [
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       screenName: 'Word to Translate',
       imgSource: require('../../assets/images/png/trainer-word-to-translate.png'),
-      backgroundColor: 'blue',
-      title: 'Find correct translation',
-      words: words
+      backgroundColor: trainerColors.COLOR_WORD_TO_TRANSLATE,
+      title: 'Find correct translation'
     },
     {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
       screenName: 'Translate to Word',
       title: 'Translate from your language',
-      backgroundColor: 'mediumvioletred',
-      imgSource: require('../../assets/images/png/trainer-translate-to-word.png'),
-      words: words
+      backgroundColor: trainerColors.COLOR_TRANSLATE_TO_WORD,
+      imgSource: require('../../assets/images/png/trainer-translate-to-word.png')
     }
   ];
 
@@ -41,12 +37,12 @@ const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({
       renderItem={({ item }: any) => (
         <TrainerItem
           title={item.title}
-          onPress={() => navigation.navigate(item.screenName, item.words)}
+          onPress={() => navigation.navigate(item.screenName, words)}
           imgSource={item.imgSource}
           backgroundColor={item.backgroundColor}
         />
       )}
-      keyExtractor={({ id }: { id: string }) => id}
+      keyExtractor={({ screenName }: { screenName: string }) => screenName}
       onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: offset } } }], {
         useNativeDriver: true
       })}

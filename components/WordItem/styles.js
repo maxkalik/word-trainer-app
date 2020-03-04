@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, textSizes, colors } from '../../util/constants';
+import { sizes, fontSizes, colors } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     height: sizes.HEIGHT_ELEMENTS,
-    fontSize: textSizes.HEADER2,
+    fontSize: fontSizes.H2,
     color: colors.COLOR_PRIMARY,
     textAlign: 'center'
   },

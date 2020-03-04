@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import { screens } from './screens';
 import { styles } from './styles';
-import { colors, textSizes, sizes } from '../../../util/constants';
+import { colors, fontSizes, sizes } from '../../../util/constants';
 
 const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} style={styles.container} />;
 
@@ -15,10 +15,10 @@ const TabNavigator = createBottomTabNavigator(screens, {
     keyboardHidesTabBar: false,
     activeTintColor: colors.COLOR_ACTIVE,
     inactiveTintColor: colors.COLOR_PRIMARY,
-    activeBackgroundColor: colors.COLOR_BACK_ACTIVE,
+    activeBackgroundColor: colors.COLOR_ACTIVE_BACK,
     adaptive: false,
     labelStyle: {
-      fontSize: textSizes.PARAGRAPH
+      fontSize: fontSizes.PARAGRAPH
     },
     tabStyle: {
       justifyContent: 'center',

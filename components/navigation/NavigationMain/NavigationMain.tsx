@@ -5,7 +5,7 @@ import { screens } from './screens';
 import { Icon24px } from '../../icons';
 import { tabIcons } from './helpers';
 import { styles } from './styles';
-import { colors, sizes, textSizes } from '../../../util/constants';
+import { colors, sizes, fontSizes } from '../../../util/constants';
 
 const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} />;
 
@@ -27,7 +27,7 @@ const TabNavigator = createBottomTabNavigator(screens, {
     style: { height: sizes.HEIGHT_GENERAL },
     activeBackgroundColor: 'none',
     labelStyle: {
-      fontSize: textSizes.SMALL,
+      fontSize: fontSizes.SMALL,
       paddingBottom: sizes.PADDING_SMALL
     }
   }

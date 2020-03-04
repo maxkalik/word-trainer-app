@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, textSizes, colors } from '../../util/constants';
+import { sizes, fontSizes, colors } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   input: {
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     paddingLeft: sizes.PADDING_LARGE
   },
   editBtnTxt: {
-    fontSize: textSizes.PARAGRAPH
+    fontSize: fontSizes.PARAGRAPH
   },
   doneBtnTxt: {
     color: colors.COLOR_ACTIVE

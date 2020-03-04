@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors, sizes, textSizes } from '../../../util/constants';
+import { colors, sizes, fontSizes } from '../../../util/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +17,7 @@ const largeBtnStyles = StyleSheet.create({
   btnTitle: {
     textAlign: 'center',
     paddingHorizontal: sizes.PADDING_GENERAL * 2,
-    fontSize: textSizes.HEADER2
+    fontSize: fontSizes.H2
   }
 });
 
@@ -30,7 +30,7 @@ const smallBtnStyles = StyleSheet.create({
   btnTitle: {
     textAlign: 'center',
     paddingHorizontal: sizes.PADDING_GENERAL * 2,
-    fontSize: textSizes.HEADER3
+    fontSize: fontSizes.H3
   }
 });
 

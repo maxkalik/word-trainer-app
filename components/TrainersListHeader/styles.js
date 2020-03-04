@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, textSizes } from '../../util/constants';
+import { sizes, fontSizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: sizes.PADDING_GENERAL
   },
   title: {
-    fontSize: textSizes.HEADER1,
+    fontSize: fontSizes.H1,
     fontWeight: '500'
   }
 });

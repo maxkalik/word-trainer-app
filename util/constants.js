@@ -6,9 +6,9 @@ export const colors = {
   COLOR_BUTTON: 'black',
   COLOR_INPUT_PLACEHOLDER: 'darkgray',
   COLOR_ACTIVE: 'royalblue',
+  COLOR_ACTIVE_BACK: '#F5F5F5',
   COLOR_SUCCESS: 'green',
-  COLOR_BORDER: 'silver',
-  COLOR_BACK_ACTIVE: '#F5F5F5'
+  COLOR_BORDER: 'silver'
 };
 
 // SIZES
@@ -27,10 +27,10 @@ export const sizes = {
 
 // TEXT STYLES
 
-export const textSizes = {
-  HEADER1: 26,
-  HEADER2: 22,
-  HEADER3: 18,
+export const fontSizes = {
+  H1: 26,
+  H2: 22,
+  H3: 18,
   PARAGRAPH: 16,
   SMALL: 12
 };
@@ -38,7 +38,13 @@ export const textSizes = {
 // BACKGROUND COLORS
 
 export const backgroundColors = {
-  BACK_FORGOT_PASSWORD: colors.COLOR_PRIMARY_BACK,
   BACK_SIGNIN: colors.COLOR_PRIMARY_BACK,
   BACK_SIGNUP: colors.COLOR_PRIMARY_BACK
+};
+
+// TRAINERS COLOR
+
+export const trainerColors = {
+  COLOR_TRANSLATE_TO_WORD: 'blue',
+  COLOR_WORD_TO_TRANSLATE: 'mediumvioletred'
 };

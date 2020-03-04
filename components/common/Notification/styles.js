@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, textSizes } from '../../../util/constants';
+import { sizes, fontSizes } from '../../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     margin: 10
   },
   title: {
-    fontSize: textSizes.PARAGRAPH,
+    fontSize: fontSizes.PARAGRAPH,
     textAlign: 'center',
     color: 'black'
   }
