@@ -29,6 +29,7 @@ export const sizes = {
 // TEXT STYLES
 
 export const fontSizes = {
+  WORD: 32,
   H1: 26,
   H2: 22,
   H3: 18,
@@ -40,7 +41,8 @@ export const fontSizes = {
 
 export const backgroundColors = {
   BACK_SIGNIN: colors.COLOR_PRIMARY_BACK,
-  BACK_SIGNUP: colors.COLOR_PRIMARY_BACK
+  BACK_SIGNUP: colors.COLOR_PRIMARY_BACK,
+  BACK_NOTIFICATION: 'rgba(197, 214, 231, 0.9)'
 };
 
 // TRAINERS COLOR

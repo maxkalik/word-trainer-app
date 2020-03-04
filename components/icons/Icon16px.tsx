@@ -1,5 +1,6 @@
 import React from 'react';
 import Svg, { Path, Rect } from 'react-native-svg';
+import { colors } from '../../util/constants';
 import { IconProps, iconsType } from './types';
 
 const icons: iconsType = {
@@ -13,7 +14,7 @@ const icons: iconsType = {
 const renderIcon = (key: keyof typeof icons): JSX.Element => icons[key];
 
 const Icon16px: React.FC<IconProps> = ({ name, color }): JSX.Element => (
-  <Svg width={16} height={16} viewBox="0 0 16 16" fill={color || 'black'}>
+  <Svg width={16} height={16} viewBox="0 0 16 16" fill={color || colors.COLOR_PRIMARY}>
     {renderIcon(name)}
   </Svg>
 );

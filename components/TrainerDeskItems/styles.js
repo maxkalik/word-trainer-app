@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { sizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -7,7 +8,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    // borderColor: 'black',
-    // borderWidth: 1
+    paddingHorizontal: sizes.PADDING_GENERAL
   }
 });

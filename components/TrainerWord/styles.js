@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { sizes, fontSizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,11 +10,11 @@ export const styles = StyleSheet.create({
   },
   word: {
     color: 'black',
-    fontSize: 32,
-    marginBottom: 10
+    fontSize: fontSizes.WORD,
+    marginBottom: sizes.PADDING_SMALL
   },
-  line: {
-    height: 4,
-    backgroundColor: 'black'
-  }
+  // line: {
+  //   height: 4,
+  //   backgroundColor: 'black'
+  // }
 });

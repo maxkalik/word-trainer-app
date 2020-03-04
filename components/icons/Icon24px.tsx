@@ -6,6 +6,7 @@ import { Icon24pxTrainerLine, Icon24pxTrainerFill } from './icons24px/Icon24pxTr
 import { Icon24pxPlusLine, Icon24pxPlusFill } from './icons24px/Icon24pxPlus';
 import { Icon24pxProfileLine, Icon24pxProfileFill } from './icons24px/Icon24pxProfile';
 import { Icon24pxArrowLeftLine } from './icons24px/Icon24pxArrow';
+import { colors } from '../../util/constants';
 import { IconProps, iconsType } from './types';
 
 const icons: iconsType = {
@@ -25,7 +26,7 @@ const icons: iconsType = {
 const renderIcon = (key: keyof typeof icons): JSX.Element => icons[key];
 
 const Icon24px: React.FC<IconProps> = ({ name, color }): JSX.Element => (
-  <Svg width={24} height={24} viewBox="0 0 24 24" fill={color || 'black'}>
+  <Svg width={24} height={24} viewBox="0 0 24 24" fill={color || colors.COLOR_PRIMARY}>
     {renderIcon(name)}
   </Svg>
 );

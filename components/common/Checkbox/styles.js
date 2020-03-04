@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,11 +9,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'silver'
+    borderColor: colors.COLOR_BORDER
   },
   checked: {
-    borderWidth: 2,
-    borderColor: 'black',
-    backgroundColor: 'black'
+    borderColor: colors.COLOR_ACTIVE,
+    backgroundColor: colors.COLOR_ACTIVE
   }
 });

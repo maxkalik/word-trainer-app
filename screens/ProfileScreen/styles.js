@@ -22,8 +22,5 @@ export const styles = StyleSheet.create({
   listItemValue: {
     // flex: 2,
     paddingLeft: sizes.PADDING_SMALL
-  },
-  email: {
-    fontSize: 16
   }
 });

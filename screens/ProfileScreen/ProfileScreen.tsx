@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
-import { View, Text, SafeAreaView } from 'react-native';
-import { Scene, Btn, Swithcer, Section } from '../../components/common';
+import { ScrollView, View, Text, SafeAreaView } from 'react-native';
+import { Btn, Swithcer, Section } from '../../components/common';
 import { useModeValue, useNotificationValue, useUserValue } from '../../state';
 import { styles } from './styles';
 
@@ -10,7 +10,6 @@ const ProfileScreen: React.FC = (): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const [, dispatchNotification] = useNotificationValue();
   const [{ user }] = useUserValue();
-  console.log(mode);
 
   const handleSwitchMode = () => {
     dispatchMode({ mode: mode === 'light' ? 'dark' : 'light' });
@@ -30,7 +29,7 @@ const ProfileScreen: React.FC = (): JSX.Element => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+      <ScrollView style={styles.content}>
         <Section title="Profile">
           <View style={styles.listItem}>
             <Text style={[styles.listItemText, styles.listItemName]}>E-mail:</Text>
@@ -45,8 +44,8 @@ const ProfileScreen: React.FC = (): JSX.Element => {
             titleOff="Dark mode off"
           />
         </Section>
-        <Btn title="Sign Out" onPress={handleSignOut} loading={loading} />
-      </View>
+        <Btn title="Sign Out" size="small" onPress={handleSignOut} loading={loading} />
+      </ScrollView>
     </SafeAreaView>
   );
 };

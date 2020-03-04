@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TrainerDeskItems from '../../components/TrainerDeskItems/TrainerDeskItems';
 import TrainerWord from '../../components/TrainerWord/TrainerWord';
 import { randomItem, makeWordsDesk } from './helpers';
+import { colors } from '../../util/constants';
 import { WordTypes } from '../../types';
 
 const TrainerDesk: React.FC<{ words: WordTypes[]; translateToWord?: boolean }> = ({
@@ -12,7 +13,10 @@ const TrainerDesk: React.FC<{ words: WordTypes[]; translateToWord?: boolean }> =
   const showedWord = randomItem(wordsDesk);
   return (
     <>
-      <TrainerWord word={translateToWord ? showedWord.translation : showedWord.word} />
+      <TrainerWord
+        word={translateToWord ? showedWord.translation : showedWord.word}
+        color={colors.COLOR_PRIMARY_ON_BG}
+      />
       <TrainerDeskItems
         wordsArr={wordsDesk}
         headerWordId={showedWord.id}
