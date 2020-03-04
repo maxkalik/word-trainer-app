@@ -13,7 +13,11 @@ const BottomBarSection: React.FC<BottomBarSectionProps> = ({ offsetValue, childr
     }).start();
   }, [offset]);
 
-  return <Animated.View style={[styles.container, { transform: [{ translateY: offset }] }]}>{children}</Animated.View>;
+  return (
+    <Animated.View style={[styles.container, { transform: [{ translateY: offset }] }]}>
+      {children}
+    </Animated.View>
+  );
 };
 
 export default BottomBarSection;

@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
 import { View, Text, SafeAreaView } from 'react-native';
-import { useNotificationValue, useUserValue } from '../../state';
-import { Scene, Btn } from '../../components/common';
+import { Scene, Btn, Swithcer, Section } from '../../components/common';
+import { useModeValue, useNotificationValue, useUserValue } from '../../state';
 import { styles } from './styles';
 
 const ProfileScreen: React.FC = (): JSX.Element => {
+  const [{ mode }, dispatchMode] = useModeValue();
   const [loading, setLoading] = useState(false);
   const [, dispatchNotification] = useNotificationValue();
   const [{ user }] = useUserValue();
+  console.log(mode);
+
+  const handleSwitchMode = () => {
+    dispatchMode({ mode: mode === 'light' ? 'dark' : 'light' });
+  };
 
   const handleSignOut = () => {
     setLoading(true);
@@ -24,19 +30,23 @@ const ProfileScreen: React.FC = (): JSX.Element => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Scene keyboardAvoidingView={true}>
-        <View style={styles.container}>
-          <View style={styles.info}>
-            <Text style={styles.email}>{user.email}</Text>
+      <View style={styles.content}>
+        <Section title="Profile">
+          <View style={styles.listItem}>
+            <Text style={[styles.listItemText, styles.listItemName]}>E-mail:</Text>
+            <Text style={[styles.listItemText, styles.listItemValue]}>{user.email}</Text>
           </View>
-          <Btn
-            title="Sign Out"
-            onPress={handleSignOut}
-            loading={loading}
-            // addStyle={styles.submitBtn}
+        </Section>
+        <Section title="Settings">
+          <Swithcer
+            onValueChange={handleSwitchMode}
+            value={mode === 'dark'}
+            titleOn="Dark mode on"
+            titleOff="Dark mode off"
           />
-        </View>
-      </Scene>
+        </Section>
+        <Btn title="Sign Out" onPress={handleSignOut} loading={loading} />
+      </View>
     </SafeAreaView>
   );
 };
