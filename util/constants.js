@@ -2,6 +2,7 @@
 
 export const colors = {
   COLOR_PRIMARY: 'black',
+  COLOR_PRIMARY_ON_BG: 'white',
   COLOR_PRIMARY_BACK: 'white',
   COLOR_BUTTON: 'black',
   COLOR_INPUT_PLACEHOLDER: 'darkgray',

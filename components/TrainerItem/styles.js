@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes } from '../../util/constants';
-
-const GENERAL_SIZE = 10;
+import { sizes, colors, fontSizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,19 +7,18 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     height: 200,
     borderRadius: sizes.RADIUS_ITEMS,
-    backgroundColor: 'blue',
-    margin: GENERAL_SIZE,
-    padding: GENERAL_SIZE
+    margin: sizes.PADDING_SMALL,
+    padding: sizes.PADDING_SMALL
   },
   illustration: {
     flex: 1
   },
   title: {
     textAlign: 'center',
-    paddingHorizontal: GENERAL_SIZE,
-    paddingTop: GENERAL_SIZE,
+    paddingHorizontal: sizes.PADDING_SMALL,
+    paddingTop: sizes.PADDING_SMALL,
     paddingBottom: sizes.PADDING_GENERAL,
-    fontSize: 22,
-    color: 'white'
+    fontSize: fontSizes.H2,
+    color: colors.COLOR_PRIMARY_ON_BG
   }
 });
