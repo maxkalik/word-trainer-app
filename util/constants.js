@@ -8,8 +8,15 @@ export const colors = {
   COLOR_INPUT_PLACEHOLDER: 'darkgray',
   COLOR_ACTIVE: 'royalblue',
   COLOR_ACTIVE_BACK: '#F5F5F5',
-  COLOR_SUCCESS: 'green',
-  COLOR_BORDER: 'silver'
+  COLOR_BORDER: 'silver',
+  COLOR_SUCCESS: 'green'
+};
+
+export const answerColors = {
+  COLOR_CORRECT: colors.COLOR_SUCCESS,
+  COLOR_CORRECT_SHADOW: 'greenyellow',
+  COLOR_HINT: 'orchid',
+  COLOR_FAILED: 'red'
 };
 
 // SIZES

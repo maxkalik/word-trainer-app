@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, fontSizes } from '../../util/constants';
+import { sizes, fontSizes, colors } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   word: {
-    color: 'black',
+    color: colors.COLOR_PRIMARY,
     fontSize: fontSizes.WORD,
     marginBottom: sizes.PADDING_SMALL
   },
