@@ -1,6 +1,20 @@
 // COLORS
 
 export const colors = {
+  dark: {
+    COLOR_BACKGROUND: 'black',
+    COLOR_PRIMARY: '#e6e6e6',
+    COLOR_ACTIVE: 'white',
+    COLOR_INACTIVE: '#a6a6a6',
+    COLOR_BUTTON: 'royalblue'
+  },
+  light: {
+    COLOR_BACKGROUND: 'white',
+    COLOR_PRIMARY: 'black',
+    COLOR_ACTIVE: 'royalblue',
+    COLOR_INACTIVE: 'black',
+    COLOR_BUTTON: 'black'
+  },
   COLOR_PRIMARY: 'black',
   COLOR_SECONDARY: 'gray',
   COLOR_PRIMARY_ON_BG: 'white',

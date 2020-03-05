@@ -4,13 +4,14 @@ import TrainersList from '../../components/TrainersList/TrainersList';
 import { useModeValue, useWordsValue } from '../../state';
 import { Message } from '../../components/common';
 import { styles } from './styles';
+import { colors } from '../../util/constants';
 
 const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Element => {
   const [{ mode }] = useModeValue();
   const [{ words }] = useWordsValue();
   const wordsLength = words.length >= 10;
 
-  console.log(mode);
+  // console.log(mode);
 
   const renderMessage = () => (
     <Message
@@ -22,7 +23,7 @@ const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Elem
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { backgroundColor: colors.COLOR_DARK_BACKGROUND }]}>
       {wordsLength ? <TrainersList words={words} navigation={navigation} /> : renderMessage()}
     </SafeAreaView>
   );
