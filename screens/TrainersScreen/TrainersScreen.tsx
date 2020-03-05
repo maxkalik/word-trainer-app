@@ -7,7 +7,7 @@ import { styles } from './styles';
 import { colors } from '../../util/constants';
 
 const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Element => {
-  const [mode] = useModeValue();
+  const [mode]: ['light' | 'dark'] = useModeValue();
   const [{ words }] = useWordsValue();
   const wordsLength = words.length >= 10;
 
@@ -21,8 +21,8 @@ const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Elem
   );
 
   return (
-    <SafeAreaView style={[styles.container, { backgroundColor: colors.COLOR_DARK_BACKGROUND }]}>
-      {wordsLength ? <TrainersList words={words} navigation={navigation} /> : renderMessage()}
+    <SafeAreaView style={[styles.container, { backgroundColor: colors[mode].COLOR_BACKGROUND }]}>
+      {wordsLength ? <TrainersList words={words} navigation={navigation} mode={mode} /> : renderMessage()}
     </SafeAreaView>
   );
 };

@@ -3,7 +3,10 @@ import { Animated } from 'react-native';
 import { Title } from '../common';
 import { styles } from './styles';
 
-const TrainersListHeader: React.FC<{ offset: any }> = ({ offset }): JSX.Element => (
+const TrainersListHeader: React.FC<{ offset: any; mode: 'light' | 'dark' }> = ({
+  offset,
+  mode
+}): JSX.Element => (
   <Animated.View
     style={[
       styles.container,
@@ -19,7 +22,7 @@ const TrainersListHeader: React.FC<{ offset: any }> = ({ offset }): JSX.Element 
       }
     ]}
   >
-    <Title>Trainers</Title>
+    <Title mode={mode}>Trainers</Title>
   </Animated.View>
 );
 

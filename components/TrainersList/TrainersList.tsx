@@ -6,9 +6,10 @@ import { WordTypes } from '../../types';
 import { sizes, trainerColors } from '../../util/constants';
 import { styles } from './styles';
 
-const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({
+const TrainersList: React.FC<{ words: WordTypes[]; navigation: any; mode: 'light' | 'dark' }> = ({
   words,
-  navigation
+  navigation,
+  mode
 }): JSX.Element => {
   const [offset] = useState(new Animated.Value(1));
 
@@ -33,7 +34,7 @@ const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({
       numColumns={trainers.length > 2 ? 2 : 1}
       style={styles.container}
       data={trainers}
-      ListHeaderComponent={() => <TrainersListHeader offset={offset} />}
+      ListHeaderComponent={() => <TrainersListHeader mode={mode} offset={offset} />}
       renderItem={({ item }: any) => (
         <TrainerItem
           title={item.title}
