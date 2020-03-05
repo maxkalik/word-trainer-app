@@ -12,7 +12,7 @@ import { findMatches } from './helpers';
 import { styles } from './styles';
 
 const VocabularyScreen: React.FC = (props: any): JSX.Element => {
-  const [, dispatchNotification] = useNotificationValue();
+  const [, setNotification] = useNotificationValue();
   const [{ user }] = useUserValue();
   const [{ words }] = useWordsValue();
 
@@ -54,7 +54,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
 
   const onGetNotification = (message: string): void => {
     setLoading(false);
-    dispatchNotification({ msg: message });
+    setNotification(message);
   };
 
   const handleRemove = () => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import firebase from '../../firebase';
 import { View } from 'react-native';
 import { Input, Btn } from '../../components/common';
-import { useNotificationValue } from '../../state/notification';
+import { useNotificationValue } from '../../state';
 import { checkValidity } from '../../helpers';
 import { SignInTextInputProps, AuthFormProps } from './types';
 import { initialState, inputFields } from './states';
@@ -14,7 +14,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   submitButtonName,
   requestType
 }): JSX.Element => {
-  const [, dispatchNotification] = useNotificationValue();
+  const [, setNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
   const [signInValues, setSignInValues] = useState(initialState);
 
@@ -53,7 +53,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
       .then(() => setLoading(false))
       .catch(error => {
         setLoading(false);
-        dispatchNotification({ msg: error.message });
+        setNotification(error.message);
       });
   };
 
@@ -64,7 +64,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
       .then(() => setLoading(false))
       .catch(error => {
         setLoading(false);
-        dispatchNotification({ msg: error.message });
+        setNotification(error.message);
       });
   };
 
@@ -72,18 +72,16 @@ const AuthForm: React.FC<AuthFormProps> = ({
     setLoading(true);
     if (isEmptyFields) {
       setLoading(false);
-      dispatchNotification({ msg: 'Please fill all fields' });
+      setNotification('Please fill all fields');
     }
     if (isValidMessages) {
       setLoading(false);
-      dispatchNotification({ msg: email.validMsg || 'Password ' + password.validMsg });
+      setNotification(email.validMsg || 'Password ' + password.validMsg);
     } else {
       try {
         getRequest(requestType);
       } catch (err) {
-        dispatchNotification({
-          msg: 'Oops. Internal error. Probably lost connection. Please, restart an application'
-        });
+        setNotification('Oops. Internal error. Probably lost connection. Please, restart an application');
       }
     }
   };

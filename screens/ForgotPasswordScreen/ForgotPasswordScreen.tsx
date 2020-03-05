@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native';
 import firebase from '../../firebase';
 import { Input, Btn, Header, Scene } from '../../components/common';
-import { useNotificationValue } from '../../state/notification';
+import { useNotificationValue } from '../../state';
 import { checkValidity } from '../../helpers';
 import { styles } from './styles';
 
@@ -29,7 +29,7 @@ const emailTextField = {
 };
 
 const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Element => {
-  const [, dispatchNotification] = useNotificationValue();
+  const [, setNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState(initialState);
 
@@ -55,7 +55,7 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }): JS
       })
       .catch(error => {
         setLoading(false);
-        dispatchNotification({ msg: error.message });
+        setNotification(error.message);
       });
   };
 
@@ -63,18 +63,16 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }): JS
     setLoading(true);
     if (isEmpty) {
       setLoading(false);
-      dispatchNotification({ msg: 'Please fill all fields' });
+      setNotification('Please fill all fields');
     }
     if (isValidMessage) {
       setLoading(false);
-      dispatchNotification({ msg: email.validMsg });
+      setNotification(email.validMsg);
     } else {
       try {
         onForgotPasswordRequest();
       } catch (err) {
-        dispatchNotification({
-          msg: 'Oops. Internal error. Probably lost connection. Please, restart an application'
-        });
+        setNotification('Oops. Internal error. Probably lost connection. Please, restart an application');
       }
     }
   };

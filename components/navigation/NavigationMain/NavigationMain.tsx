@@ -9,7 +9,7 @@ import { useModeValue } from '../../../state';
 import { colors, sizes, fontSizes } from '../../../util/constants';
 
 const TabBarComponent: React.FC = (props: any): JSX.Element => {
-  const [{ mode }]: [{ mode: 'light' | 'dark' }] = useModeValue();
+  const [mode] = useModeValue();
   const { COLOR_ACTIVE, COLOR_INACTIVE, COLOR_BACKGROUND } = colors[mode];
   return (
     <BottomTabBar

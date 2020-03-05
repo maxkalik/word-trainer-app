@@ -8,7 +8,7 @@ import { useUserValue, useNotificationValue, useWordsValue } from '../../state';
 const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [, wordsDispatch] = useWordsValue();
-  const [, dispatchNotification] = useNotificationValue();
+  const [, setNotification] = useNotificationValue();
   const [, dispatchUser] = useUserValue();
 
   useEffect(() => {
@@ -35,12 +35,12 @@ const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
             fetchingWords([]);
           } else {
             setLoading(true);
-            dispatchNotification({ msg: 'Connection is lost' });
+            setNotification('Connection is lost');
           }
         });
       }
     });
-  }, [wordsDispatch, dispatchNotification, user.uid]);
+  }, [wordsDispatch, setNotification, user.uid]);
 
   if (loading) {
     return <Spinner />;
