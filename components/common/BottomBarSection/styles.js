@@ -3,7 +3,7 @@ import { sizes, colors } from '../../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.COLOR_PRIMARY_BACK,
+    backgroundColor: colors.COLOR_LIGHT_BACKGROUND,
     paddingTop: sizes.PADDING_GENERAL,
     borderTopColor: colors.COLOR_BORDER,
     alignItems: 'center',

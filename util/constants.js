@@ -4,7 +4,8 @@ export const colors = {
   COLOR_PRIMARY: 'black',
   COLOR_SECONDARY: 'gray',
   COLOR_PRIMARY_ON_BG: 'white',
-  COLOR_PRIMARY_BACK: 'white',
+  COLOR_DARK_BACKGROUND: 'black',
+  COLOR_LIGHT_BACKGROUND: 'white',
   COLOR_BUTTON: 'black',
   COLOR_INPUT_PLACEHOLDER: 'darkgray',
   COLOR_ACTIVE: 'royalblue',
@@ -49,8 +50,8 @@ export const fontSizes = {
 // BACKGROUND COLORS
 
 export const backgroundColors = {
-  BACK_SIGNIN: colors.COLOR_PRIMARY_BACK,
-  BACK_SIGNUP: colors.COLOR_PRIMARY_BACK,
+  BACK_SIGNIN: colors.COLOR_LIGHT_BACKGROUND,
+  BACK_SIGNUP: colors.COLOR_LIGHT_BACKGROUND,
   BACK_NOTIFICATION: 'rgba(197, 214, 231, 0.9)'
 };
 

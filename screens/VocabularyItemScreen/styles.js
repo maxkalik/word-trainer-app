@@ -5,6 +5,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: sizes.HEIGHT_GENERAL,
-    backgroundColor: colors.COLOR_PRIMARY_BACK
+    backgroundColor: colors.COLOR_LIGHT_BACKGROUND
   }
 });

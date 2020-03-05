@@ -6,6 +6,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     position: 'relative',
     justifyContent: 'center',
-    backgroundColor: colors.COLOR_PRIMARY_BACK
+    backgroundColor: colors.COLOR_LIGHT_BACKGROUND
   }
 });

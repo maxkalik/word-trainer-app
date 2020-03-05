@@ -5,7 +5,7 @@ import { inputBordered } from '../../util/styles';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.COLOR_PRIMARY_BACK
+    backgroundColor: colors.COLOR_LIGHT_BACKGROUND
   },
   scene: {
     flex: 1,
