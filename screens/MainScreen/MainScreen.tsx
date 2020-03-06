@@ -15,7 +15,7 @@ const Main: React.FC<{ user: string }> = ({ user }): JSX.Element => (
 );
 
 const MainScreen: React.FC = (): JSX.Element => {
-  const [{ mode }] = useModeValue();
+  const [mode] = useModeValue();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<any>(null);
   const [statusMode, setStatusMode] = useState<'light-content' | 'dark-content'>('light-content');

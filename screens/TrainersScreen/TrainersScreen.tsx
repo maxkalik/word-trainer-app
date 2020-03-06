@@ -6,8 +6,14 @@ import { Message } from '../../components/common';
 import { styles } from './styles';
 import { colors } from '../../util/constants';
 
+import { useTestValue } from '../../state/Test';
+
 const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Element => {
-  const [mode]: ['light' | 'dark'] = useModeValue();
+  const [test, setTest] = useTestValue();
+  setTest('test value');
+  console.log(test);
+
+  const [mode] = useModeValue();
   const [{ words }] = useWordsValue();
   const wordsLength = words.length >= 10;
 
