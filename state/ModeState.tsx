@@ -1,12 +1,14 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useState, SetStateAction } from 'react';
 
 export type ModeTypes = 'light' | 'dark';
 
-const initialState = 'light';
-const reducer = (state = initialState, action: ModeTypes) => action;
-const ModeContext = createContext(initialState);
+const initialState: ModeTypes = 'light';
+const modeDefaults: [ModeTypes, React.Dispatch<SetStateAction<ModeTypes>>?] = [initialState];
+
+const ModeContext = createContext(modeDefaults);
+
 const ModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }): JSX.Element => (
-  <ModeContext.Provider value={useReducer(reducer, initialState)}>{children}</ModeContext.Provider>
+  <ModeContext.Provider value={useState(initialState)}>{children}</ModeContext.Provider>
 );
 
 export const useModeValue = () => useContext(ModeContext);

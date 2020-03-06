@@ -6,13 +6,8 @@ import { Message } from '../../components/common';
 import { styles } from './styles';
 import { colors } from '../../util/constants';
 
-import { useTestValue } from '../../state/Test';
 
 const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Element => {
-  const [test, setTest] = useTestValue();
-  setTest('test value');
-  console.log(test);
-
   const [mode] = useModeValue();
   const [{ words }] = useWordsValue();
   const wordsLength = words.length >= 10;
@@ -28,7 +23,7 @@ const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Elem
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors[mode].COLOR_BACKGROUND }]}>
-      {wordsLength ? <TrainersList words={words} navigation={navigation} mode={mode} /> : renderMessage()}
+      {wordsLength ? <TrainersList words={words} navigation={navigation} /> : renderMessage()}
     </SafeAreaView>
   );
 };

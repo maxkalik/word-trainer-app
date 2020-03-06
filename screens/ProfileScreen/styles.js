@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, colors, fontSizes } from '../../util/constants';
+import { sizes, fontSizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   listItemText: {
-    color: colors.COLOR_PRIMARY,
     fontSize: fontSizes.PARAGRAPH
   },
   listItemName: {

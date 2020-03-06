@@ -3,7 +3,7 @@
 export const colors = {
   dark: {
     COLOR_BACKGROUND: 'black',
-    COLOR_PRIMARY: '#e6e6e6',
+    COLOR_PRIMARY: 'white',
     COLOR_ACTIVE: 'white',
     COLOR_INACTIVE: '#a6a6a6',
     COLOR_BUTTON: 'royalblue'
