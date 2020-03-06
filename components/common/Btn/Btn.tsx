@@ -16,7 +16,7 @@ const Btn: React.FC<ButtonProps> = ({
   const smallSize = size === 'small';
   const containerStyles = [
     styles.container,
-    filled && { backgroundColor: mode && colors[mode].COLOR_BUTTON },
+    filled && { backgroundColor: mode ? colors[mode].COLOR_BUTTON : colors.default.COLOR_BUTTON },
     smallSize ? smallBtnStyles.container : largeBtnStyles.container
   ];
   const titleStyles = [

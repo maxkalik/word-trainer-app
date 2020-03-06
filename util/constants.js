@@ -11,7 +11,7 @@ export const colors = {
     COLOR_INACTIVE: '#a6a6a6',
     COLOR_BUTTON: 'royalblue',
     COLOR_BORDER: 'rgba(255, 255, 255, 0.2)',
-    COLOR_BACKGROUND_NOTIFICATION: 'rgba(255, 255, 255, 0.2)'
+    COLOR_BACKGROUND_NOTIFICATION: 'rgba(31, 37, 46, 0.9)'
   },
   light: {
     COLOR_BACKGROUND: 'white',
@@ -27,7 +27,8 @@ export const colors = {
   },
   default: {
     COLOR_ACTIVE: 'royalblue',
-    COLOR_ACTIVE_INPUT_BACKGROUND: '#F5F5F5'
+    COLOR_ACTIVE_INPUT_BACKGROUND: '#F5F5F5',
+    COLOR_BUTTON: 'black'
   },
   COLOR_PRIMARY: 'black',
   COLOR_SECONDARY: 'gray',
