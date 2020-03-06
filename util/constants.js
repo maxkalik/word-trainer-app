@@ -10,7 +10,8 @@ export const colors = {
     COLOR_ACTIVE_INPUT_BACKGROUND: 'rgba(255, 255, 255, 0.1)',
     COLOR_INACTIVE: '#a6a6a6',
     COLOR_BUTTON: 'royalblue',
-    COLOR_BORDER: 'rgba(255, 255, 255, 0.2)'
+    COLOR_BORDER: 'rgba(255, 255, 255, 0.2)',
+    COLOR_BACKGROUND_NOTIFICATION: 'rgba(255, 255, 255, 0.2)'
   },
   light: {
     COLOR_BACKGROUND: 'white',
@@ -21,7 +22,8 @@ export const colors = {
     COLOR_ACTIVE_INPUT_BACKGROUND: 'rgba(0, 0, 0, 0.1)',
     COLOR_INACTIVE: 'black',
     COLOR_BUTTON: 'black',
-    COLOR_BORDER: 'rgba(0, 0, 0, 0.2)'
+    COLOR_BORDER: 'rgba(0, 0, 0, 0.2)',
+    COLOR_BACKGROUND_NOTIFICATION: 'rgba(197, 214, 231, 0.9)'
   },
   default: {
     COLOR_ACTIVE: 'royalblue',
