@@ -1,7 +1,7 @@
 // Providers
 import ModeProvider from './ModeState';
 import NotificationProvider from './NotificationState';
-import UserProvider from './user';
+import UserProvider from './UserState';
 import WordsProvider from './WordsState';
 
 export { ModeProvider, NotificationProvider, UserProvider, WordsProvider };
@@ -10,6 +10,6 @@ export { ModeProvider, NotificationProvider, UserProvider, WordsProvider };
 import { useModeValue } from './ModeState';
 import { useWordsValue } from './WordsState';
 import { useNotificationValue } from './NotificationState';
-import { useUserValue } from './user';
+import { useUserValue } from './UserState';
 
 export { useModeValue, useWordsValue, useNotificationValue, useUserValue };

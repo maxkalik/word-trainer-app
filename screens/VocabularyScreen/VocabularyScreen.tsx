@@ -13,7 +13,7 @@ import { styles } from './styles';
 
 const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   const [, setNotification] = useNotificationValue();
-  const [{ user }] = useUserValue();
+  const [user] = useUserValue();
   const [words] = useWordsValue();
 
   const [loading, setLoading] = useState(false);

@@ -25,7 +25,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   const [isFocused, setIsFocused] = useState(false);
   const [words] = useWordsValue();
   const [, setNotification] = useNotificationValue();
-  const [{ user }] = useUserValue();
+  const [user] = useUserValue();
 
   const isWordEmpty = wordItem.word === '';
   const isTranslationEmpty = wordItem.translation === '';

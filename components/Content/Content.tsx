@@ -10,11 +10,11 @@ const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [, setWords] = useWordsValue();
   const [, setNotification] = useNotificationValue();
-  const [, dispatchUser] = useUserValue();
+  const [, setUser] = useUserValue();
 
   useEffect(() => {
-    dispatchUser({ user });
-  }, [dispatchUser, user]);
+    setUser(user);
+  }, [setUser, user]);
 
   useEffect(() => {
     const database = firebase.database();

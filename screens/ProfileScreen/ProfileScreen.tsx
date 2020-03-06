@@ -10,7 +10,7 @@ const ProfileScreen: React.FC = (): JSX.Element => {
   const [mode, setMode] = useModeValue();
   const [, setNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
-  const [{ user }] = useUserValue();
+  const [user] = useUserValue();
 
   const handleSwitchMode = () => {
     setMode(mode === 'light' ? 'dark' : 'light');
