@@ -122,6 +122,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
             acceptBtnOnPress={handleRemove}
             cancelBtnTitle="Cancel"
             cancelBtnOnPress={() => setCheckedItems([])}
+            mode={mode}
           />
         )}
       </>

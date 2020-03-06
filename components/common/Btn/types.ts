@@ -1,4 +1,5 @@
 import { StyleProp, GestureResponderEvent, ViewStyle } from 'react-native';
+import { ModeTypes } from '../../../state/ModeState';
 
 export interface ButtonProps {
   title: string;
@@ -7,4 +8,5 @@ export interface ButtonProps {
   filled?: boolean;
   loading?: boolean;
   addStyle?: StyleProp<ViewStyle>;
+  mode?: ModeTypes;
 }

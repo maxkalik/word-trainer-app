@@ -43,6 +43,7 @@ const Input: React.FC<InputProps> = ({
   const generalModeStyle = isEdit && {
     backgroundColor: mode && colors[mode].COLOR_ACTIVE_INPUT_BACKGROUND
   };
+
   return (
     <View style={[styles.container, isFocusedStyle, generalModeStyle, style]}>
       <TextInput
