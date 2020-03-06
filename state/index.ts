@@ -2,13 +2,13 @@
 import ModeProvider from './ModeState';
 import NotificationProvider from './NotificationState';
 import UserProvider from './user';
-import WordsProvider from './words';
+import WordsProvider from './WordsState';
 
 export { ModeProvider, NotificationProvider, UserProvider, WordsProvider };
 
 // Hooks
 import { useModeValue } from './ModeState';
-import { useWordsValue } from './words';
+import { useWordsValue } from './WordsState';
 import { useNotificationValue } from './NotificationState';
 import { useUserValue } from './user';
 

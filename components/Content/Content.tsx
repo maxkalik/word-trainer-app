@@ -4,10 +4,11 @@ import { NavigationMain } from '../navigation';
 import { Spinner, Notification } from '../common';
 import { objectToArray } from '../../helpers';
 import { useUserValue, useNotificationValue, useWordsValue } from '../../state';
+import { WordTypes } from '../../state/WordsState';
 
 const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
   const [loading, setLoading] = useState(true);
-  const [, wordsDispatch] = useWordsValue();
+  const [, setWords] = useWordsValue();
   const [, setNotification] = useNotificationValue();
   const [, dispatchUser] = useUserValue();
 
@@ -20,13 +21,13 @@ const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
     var connectedRef = database.ref('.info/connected');
     var dataRef = database.ref(`${user.uid}/words`);
 
-    const fetchingWords = (data: object[]): void => {
-      wordsDispatch({ words: data });
+    const fetchingWords = (data: WordTypes[]): void => {
+      setWords(data);
       setLoading(false);
     };
 
     dataRef.on('value', (snapshot: any) => {
-      const data = snapshot.val();
+      const data: { [key: string]: WordTypes } | null = snapshot.val();
       if (data !== null) {
         fetchingWords(objectToArray(data).reverse());
       } else {
@@ -40,7 +41,7 @@ const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
         });
       }
     });
-  }, [wordsDispatch, setNotification, user.uid]);
+  }, [setWords, setNotification, user.uid]);
 
   if (loading) {
     return <Spinner />;

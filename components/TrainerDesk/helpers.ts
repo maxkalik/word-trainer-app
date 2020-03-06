@@ -1,10 +1,10 @@
-import { WordTypes } from '../../types';
+import { WordTypes } from '../../state/WordsState';
 
-const randomItem = (arr: WordTypes[]): any => arr[Math.floor(Math.random() * arr.length)];
+const randomItem = (arr: WordTypes[]): WordTypes => arr[Math.floor(Math.random() * arr.length)];
 
-const shuffle = (arr: []): [] => arr.sort(() => 0.5 - Math.random());
+const shuffle = (arr: WordTypes[]): WordTypes[] => arr.sort(() => 0.5 - Math.random());
 
-const makeWordsDesk = (count: number, wordsArr: WordTypes[], result: WordTypes[] = []): [] => {
+const makeWordsDesk = (count: number, wordsArr: WordTypes[], result: WordTypes[] = []): WordTypes[] => {
   if (wordsArr.length < 5) {
     return [];
   }

@@ -23,7 +23,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
   const [wordItem, setWordItem] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [{ words }] = useWordsValue();
+  const [words] = useWordsValue();
   const [, setNotification] = useNotificationValue();
   const [{ user }] = useUserValue();
 

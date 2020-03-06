@@ -9,7 +9,7 @@ import { colors } from '../../util/constants';
 
 const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Element => {
   const [mode] = useModeValue();
-  const [{ words }] = useWordsValue();
+  const [words] = useWordsValue();
   const wordsLength = words.length >= 10;
 
   const renderMessage = () => (
