@@ -2,7 +2,7 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import VocabularyItem from '../../components/VocabularyItem/VocabularyItem';
 import { sizes } from '../../util/constants';
-import { WordTypes } from '../../types';
+import { WordTypes } from '../../state/WordsState';
 import { VocabularyItemsProps } from './types';
 
 const VocabularyItems: React.FC<VocabularyItemsProps> = ({
@@ -12,7 +12,7 @@ const VocabularyItems: React.FC<VocabularyItemsProps> = ({
   onItemPress,
   onCheckChange
 }): JSX.Element => {
-  const handleItemPress = (item: WordTypes) => {
+  const handleItemPress = (item: WordTypes): void => {
     if (editMode) {
       onCheckChange(item.id);
     } else {

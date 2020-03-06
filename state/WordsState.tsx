@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
 
-export interface WordTypes {
-  id?: string;
+export interface WordVluesTypes {
   word: string;
   translation: string;
+}
+
+export interface WordTypes extends WordVluesTypes {
+  id: string;
 }
 
 const initialState: WordTypes[] = [];

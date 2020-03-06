@@ -7,7 +7,7 @@ import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader
 import VocabularyItems from '../../components/VocabularyItems/VocabularyItems';
 import BottomToolBar from '../../components/BottomToolBar/BottomToolBar';
 import { useNotificationValue, useUserValue, useWordsValue } from '../../state';
-import { WordTypes } from '../../types';
+import { WordTypes } from '../../state/WordsState';
 import { findMatches } from './helpers';
 import { styles } from './styles';
 

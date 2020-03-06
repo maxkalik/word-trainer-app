@@ -1,4 +1,4 @@
-import { WordTypes } from '../../types';
+import { WordTypes } from '../../state/WordsState';
 
 export interface InitialStateProps {
   answer: null | string;

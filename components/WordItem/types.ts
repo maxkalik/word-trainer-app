@@ -1,4 +1,4 @@
-import { WordTypes } from 'types';
+import { WordTypes } from 'state/WordsState';
 
 export const initialState: WordTypes = {
   id: '',
@@ -9,7 +9,7 @@ export const initialState: WordTypes = {
 export interface WordItemProps {
   mainBtnTitle: string;
   actionName: 'push' | 'set';
-  item?: WordTypes | undefined;
+  item?: WordTypes;
 }
 
 export interface TextInputsProps {

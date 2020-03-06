@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Animated } from 'react-native';
 import TrainersListHeader from '../TrainersListHeader/TrainersListHeader';
 import TrainerItem from '../TrainerItem/TrainerItem';
-import { WordTypes } from '../../types';
+import { WordTypes } from '../../state/WordsState';
 import { sizes, trainerColors } from '../../util/constants';
 import { styles } from './styles';
 

@@ -3,7 +3,7 @@ import TrainerDeskItems from '../../components/TrainerDeskItems/TrainerDeskItems
 import TrainerWord from '../../components/TrainerWord/TrainerWord';
 import { randomItem, makeWordsDesk } from './helpers';
 import { colors } from '../../util/constants';
-import { WordTypes } from '../../types';
+import { WordTypes } from '../../state/WordsState';
 
 const TrainerDesk: React.FC<{ words: WordTypes[]; translateToWord?: boolean }> = ({
   words,

@@ -1,5 +1,5 @@
 import { GestureResponderEvent } from 'react-native';
-import { WordTypes } from '../../types';
+import { WordTypes } from '../../state/WordsState';
 
 export interface VocabularyItemProps {
   wordItem: WordTypes;
