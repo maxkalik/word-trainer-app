@@ -1,23 +1,8 @@
 import React from 'react';
-import { View, Text, StyleProp, TextStyle } from 'react-native';
+import { View, Text } from 'react-native';
 import { styles } from './styles';
-import { ModeTypes } from '../../../state/ModeState';
+import { ListItemLineItemProps, ListItemProps } from './types';
 import { colors } from '../../../util/constants';
-
-interface ListItemLineItemProps {
-  mode: ModeTypes;
-  addStyle: StyleProp<TextStyle>;
-  children: string;
-}
-
-interface ListItemProps {
-  mode: ModeTypes;
-  name: string;
-  value: string | null;
-  containerStyle?: StyleProp<TextStyle>;
-  nameStyle?: StyleProp<TextStyle>;
-  valueStyle?: StyleProp<TextStyle>;
-}
 
 const ListItemLineItem: React.FC<ListItemLineItemProps> = ({ addStyle, mode, children }): JSX.Element => (
   <Text style={[styles.listItem, addStyle, { color: colors[mode].COLOR_PRIMARY }]}>{children}</Text>

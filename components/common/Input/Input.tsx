@@ -33,15 +33,20 @@ const Input: React.FC<InputProps> = ({
   textContentType,
   touchableIcon,
   iconName,
-  iconColor
+  iconColor,
+  mode
 }): JSX.Element => {
   const [focus, setFocus] = useState(false);
   const isValue = value.length > 0;
-
+  const isEdit = focus || isValue;
+  const isFocusedStyle = isEdit && styles.focused;
+  const generalModeStyle = isEdit && {
+    backgroundColor: mode && colors[mode].COLOR_ACTIVE_INPUT_BACKGROUND
+  };
   return (
-    <View style={[styles.container, (focus || isValue) && styles.focused, style]}>
+    <View style={[styles.container, isFocusedStyle, generalModeStyle, style]}>
       <TextInput
-        style={[styles.inputField, styleInputField]}
+        style={[styles.inputField, styleInputField, { color: mode && colors[mode].COLOR_PRIMARY }]}
         autoFocus={autoFocus}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}

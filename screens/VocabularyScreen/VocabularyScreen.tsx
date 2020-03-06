@@ -6,12 +6,14 @@ import { Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
 import VocabularyItems from '../../components/VocabularyItems/VocabularyItems';
 import BottomToolBar from '../../components/BottomToolBar/BottomToolBar';
-import { useNotificationValue, useUserValue, useWordsValue } from '../../state';
+import { useModeValue, useNotificationValue, useUserValue, useWordsValue } from '../../state';
 import { WordTypes } from '../../state/WordsState';
 import { findMatches } from './helpers';
 import { styles } from './styles';
+import { colors } from '../../util/constants';
 
 const VocabularyScreen: React.FC = (props: any): JSX.Element => {
+  const [mode] = useModeValue();
   const [, setNotification] = useNotificationValue();
   const [user] = useUserValue();
   const [words] = useWordsValue();
@@ -126,7 +128,11 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     );
   };
 
-  return <SafeAreaView style={styles.container}>{renderContent()}</SafeAreaView>;
+  return (
+    <SafeAreaView style={[styles.container, { backgroundColor: colors[mode].COLOR_BACKGROUND }]}>
+      {renderContent()}
+    </SafeAreaView>
+  );
 };
 
 export default withNavigationFocus(VocabularyScreen);

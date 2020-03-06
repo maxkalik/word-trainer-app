@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes } from '../../util/constants';
+import { sizes, colors } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
     opacity: 0.7
   },
   checkedTranslation: {
-    opacity: 1
+    opacity: 1,
+    color: colors.default.COLOR_ACTIVE
   }
 });

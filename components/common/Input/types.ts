@@ -1,4 +1,5 @@
 import { GestureResponderEvent, StyleProp, ViewStyle } from 'react-native';
+import { ModeTypes } from '../../../state/ModeState';
 
 export interface IconProps {
   onIconPress?: ((event: GestureResponderEvent) => void) | undefined;
@@ -22,4 +23,5 @@ export interface InputProps {
   keyboardType?: 'email-address' | 'default';
   iconName?: 'close' | 'check mark' | null;
   iconColor?: string;
+  mode?: ModeTypes;
 }

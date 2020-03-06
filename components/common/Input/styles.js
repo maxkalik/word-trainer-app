@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   focused: {
-    backgroundColor: colors.COLOR_ACTIVE_BACK,
+    // backgroundColor: colors.COLOR_ACTIVE_BACK,
     borderRadius: sizes.RADIUS_SMALL_ELEMENTS,
     paddingHorizontal: sizes.PADDING_SMALL
   },
