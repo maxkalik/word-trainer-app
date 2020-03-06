@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
-import { ScrollView, View, Text, SafeAreaView } from 'react-native';
-import { Btn, Swithcer, Section } from '../../components/common';
+import { ScrollView, SafeAreaView } from 'react-native';
+import { Btn, Swithcer, Section, ListItem } from '../../components/common';
 import { useModeValue, useNotificationValue, useUserValue } from '../../state';
 import { styles } from './styles';
 import { colors } from '../../util/constants';
@@ -32,14 +32,7 @@ const ProfileScreen: React.FC = (): JSX.Element => {
     <SafeAreaView style={[styles.container, { backgroundColor: colors[mode].COLOR_BACKGROUND }]}>
       <ScrollView style={styles.content}>
         <Section title="Profile" mode={mode}>
-          <View style={styles.listItem}>
-            <Text style={[styles.listItemText, styles.listItemName, { color: colors[mode].COLOR_PRIMARY }]}>
-              E-mail:
-            </Text>
-            <Text style={[styles.listItemText, styles.listItemValue, { color: colors[mode].COLOR_PRIMARY }]}>
-              {user.email}
-            </Text>
-          </View>
+          <ListItem mode={mode} name="E-mail" value={user && user.email} />
         </Section>
         <Section title="Settings" mode={mode}>
           <Swithcer

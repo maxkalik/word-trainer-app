@@ -5,6 +5,7 @@ import { Spinner } from '../../components/common';
 import Content from '../../components/Content/Content';
 import AuthScreen from '../../screens/AuthScreen/AuthScreen';
 import { NotificationProvider, UserProvider, WordsProvider, useModeValue } from '../../state';
+import { UserValueTypes } from '../../state/UserState';
 
 const Main: React.FC<{ user: string }> = ({ user }): JSX.Element => (
   <UserProvider>
@@ -23,10 +24,12 @@ const MainScreen: React.FC = (): JSX.Element => {
   useEffect(() => {
     const modeContent = mode === 'light' ? 'dark-content' : 'light-content';
     setStatusMode(modeContent);
-    const unsubscribe = firebase.auth().onAuthStateChanged((userData: any) => {
-      userData ? setUser(userData) : setUser(null);
-      setLoading(false);
-    });
+    const unsubscribe = firebase.auth().onAuthStateChanged(
+      (userData: UserValueTypes | null): void => {
+        userData ? setUser(userData) : setUser(null);
+        setLoading(false);
+      }
+    );
     return () => unsubscribe();
   }, [mode]);
 

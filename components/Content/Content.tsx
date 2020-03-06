@@ -4,9 +4,10 @@ import { NavigationMain } from '../navigation';
 import { Spinner, Notification } from '../common';
 import { objectToArray } from '../../helpers';
 import { useUserValue, useNotificationValue, useWordsValue } from '../../state';
+import { UserValueTypes } from '../../state/UserState';
 import { WordTypes } from '../../state/WordsState';
 
-const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
+const Content: React.FC<{ user: UserValueTypes }> = ({ user }): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [, setWords] = useWordsValue();
   const [, setNotification] = useNotificationValue();
@@ -14,7 +15,7 @@ const Content: React.FC<{ user: any }> = ({ user }): JSX.Element => {
 
   useEffect(() => {
     setUser(user);
-  }, [setUser, user]);
+  }, [user, setUser]);
 
   useEffect(() => {
     const database = firebase.database();

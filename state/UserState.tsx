@@ -1,6 +1,11 @@
 import React, { createContext, useContext, SetStateAction, useState } from 'react';
 
-type UserTypes = object | null;
+export interface UserValueTypes {
+  uid: string | null;
+  email: string | null;
+}
+
+type UserTypes = UserValueTypes | null;
 
 const initialState: UserTypes = null;
 const userDefaults: [UserTypes, React.Dispatch<SetStateAction<null>>?] = [initialState];

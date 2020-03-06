@@ -59,19 +59,23 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
 
   const handleRemove = () => {
     setLoading(true);
-    checkedItems.forEach(item => {
-      firebase
-        .database()
-        .ref(`${user.uid}/words/${item}`)
-        .remove()
-        .then(() => {
-          onGetNotification('Words has been successfully removed.');
-        })
-        .catch(error => {
-          onGetNotification(`Error: "${error}"`);
-        });
-    });
-    setCheckedItems([]);
+    if (user !== null) {
+      checkedItems.forEach(item => {
+        firebase
+          .database()
+          .ref(`${user.uid}/words/${item}`)
+          .remove()
+          .then(() => {
+            onGetNotification('Words has been successfully removed.');
+          })
+          .catch(error => {
+            onGetNotification(`Error: "${error}"`);
+          });
+      });
+      setCheckedItems([]);
+    } else {
+      onGetNotification('Cannot delete this word. Restart an app');
+    }
   };
 
   const handleEditBtnPress = () => {

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, colors } from '../../util/constants';
+import { sizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,13 +13,14 @@ export const styles = StyleSheet.create({
     paddingLeft: sizes.PADDING_GENERAL
   },
   word: {
-    flex: 1
+    flex: 1,
+    opacity: 1
   },
   translation: {
     flex: 1,
-    color: colors.COLOR_SECONDARY
+    opacity: 0.7
   },
   checkedTranslation: {
-    color: colors.COLOR_PRIMARY
+    opacity: 1
   }
 });
