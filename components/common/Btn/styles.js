@@ -25,7 +25,7 @@ const smallBtnStyles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     height: sizes.HEIGHT_ELEMENTS,
-    borderRadius: sizes.RADIUS_ELEMENTS
+    borderRadius: sizes.RADIUS_SMALL_ELEMENTS
   },
   btnTitle: {
     textAlign: 'center',

@@ -3,6 +3,7 @@ import React, { createContext, useContext, SetStateAction, useState } from 'reac
 export interface UserValueTypes {
   uid: string | null;
   email: string | null;
+  isAnonymous: boolean;
 }
 
 type UserTypes = UserValueTypes | null;

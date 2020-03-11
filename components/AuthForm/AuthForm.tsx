@@ -12,13 +12,16 @@ import { styles } from './styles';
 const AuthForm: React.FC<AuthFormProps> = ({
   onForgotPasswordPress,
   submitButtonName,
-  requestType
+  requestType,
+  user
 }): JSX.Element => {
   const [, setNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
   const [signInValues, setSignInValues] = useState(initialState);
 
+  const defaultAuth = firebase.auth();
   const { email, password } = signInValues;
+  const isSignIn = requestType === 'signin';
   const isEmptyFields = email.value === '' || password.value === '';
   const isValidMessages = email.validMsg !== null || password.validMsg !== null;
 
@@ -35,20 +38,31 @@ const AuthForm: React.FC<AuthFormProps> = ({
     });
   };
 
-  const getRequest = (type: 'signin' | 'signup') => {
+  const getRequest = (type: 'signin' | 'signup' | 'link with credential') => {
     switch (type) {
       case 'signin':
         return onSignInRequest();
       case 'signup':
         return onSignUpRequest();
+      case 'link with credential':
+        return onLinkWithCredential();
       default:
         break;
     }
   };
 
+  const handleSingInAnonymously = () => {
+    defaultAuth
+      .signInAnonymously()
+      .then(() => setLoading(false))
+      .catch(error => {
+        setLoading(false);
+        setNotification(error.message);
+      });
+  };
+
   const onSignInRequest = () => {
-    firebase
-      .auth()
+    defaultAuth
       .signInWithEmailAndPassword(email.value, password.value)
       .then(() => setLoading(false))
       .catch(error => {
@@ -58,14 +72,31 @@ const AuthForm: React.FC<AuthFormProps> = ({
   };
 
   const onSignUpRequest = () => {
-    firebase
-      .auth()
+    defaultAuth
       .createUserWithEmailAndPassword(email.value, password.value)
       .then(() => setLoading(false))
       .catch(error => {
         setLoading(false);
         setNotification(error.message);
       });
+  };
+
+  const onLinkWithCredential = () => {
+    if (user) {
+      const credential = firebase.auth.EmailAuthProvider.credential(email.value, password.value);
+      if (defaultAuth.currentUser !== null) {
+        defaultAuth.currentUser
+          .linkWithCredential(credential)
+          .then(() => {
+            setNotification(`Anonymous account successfully upgraded. ${user.email}`);
+            setLoading(false);
+          })
+          .catch(error => {
+            setLoading(false);
+            setNotification(error.message);
+          });
+      }
+    }
   };
 
   const handleBtnAuthPressed = () => {
@@ -81,29 +112,28 @@ const AuthForm: React.FC<AuthFormProps> = ({
       try {
         getRequest(requestType);
       } catch (err) {
-        setNotification('Oops. Internal error. Probably lost connection. Please, restart an application');
+        setNotification('Oops. Internal error. Please, restart an application');
       }
     }
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.fields}>
-        {inputFields.map(({ name, placeholder, textContentType, keyboardType }: SignInTextInputProps) => (
-          <Input
-            key={name}
-            style={styles.input}
-            secureTextEntry={name === 'password'}
-            keyboardType={keyboardType}
-            textContentType={textContentType}
-            placeholder={placeholder}
-            onChangeText={(value: string) => handleInputChangeText(value, name)}
-            value={signInValues[name].value}
-            iconName={signInValues[name].validMsg === null ? 'check mark' : null}
-            iconColor={colors.COLOR_SUCCESS}
-          />
-        ))}
-      </View>
+      {inputFields.map(({ name, placeholder, textContentType, keyboardType }: SignInTextInputProps) => (
+        <Input
+          key={name}
+          style={styles.input}
+          secureTextEntry={name === 'password'}
+          keyboardType={keyboardType}
+          textContentType={textContentType}
+          placeholder={placeholder}
+          onChangeText={(value: string) => handleInputChangeText(value, name)}
+          value={signInValues[name].value}
+          iconName={signInValues[name].validMsg === null ? 'check mark' : null}
+          iconColor={colors.COLOR_SUCCESS}
+        />
+      ))}
+
       <View style={styles.buttons}>
         <Btn
           filled
@@ -112,8 +142,17 @@ const AuthForm: React.FC<AuthFormProps> = ({
           loading={loading}
           addStyle={styles.submitBtn}
         />
-        {requestType === 'signin' && (
-          <Btn size="small" title="Forgot Password?" onPress={onForgotPasswordPress} />
+        {isSignIn && (
+          <>
+            <Btn size="small" title="Forgot Password?" onPress={onForgotPasswordPress} />
+            <Btn
+              size="small"
+              addStyle={styles.btnAnonymus}
+              title="Try without login"
+              loading={loading}
+              onPress={handleSingInAnonymously}
+            />
+          </>
         )}
       </View>
     </View>

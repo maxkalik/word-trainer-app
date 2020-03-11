@@ -1,9 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { backgroundColors } from '../../util/constants';
+import { sizes, backgroundColors } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: backgroundColors.BACK_SIGNUP,
     flex: 1
+  },
+  scene: {
+    padding: sizes.PADDING_GENERAL + sizes.PADDING_LARGE
   }
 });
