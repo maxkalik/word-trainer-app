@@ -14,13 +14,14 @@ const Btn: React.FC<ButtonProps> = ({
   mode
 }): JSX.Element => {
   const smallSize = size === 'small';
+  const colorMode = mode ? colors[mode] : colors.default;
   const containerStyles = [
     styles.container,
-    filled && { backgroundColor: mode ? colors[mode].COLOR_BUTTON : colors.default.COLOR_BUTTON },
+    filled && { backgroundColor: colorMode.COLOR_BUTTON || colors.default.COLOR_BUTTON },
     smallSize ? smallBtnStyles.container : largeBtnStyles.container
   ];
   const titleStyles = [
-    filled ? { color: 'white' } : { color: 'royalblue' },
+    filled ? { color: colorMode.COLOR_BUTTON_TITLE_FILLED } : { color: colorMode.COLOR_BUTTON_TITLE },
     smallSize ? smallBtnStyles.btnTitle : largeBtnStyles.btnTitle
   ];
   return (

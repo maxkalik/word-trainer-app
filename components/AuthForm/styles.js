@@ -5,16 +5,25 @@ import { inputBordered } from '../../util/styles';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: sizes.PADDING_LARGE
+  },
+  textFields: {
+    flex: 1,
+    justifyContent: 'flex-end'
   },
   input: { ...inputBordered, marginTop: sizes.PADDING_LARGE },
   buttons: {
-    marginTop: sizes.PADDING_LARGE
+    marginTop: sizes.PADDING_LARGE,
+    flex: 1
+  },
+  smallBtns: {
+    justifyContent: 'space-between',
+    flex: 1
   },
   btnAnonymus: {
-    borderColor: colors.COLOR_ACTIVE,
-    borderWidth: 2,
-    marginTop: sizes.PADDING_GENERAL
+    borderColor: colors.default.COLOR_ACTIVE,
+    borderWidth: sizes.BORDER_GENERAL
   },
   submitBtn: {
     marginBottom: sizes.PADDING_SMALL

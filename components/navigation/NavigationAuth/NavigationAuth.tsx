@@ -18,7 +18,7 @@ const TabNavigator = createBottomTabNavigator(screens, {
     activeBackgroundColor: colors.COLOR_ACTIVE_BACK,
     adaptive: false,
     labelStyle: {
-      fontSize: fontSizes.PARAGRAPH
+      fontSize: fontSizes.H3
     },
     tabStyle: {
       justifyContent: 'center',

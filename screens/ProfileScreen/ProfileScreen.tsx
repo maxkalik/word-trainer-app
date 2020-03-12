@@ -14,7 +14,6 @@ const ProfileScreen: React.FC = (): JSX.Element => {
   const [user] = useUserValue();
 
   const isAnonymous = user && user.isAnonymous;
-  console.log(isAnonymous);
 
   const handleSwitchMode = () => {
     setMode(mode === 'light' ? 'dark' : 'light');

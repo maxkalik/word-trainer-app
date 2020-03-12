@@ -10,6 +10,8 @@ export const colors = {
     COLOR_ACTIVE_INPUT_BACKGROUND: 'rgba(255, 255, 255, 0.1)',
     COLOR_INACTIVE: '#a6a6a6',
     COLOR_BUTTON: 'royalblue',
+    COLOR_BUTTON_TITLE: 'royalblue',
+    COLOR_BUTTON_TITLE_FILLED: 'white',
     COLOR_BORDER: 'rgba(255, 255, 255, 0.2)',
     COLOR_BACKGROUND_NOTIFICATION: 'rgba(31, 37, 46, 0.9)'
   },
@@ -22,13 +24,17 @@ export const colors = {
     COLOR_ACTIVE_INPUT_BACKGROUND: 'rgba(0, 0, 0, 0.1)',
     COLOR_INACTIVE: 'black',
     COLOR_BUTTON: 'black',
+    COLOR_BUTTON_TITLE: 'royalblue',
+    COLOR_BUTTON_TITLE_FILLED: 'white',
     COLOR_BORDER: 'rgba(0, 0, 0, 0.2)',
     COLOR_BACKGROUND_NOTIFICATION: 'rgba(197, 214, 231, 0.9)'
   },
   default: {
     COLOR_ACTIVE: 'royalblue',
     COLOR_ACTIVE_INPUT_BACKGROUND: '#F5F5F5',
-    COLOR_BUTTON: 'black'
+    COLOR_BUTTON: 'black',
+    COLOR_BUTTON_TITLE: 'royalblue',
+    COLOR_BUTTON_TITLE_FILLED: 'white'
   },
   COLOR_PRIMARY: 'black',
   COLOR_SECONDARY: 'gray',
@@ -62,7 +68,8 @@ export const sizes = {
   RADIUS_ELEMENTS: 16,
   RADIUS_SMALL_ELEMENTS: 10,
   RADIUS_ITEMS: 20,
-  BORDER_THIN: 0.5
+  BORDER_GENERAL: 2,
+  BORDER_THIN: 1
 };
 
 // TEXT STYLES

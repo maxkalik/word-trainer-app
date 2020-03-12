@@ -119,20 +119,22 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
   return (
     <View style={styles.container}>
-      {inputFields.map(({ name, placeholder, textContentType, keyboardType }: SignInTextInputProps) => (
-        <Input
-          key={name}
-          style={styles.input}
-          secureTextEntry={name === 'password'}
-          keyboardType={keyboardType}
-          textContentType={textContentType}
-          placeholder={placeholder}
-          onChangeText={(value: string) => handleInputChangeText(value, name)}
-          value={signInValues[name].value}
-          iconName={signInValues[name].validMsg === null ? 'check mark' : null}
-          iconColor={colors.COLOR_SUCCESS}
-        />
-      ))}
+      <View style={styles.textFields}>
+        {inputFields.map(({ name, placeholder, textContentType, keyboardType }: SignInTextInputProps) => (
+          <Input
+            key={name}
+            style={styles.input}
+            secureTextEntry={name === 'password'}
+            keyboardType={keyboardType}
+            textContentType={textContentType}
+            placeholder={placeholder}
+            onChangeText={(value: string) => handleInputChangeText(value, name)}
+            value={signInValues[name].value}
+            iconName={signInValues[name].validMsg === null ? 'check mark' : null}
+            iconColor={colors.COLOR_SUCCESS}
+          />
+        ))}
+      </View>
 
       <View style={styles.buttons}>
         <Btn
@@ -143,16 +145,16 @@ const AuthForm: React.FC<AuthFormProps> = ({
           addStyle={styles.submitBtn}
         />
         {isSignIn && (
-          <>
+          <View style={styles.smallBtns}>
             <Btn size="small" title="Forgot Password?" onPress={onForgotPasswordPress} />
             <Btn
               size="small"
               addStyle={styles.btnAnonymus}
-              title="Try without login"
+              title="Enter anonymously"
               loading={loading}
               onPress={handleSingInAnonymously}
             />
-          </>
+          </View>
         )}
       </View>
     </View>
