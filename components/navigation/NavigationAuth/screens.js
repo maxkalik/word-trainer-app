@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import { tabBarOnlyFirstInStack, stackOptions } from '../navOptions';
+import { stackOptions } from '../navOptions';
 import SignUpScreen from '../../../screens/SignUpScreen/SignUpScreen';
 import SignInScreen from '../../../screens/SignInScreen/SignInScreen';
 import ForgotPasswordScreen from '../../../screens/ForgotPasswordScreen/ForgotPasswordScreen';
@@ -19,5 +19,3 @@ export const screens = {
   ['Sign In']: LoginStack,
   ['Sign Up']: SignUpScreen
 };
-
-LoginStack.navigationOptions = ({ navigation }) => tabBarOnlyFirstInStack(navigation);

@@ -155,7 +155,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
               size="small"
               addStyle={styles.btnAnonymus}
               title="Enter anonymously"
-              loading={loading}
+              loading={isEmptyFields && loading}
               onPress={handleSingInAnonymously}
             />
           </View>
