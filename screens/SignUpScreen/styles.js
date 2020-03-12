@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     flex: 1
   },
   scene: {
-    paddingHorizontal: sizes.PADDING_GENERAL + sizes.PADDING_LARGE
+    paddingHorizontal: sizes.PADDING_GENERAL + sizes.PADDING_LARGE,
+    paddingBottom: sizes.PADDING_LARGE
   }
 });

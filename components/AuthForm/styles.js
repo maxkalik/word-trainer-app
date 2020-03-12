@@ -5,8 +5,7 @@ import { inputBordered } from '../../util/styles';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    marginBottom: sizes.PADDING_LARGE
+    justifyContent: 'center'
   },
   textFields: {
     flex: 1,

@@ -52,6 +52,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   };
 
   const handleSingInAnonymously = () => {
+    setLoading(true);
     defaultAuth
       .signInAnonymously()
       .then(() => setLoading(false))
@@ -141,7 +142,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
           filled
           title={submitButtonName}
           onPress={handleBtnAuthPressed}
-          loading={loading}
+          loading={!isEmptyFields && loading}
           addStyle={styles.submitBtn}
         />
         {isSignIn && (
