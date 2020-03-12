@@ -6,14 +6,15 @@ import { useNotificationValue } from '../../state';
 import { checkValidity } from '../../helpers';
 import { SignInTextInputProps, AuthFormProps } from './types';
 import { initialState, inputFields } from './states';
-import { colors } from '../../util/constants';
+import { colors, sizes } from '../../util/constants';
 import { styles } from './styles';
 
 const AuthForm: React.FC<AuthFormProps> = ({
   onForgotPasswordPress,
   submitButtonName,
   requestType,
-  user
+  user,
+  mode
 }): JSX.Element => {
   const [, setNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
@@ -124,7 +125,8 @@ const AuthForm: React.FC<AuthFormProps> = ({
         {inputFields.map(({ name, placeholder, textContentType, keyboardType }: SignInTextInputProps) => (
           <Input
             key={name}
-            style={styles.input}
+            mode={mode}
+            style={[!mode && styles.input, { marginTop: mode ? sizes.PADDING_SMALL : sizes.PADDING_LARGE }]}
             secureTextEntry={name === 'password'}
             keyboardType={keyboardType}
             textContentType={textContentType}
@@ -139,6 +141,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
 
       <View style={styles.buttons}>
         <Btn
+          mode={mode}
           filled
           title={submitButtonName}
           onPress={handleBtnAuthPressed}
@@ -147,7 +150,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
         />
         {isSignIn && (
           <View style={styles.smallBtns}>
-            <Btn size="small" title="Forgot Password?" onPress={onForgotPasswordPress} />
+            <Btn size="small" title="Forgot Password?" onPress={onForgotPasswordPress} mode={mode} />
             <Btn
               size="small"
               addStyle={styles.btnAnonymus}

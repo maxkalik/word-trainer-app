@@ -12,7 +12,10 @@ import { findMatches } from './helpers';
 import { styles } from './styles';
 import { colors } from '../../util/constants';
 
-const VocabularyScreen: React.FC = (props: any): JSX.Element => {
+const VocabularyScreen: React.FC<{ navigation: any; isFocused: boolean }> = ({
+  navigation,
+  isFocused
+}): JSX.Element => {
   const [mode] = useModeValue();
   const [, setNotification] = useNotificationValue();
   const [user] = useUserValue();
@@ -34,10 +37,10 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   }, [inputValue, words]);
 
   useLayoutEffect(() => {
-    if (props.isFocused) {
+    if (isFocused) {
       updateUI();
     }
-  }, [props.isFocused]);
+  }, [isFocused]);
 
   const updateUI = () => {
     setCheckedItems([]);
@@ -90,10 +93,11 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     if (wordsLength) {
       return (
         <Message
+          mode={mode}
           title="You have no words yet"
           description="Append at least 10 words into your vocabulary"
           btnTitle="Add More Words"
-          btnOnPress={(): void => props.navigation.navigate('Add Word')}
+          btnOnPress={(): void => navigation.navigate('Add Word')}
         />
       );
     }
@@ -113,7 +117,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
           vocabularyWords={vocabularyWords}
           editMode={editMode}
           checkedItems={checkedItems}
-          onItemPress={item => props.navigation.navigate('Vocabulary Item', item)}
+          onItemPress={item => navigation.navigate('Vocabulary Item', item)}
           onCheckChange={id => handleCheckChange(id)}
         />
         {checkedItems.length > 0 && (

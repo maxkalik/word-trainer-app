@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end'
   },
-  input: { ...inputBordered, marginTop: sizes.PADDING_LARGE },
+  input: inputBordered,
   buttons: {
     marginTop: sizes.PADDING_LARGE,
     flex: 1

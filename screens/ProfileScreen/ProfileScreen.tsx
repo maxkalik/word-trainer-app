@@ -39,7 +39,7 @@ const ProfileScreen: React.FC = (): JSX.Element => {
 
   const registrationSection = (
     <Section mode={mode} title="Registration">
-      <AuthForm submitButtonName="Sign Up" requestType="link with credential" user={user} />
+      <AuthForm mode={mode} submitButtonName="Sign Up" requestType="link with credential" user={user} />
     </Section>
   );
 

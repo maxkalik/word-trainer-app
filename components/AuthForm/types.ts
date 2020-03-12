@@ -1,5 +1,6 @@
 import { GestureResponderEvent } from 'react-native';
 import { UserValueTypes } from '../../state/UserState';
+import { ModeTypes } from '../../state/ModeState';
 import { initialState } from './states';
 
 export interface SignInFieldsValueProps {
@@ -34,4 +35,5 @@ export interface AuthFormProps {
   requestType: 'signin' | 'signup' | 'link with credential';
   submitButtonName: string;
   user?: UserValueTypes;
+  mode?: ModeTypes;
 }
