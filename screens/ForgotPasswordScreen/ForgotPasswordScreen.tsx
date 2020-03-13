@@ -82,6 +82,7 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }): JS
       <Header backButton onPressBackButton={(): void => navigation.goBack()} />
       <Scene keyboardAvoidingView={true} addStyle={styles.scene}>
         <Input
+          mode="light"
           style={styles.input}
           keyboardType="email-address"
           textContentType="emailAddress"

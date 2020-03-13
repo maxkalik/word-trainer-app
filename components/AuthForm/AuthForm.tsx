@@ -29,6 +29,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const defaultAuth = firebase.auth();
   const { email, password } = signInValues;
   const isSignIn = requestType === 'signin';
+  const isSignUp = requestType === 'signup';
   const isEmptyFields = email.value === '' || password.value === '';
   const isValidMessages = email.validMsg !== null || password.validMsg !== null;
 
@@ -136,7 +137,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
           <Input
             focused={handleFocusChange}
             key={name}
-            mode={mode}
+            mode={!isSignIn && !isSignUp ? mode : 'light'}
             style={inputStyles}
             secureTextEntry={name === 'password'}
             keyboardType={keyboardType}

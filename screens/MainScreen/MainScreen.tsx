@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import firebase from '../../firebase';
 import { StatusBar } from 'react-native';
+import { useColorScheme } from 'react-native-appearance';
 import { Spinner } from '../../components/common';
 import Content from '../../components/Content/Content';
 import AuthScreen from '../../screens/AuthScreen/AuthScreen';
@@ -16,10 +17,15 @@ const Main: React.FC<{ user: string }> = ({ user }): JSX.Element => (
 );
 
 const MainScreen: React.FC = (): JSX.Element => {
-  const [mode] = useModeValue();
+  const colorScheme = useColorScheme();
+  const [mode, setMode] = useModeValue();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<any>(null);
   const [statusMode, setStatusMode] = useState<'light-content' | 'dark-content'>('light-content');
+
+  useEffect(() => {
+    colorScheme === 'light' ? setMode('light') : setMode('dark');
+  }, []);
 
   useEffect(() => {
     const modeContent = mode === 'light' ? 'dark-content' : 'light-content';
@@ -31,7 +37,7 @@ const MainScreen: React.FC = (): JSX.Element => {
       }
     );
     return () => unsubscribe();
-  }, [mode]);
+  }, [colorScheme, mode, setMode]);
 
   const renderScreen = () => {
     if (loading) {
