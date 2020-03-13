@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import firebase from '../../firebase';
 import { View } from 'react-native';
 import { Input, Btn } from '../../components/common';
+import AuthTitle from '../../components/AuthTitle/AuthTitle';
 import { useNotificationValue } from '../../state';
 import { checkValidity } from '../../helpers';
-import { SignInTextInputProps, AuthFormProps } from './types';
+import { SignInTextInputProps, AuthFormProps, RequestTypes } from './types';
 import { initialState, inputFields } from './states';
 import { colors, sizes } from '../../util/constants';
 import { styles } from './styles';
@@ -19,6 +20,11 @@ const AuthForm: React.FC<AuthFormProps> = ({
   const [, setNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
   const [signInValues, setSignInValues] = useState(initialState);
+  const [isFocus, setIsFocus] = useState(false);
+
+  const handleFocusChange = useCallback(focus => {
+    setIsFocus(focus);
+  }, []);
 
   const defaultAuth = firebase.auth();
   const { email, password } = signInValues;
@@ -39,7 +45,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
     });
   };
 
-  const getRequest = (type: 'signin' | 'signup' | 'link with credential') => {
+  const getRequest = (type: RequestTypes) => {
     switch (type) {
       case 'signin':
         return onSignInRequest();
@@ -119,14 +125,19 @@ const AuthForm: React.FC<AuthFormProps> = ({
     }
   };
 
+  const marginTop = { marginTop: mode ? sizes.PADDING_SMALL : sizes.PADDING_LARGE };
+  const inputStyles = [!mode && styles.input, marginTop];
+
   return (
     <View style={styles.container}>
+      {!user && <AuthTitle isFocused={isFocus} />}
       <View style={styles.textFields}>
         {inputFields.map(({ name, placeholder, textContentType, keyboardType }: SignInTextInputProps) => (
           <Input
+            focused={handleFocusChange}
             key={name}
             mode={mode}
-            style={[!mode && styles.input, { marginTop: mode ? sizes.PADDING_SMALL : sizes.PADDING_LARGE }]}
+            style={inputStyles}
             secureTextEntry={name === 'password'}
             keyboardType={keyboardType}
             textContentType={textContentType}
@@ -138,7 +149,6 @@ const AuthForm: React.FC<AuthFormProps> = ({
           />
         ))}
       </View>
-
       <View style={styles.buttons}>
         <Btn
           mode={mode}

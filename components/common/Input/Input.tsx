@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextInput, TouchableOpacity, View } from 'react-native';
 import { Icon16px } from '../../icons';
 import { IconProps, InputProps } from './types';
@@ -34,6 +34,7 @@ const Input: React.FC<InputProps> = ({
   touchableIcon,
   iconName,
   iconColor,
+  focused,
   mode
 }): JSX.Element => {
   const [focus, setFocus] = useState(false);
@@ -43,6 +44,10 @@ const Input: React.FC<InputProps> = ({
   const generalModeStyle = isEdit && {
     backgroundColor: mode && colors[mode].COLOR_ACTIVE_INPUT_BACKGROUND
   };
+
+  useEffect(() => {
+    focused && focused(focus);
+  }, [focus, focused]);
 
   return (
     <View style={[styles.container, isFocusedStyle, generalModeStyle, style]}>

@@ -30,9 +30,11 @@ export interface SignInTextInputProps {
   validation: ValidationProps;
 }
 
+export type RequestTypes = 'signin' | 'signup' | 'link with credential';
+
 export interface AuthFormProps {
   onForgotPasswordPress?: (event: GestureResponderEvent) => void;
-  requestType: 'signin' | 'signup' | 'link with credential';
+  requestType: RequestTypes;
   submitButtonName: string;
   user?: UserValueTypes;
   mode?: ModeTypes;

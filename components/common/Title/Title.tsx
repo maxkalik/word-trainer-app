@@ -4,7 +4,7 @@ import { colors } from '../../../util/constants';
 import { ModeTypes } from '../../../state/ModeState';
 import { styles } from './styles';
 
-const Title: React.FC<{ children: string; mode: ModeTypes; addStyles?: StyleProp<TextStyle> }> = ({
+const Title: React.FC<{ children: string; mode?: ModeTypes; addStyles?: StyleProp<TextStyle> }> = ({
   children,
   mode,
   addStyles

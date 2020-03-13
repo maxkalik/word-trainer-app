@@ -24,4 +24,5 @@ export interface InputProps {
   iconName?: 'close' | 'check mark' | null;
   iconColor?: string;
   mode?: ModeTypes;
+  focused?: (focus: boolean) => void;
 }

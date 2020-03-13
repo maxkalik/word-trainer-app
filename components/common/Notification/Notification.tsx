@@ -7,11 +7,11 @@ import { colors } from '../../../util/constants';
 const { StatusBarManager } = NativeModules;
 
 const Notificaton: React.FC = (): JSX.Element | null => {
-  const [notification, setNotification] = useNotificationValue();
   const [mode] = useModeValue();
-  const isNotificationPresent = notification ? notification.length > 0 : false;
+  const [notification, setNotification] = useNotificationValue();
   const [visibility, setVisibility] = useState(false);
   const [offset] = useState(new Animated.Value(-120));
+  const isNotificationPresent = notification ? notification.length > 0 : false;
   const [statusIOSBarHeight, setStatusIOSBarHeight] = useState(0);
 
   useEffect(() => {

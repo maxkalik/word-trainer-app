@@ -7,7 +7,13 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center'
   },
+  title: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: sizes.PADDING_LARGE
+  },
   textFields: {
+    // borderWidth: 1,
     flex: 1,
     justifyContent: 'flex-end'
   },
@@ -22,9 +28,10 @@ export const styles = StyleSheet.create({
   },
   btnAnonymus: {
     borderColor: colors.default.COLOR_ACTIVE,
-    borderWidth: sizes.BORDER_GENERAL
+    borderWidth: sizes.BORDER_GENERAL,
+    // marginBottom: sizes.PADDING_SMALL
   },
   submitBtn: {
-    marginBottom: sizes.PADDING_SMALL
+    // marginBottom: sizes.PADDING_SMALL
   }
 });
