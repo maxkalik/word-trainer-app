@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import firebase from '../../firebase';
 import { View } from 'react-native';
-import { Input, Btn } from '../../components/common';
+import { Input, Btn, FadedView } from '../../components/common';
 import AuthTitle from '../../components/AuthTitle/AuthTitle';
 import { useNotificationValue } from '../../state';
 import { checkValidity } from '../../helpers';
@@ -160,7 +160,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
           addStyle={styles.submitBtn}
         />
         {isSignIn && (
-          <View style={styles.smallBtns}>
+          <FadedView isFaded={isFocus} style={styles.smallBtns}>
             <Btn size="small" title="Forgot Password?" onPress={onForgotPasswordPress} mode={mode} />
             <Btn
               size="small"
@@ -169,7 +169,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
               loading={isEmptyFields && loading}
               onPress={handleSingInAnonymously}
             />
-          </View>
+          </FadedView>
         )}
       </View>
     </View>

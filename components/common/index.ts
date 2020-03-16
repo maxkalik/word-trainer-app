@@ -11,6 +11,7 @@ import Header from './Header/Header';
 import Spinner from './Spinner/Spinner';
 import Message from './Message/Message';
 import BottomBarSection from './BottomBarSection/BottomBarSection';
+import FadedView from './FadedView/FadedView';
 
 export {
   Title,
@@ -25,5 +26,6 @@ export {
   Header,
   Spinner,
   Message,
-  BottomBarSection
+  BottomBarSection,
+  FadedView
 };
