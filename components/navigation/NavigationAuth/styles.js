@@ -1,15 +1,15 @@
 import { StyleSheet } from 'react-native';
 import { sizes } from '../../../util/constants';
 
-const baseSize = sizes.PADDING_LARGE * 2;
-const basePadding = baseSize - sizes.BORDER_GENERAL - sizes.BORDER_GENERAL - 1;
-
 export const styles = StyleSheet.create({
   container: {
-    height: sizes.HEIGHT_GENERAL + baseSize,
+    paddingHorizontal: sizes.PADDING_GENERAL + sizes.PADDING_LARGE,
     position: 'absolute',
     borderTopColor: 'transparent',
-    backgroundColor: 'transparent',
-    padding: basePadding
+    backgroundColor: 'transparent'
+  },
+  icon: {
+    height: 2,
+    width: '100%'
   }
 });

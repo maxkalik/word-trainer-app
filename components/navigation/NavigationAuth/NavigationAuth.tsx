@@ -1,9 +1,10 @@
 import React from 'react';
+import { View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import { screens } from './screens';
 import { styles } from './styles';
-import { colors, fontSizes, sizes } from '../../../util/constants';
+import { colors, fontSizes } from '../../../util/constants';
 
 const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} style={styles.container} />;
 
@@ -11,7 +12,7 @@ const TabNavigator = createBottomTabNavigator(screens, {
   tabBarComponent: props => <TabBarComponent {...props} />,
   resetOnBlur: true,
   tabBarOptions: {
-    showIcon: false,
+    showIcon: true,
     keyboardHidesTabBar: false,
     inactiveBackgroundColor: 'transparent',
     activeBackgroundColor: 'transparent',
@@ -23,16 +24,13 @@ const TabNavigator = createBottomTabNavigator(screens, {
     },
     tabStyle: {
       justifyContent: 'center'
-      // borderBottomWidth: 2
     }
   },
-  defaultNavigationOptions: ({ navigation }) => {
-    const { isFocused } = navigation;
-    console.log(isFocused());
+  defaultNavigationOptions: () => {
     return {
-      tabStyle: {
-        borderBottomWidth: 2
-      }
+      tabBarIcon: ({ tintColor, focused }): JSX.Element => (
+        <View style={[styles.icon, { backgroundColor: focused ? tintColor : 'transparent' }]} />
+      )
     };
   }
 });
