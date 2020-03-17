@@ -20,18 +20,22 @@ export const styles = StyleSheet.create({
   input: inputBordered,
   buttons: {
     marginTop: sizes.PADDING_LARGE,
-    flex: 1
+    flex: 1,
+    alignItems: 'center'
   },
   smallBtns: {
     justifyContent: 'space-between',
     flex: 1
   },
   btnAnonymus: {
+    position: 'absolute',
+    bottom: sizes.HEIGHT_GENERAL + sizes.PADDING_GENERAL,
     borderColor: colors.default.COLOR_ACTIVE,
     borderWidth: sizes.BORDER_GENERAL,
     // marginBottom: sizes.PADDING_SMALL
   },
   submitBtn: {
+    width: '100%'
     // marginBottom: sizes.PADDING_SMALL
   }
 });

@@ -86,7 +86,7 @@ export const fontSizes = {
 // BACKGROUND COLORS
 
 export const backgroundColors = {
-  BACK_SIGNIN: colors.COLOR_LIGHT_BACKGROUND,
+  BACK_SIGNIN: 'lightgreen',
   BACK_SIGNUP: colors.COLOR_LIGHT_BACKGROUND,
   BACK_NOTIFICATION: 'rgba(197, 214, 231, 0.9)'
 };

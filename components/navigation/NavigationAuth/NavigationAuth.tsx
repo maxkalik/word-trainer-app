@@ -13,17 +13,27 @@ const TabNavigator = createBottomTabNavigator(screens, {
   tabBarOptions: {
     showIcon: false,
     keyboardHidesTabBar: false,
+    inactiveBackgroundColor: 'transparent',
+    activeBackgroundColor: 'transparent',
     activeTintColor: colors.COLOR_ACTIVE,
     inactiveTintColor: colors.COLOR_PRIMARY,
-    activeBackgroundColor: colors.COLOR_ACTIVE_BACK,
     adaptive: false,
     labelStyle: {
       fontSize: fontSizes.H3
     },
     tabStyle: {
-      justifyContent: 'center',
-      borderRadius: sizes.RADIUS_SMALL_ELEMENTS
+      justifyContent: 'center'
+      // borderBottomWidth: 2
     }
+  },
+  defaultNavigationOptions: ({ navigation }) => {
+    const { isFocused } = navigation;
+    console.log(isFocused());
+    return {
+      tabStyle: {
+        borderBottomWidth: 2
+      }
+    };
   }
 });
 
