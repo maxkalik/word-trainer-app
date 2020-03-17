@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     top: sizes.PADDING_LARGE
   },
   textFields: {
-    // borderWidth: 1,
     flex: 1,
     justifyContent: 'flex-end'
   },
@@ -28,7 +27,8 @@ export const styles = StyleSheet.create({
     flex: 1
   },
   btnAnonymus: {
-    position: 'absolute',
+    // position: 'absolute',
+    // width: 240,
     bottom: sizes.HEIGHT_GENERAL + sizes.PADDING_GENERAL,
     borderColor: colors.default.COLOR_ACTIVE,
     borderWidth: sizes.BORDER_GENERAL,

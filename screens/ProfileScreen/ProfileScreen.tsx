@@ -5,7 +5,7 @@ import { Btn, Swithcer, Section, ListItem } from '../../components/common';
 import AuthForm from '../../components/AuthForm/AuthForm';
 import { useModeValue, useNotificationValue, useUserValue } from '../../state';
 import { styles } from './styles';
-import { colors } from '../../util/constants';
+import { colors, sizes } from '../../util/constants';
 
 const ProfileScreen: React.FC = (): JSX.Element => {
   const [mode, setMode] = useModeValue();
@@ -55,8 +55,22 @@ const ProfileScreen: React.FC = (): JSX.Element => {
             titleOff="Dark mode off"
           />
         </Section>
+        <Section title="Settings" mode={mode}>
+          <Swithcer
+            onValueChange={handleSwitchMode}
+            value={mode === 'dark'}
+            titleOn="Dark mode on"
+            titleOff="Dark mode off"
+          />
+        </Section>
         {isAnonymous && registrationSection}
-        <Btn title="Quit" size="small" onPress={handleSignOut} loading={loading} />
+        <Btn
+          title="Quit"
+          addStyle={{ marginBottom: sizes.PADDING_LARGE }}
+          size="small"
+          onPress={handleSignOut}
+          loading={loading}
+        />
       </ScrollView>
     </SafeAreaView>
   );

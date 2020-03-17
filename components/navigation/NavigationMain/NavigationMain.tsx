@@ -35,7 +35,7 @@ const TabNavigator = createBottomTabNavigator(screens, {
   tabBarOptions: {
     keyboardHidesTabBar: false,
     style: { height: sizes.HEIGHT_GENERAL },
-    activeBackgroundColor: 'none',
+    activeBackgroundColor: 'transparent',
     labelStyle: {
       fontSize: fontSizes.SMALL,
       paddingBottom: sizes.PADDING_SMALL

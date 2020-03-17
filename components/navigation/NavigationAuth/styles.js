@@ -3,10 +3,10 @@ import { sizes } from '../../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: sizes.PADDING_GENERAL + sizes.PADDING_LARGE,
     position: 'absolute',
     borderTopColor: 'transparent',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    bottom: sizes.PADDING_GENERAL
   },
   icon: {
     height: 2,

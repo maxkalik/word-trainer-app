@@ -30,6 +30,7 @@ export const colors = {
     COLOR_BACKGROUND_NOTIFICATION: 'rgba(197, 214, 231, 0.9)'
   },
   default: {
+    COLOR_PRIMARY: 'black',
     COLOR_ACTIVE: 'royalblue',
     COLOR_ACTIVE_INPUT_BACKGROUND: '#F5F5F5',
     COLOR_BUTTON: 'black',

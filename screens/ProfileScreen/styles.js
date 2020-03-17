@@ -6,7 +6,9 @@ export const styles = StyleSheet.create({
     flex: 1
   },
   content: {
-    padding: sizes.PADDING_LARGE
+    marginBottom: sizes.HEIGHT_GENERAL,
+    padding: sizes.PADDING_LARGE,
+    flex: 1
   },
   listItem: {
     flexDirection: 'row'
