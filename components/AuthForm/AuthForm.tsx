@@ -127,7 +127,6 @@ const AuthForm: React.FC<AuthFormProps> = ({
   };
 
   const marginTop = { marginTop: mode ? sizes.PADDING_SMALL : sizes.PADDING_LARGE };
-  const inputStyles = [!mode && styles.input, marginTop];
 
   return (
     <View style={styles.container}>
@@ -138,7 +137,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
             focused={handleFocusChange}
             key={name}
             mode={!isSignIn && !isSignUp ? mode : 'light'}
-            style={inputStyles}
+            style={!mode && marginTop}
             secureTextEntry={name === 'password'}
             keyboardType={keyboardType}
             textContentType={textContentType}
@@ -147,6 +146,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
             value={signInValues[name].value}
             iconName={signInValues[name].validMsg === null ? 'check mark' : null}
             iconColor={colors.COLOR_SUCCESS}
+            lined
           />
         ))}
       </View>

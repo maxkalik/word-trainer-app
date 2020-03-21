@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   input: {
     height: sizes.HEIGHT_ELEMENTS,
     fontSize: fontSizes.H2,
-    color: colors.COLOR_PRIMARY,
+    color: colors.default.COLOR_PRIMARY,
     textAlign: 'center'
   },
   buttons: {

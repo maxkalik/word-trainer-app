@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: fontSizes.H3,
     paddingBottom: sizes.PADDING_SMALL,
-    color: colors.COLOR_PRIMARY
+    color: colors.default.COLOR_PRIMARY
   },
   btn: { marginTop: sizes.PADDING_LARGE }
 });

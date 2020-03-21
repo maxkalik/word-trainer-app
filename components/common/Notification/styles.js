@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontSize: fontSizes.PARAGRAPH,
-    color: colors.COLOR_PRIMARY,
+    color: colors.default.COLOR_PRIMARY,
     textAlign: 'center'
   }
 });

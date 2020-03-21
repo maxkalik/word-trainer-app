@@ -25,4 +25,5 @@ export interface InputProps {
   iconColor?: string;
   mode?: ModeTypes;
   focused?: (focus: boolean) => void;
+  lined?: boolean;
 }

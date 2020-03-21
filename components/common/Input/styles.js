@@ -8,15 +8,20 @@ export const styles = StyleSheet.create({
     flexWrap: 'nowrap',
     alignItems: 'center'
   },
+  lined: {
+    borderBottomWidth: sizes.BORDER_GENERAL,
+    borderBottomColor: colors.default.COLOR_BORDER
+  },
   focused: {
-    // backgroundColor: colors.COLOR_ACTIVE_BACK,
     borderRadius: sizes.RADIUS_SMALL_ELEMENTS,
-    paddingHorizontal: sizes.PADDING_SMALL
+    paddingHorizontal: sizes.PADDING_SMALL,
+    borderBottomWidth: 0,
+    borderBottomColor: 'transparent'
   },
   inputField: {
     flex: 1,
     fontSize: fontSizes.PARAGRAPH,
-    color: colors.COLOR_PRIMARY
+    color: colors.default.COLOR_PRIMARY
   }
 });
 

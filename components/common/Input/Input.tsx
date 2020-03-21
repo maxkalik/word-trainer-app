@@ -35,12 +35,14 @@ const Input: React.FC<InputProps> = ({
   iconName,
   iconColor,
   focused,
+  lined,
   mode
 }): JSX.Element => {
   const [focus, setFocus] = useState(false);
   const isValue = value.length > 0;
   const isEdit = focus || isValue;
   const isFocusedStyle = isEdit && styles.focused;
+  const isLinedStyle = lined && styles.lined;
   const generalModeStyle = isEdit && {
     backgroundColor: mode && colors[mode].COLOR_ACTIVE_INPUT_BACKGROUND
   };
@@ -50,7 +52,7 @@ const Input: React.FC<InputProps> = ({
   }, [focus, focused]);
 
   return (
-    <View style={[styles.container, isFocusedStyle, generalModeStyle, style]}>
+    <View style={[styles.container, isLinedStyle, isFocusedStyle, generalModeStyle, style]}>
       <TextInput
         style={[styles.inputField, styleInputField, { color: mode && colors[mode].COLOR_PRIMARY }]}
         autoFocus={autoFocus}

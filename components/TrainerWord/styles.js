@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   word: {
-    color: colors.COLOR_PRIMARY,
+    color: colors.default.COLOR_PRIMARY,
     fontSize: fontSizes.WORD,
     marginBottom: sizes.PADDING_SMALL
   },

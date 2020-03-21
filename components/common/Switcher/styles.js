@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    color: colors.COLOR_PRIMARY,
+    color: colors.default.COLOR_PRIMARY,
     fontSize: fontSizes.PARAGRAPH,
     paddingLeft: sizes.PADDING_SMALL
   },

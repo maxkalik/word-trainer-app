@@ -35,7 +35,8 @@ export const colors = {
     COLOR_ACTIVE_INPUT_BACKGROUND: '#F5F5F5',
     COLOR_BUTTON: 'black',
     COLOR_BUTTON_TITLE: 'royalblue',
-    COLOR_BUTTON_TITLE_FILLED: 'white'
+    COLOR_BUTTON_TITLE_FILLED: 'white',
+    COLOR_BORDER: 'silver'
   },
   COLOR_PRIMARY: 'black',
   COLOR_SECONDARY: 'gray',
