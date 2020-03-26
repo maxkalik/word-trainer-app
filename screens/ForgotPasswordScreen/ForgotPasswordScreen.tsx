@@ -5,6 +5,7 @@ import { Input, Btn, Header, Scene } from '../../components/common';
 import { useNotificationValue } from '../../state';
 import { checkValidity } from '../../helpers';
 import { styles } from './styles';
+import { backgroundColors } from '../../util/constants';
 
 interface EmailProps {
   value: string;
@@ -83,13 +84,13 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }): JS
       <Scene keyboardAvoidingView={true} addStyle={styles.scene}>
         <Input
           mode="light"
-          style={styles.input}
           keyboardType="email-address"
           textContentType="emailAddress"
           placeholder="Email"
           onChangeText={(value: string) => handleInputChangeText(value)}
           value={email.value}
           iconName={email.validMsg === null ? 'check mark' : null}
+          lined
         />
         <Btn
           filled
@@ -97,6 +98,7 @@ const ForgotPasswordScreen: React.FC<{ navigation: any }> = ({ navigation }): JS
           onPress={handleBtnAuthPressed}
           loading={loading}
           addStyle={styles.submitBtn}
+          titleColor={backgroundColors.BACK_SIGNIN}
         />
       </Scene>
     </SafeAreaView>

@@ -55,14 +55,6 @@ const ProfileScreen: React.FC = (): JSX.Element => {
             titleOff="Dark mode off"
           />
         </Section>
-        <Section title="Settings" mode={mode}>
-          <Swithcer
-            onValueChange={handleSwitchMode}
-            value={mode === 'dark'}
-            titleOn="Dark mode on"
-            titleOff="Dark mode off"
-          />
-        </Section>
         {isAnonymous && registrationSection}
         <Btn
           title="Quit"

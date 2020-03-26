@@ -7,7 +7,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     height: 200,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    paddingHorizontal: sizes.PADDING_GENERAL
   },
   title: {
     paddingBottom: sizes.PADDING_SMALL,

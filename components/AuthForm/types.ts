@@ -38,4 +38,6 @@ export interface AuthFormProps {
   submitButtonName: string;
   user?: UserValueTypes;
   mode?: ModeTypes;
+  inputsLined?: boolean;
+  btnSubmitTitleColor?: string;
 }

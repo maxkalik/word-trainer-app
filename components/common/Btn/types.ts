@@ -9,4 +9,5 @@ export interface ButtonProps {
   loading?: boolean;
   addStyle?: StyleProp<ViewStyle>;
   mode?: ModeTypes;
+  titleColor?: string;
 }

@@ -15,7 +15,9 @@ const AuthForm: React.FC<AuthFormProps> = ({
   submitButtonName,
   requestType,
   user,
-  mode
+  mode,
+  inputsLined,
+  btnSubmitTitleColor
 }): JSX.Element => {
   const [, setNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
@@ -146,7 +148,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
             value={signInValues[name].value}
             iconName={signInValues[name].validMsg === null ? 'check mark' : null}
             iconColor={colors.COLOR_SUCCESS}
-            lined
+            lined={inputsLined}
           />
         ))}
       </View>
@@ -158,6 +160,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
           onPress={handleBtnAuthPressed}
           loading={!isEmptyFields && loading}
           addStyle={styles.submitBtn}
+          titleColor={btnSubmitTitleColor}
         />
         {isSignIn && (
           <FadedView isFaded={isFocus} style={styles.smallBtns}>

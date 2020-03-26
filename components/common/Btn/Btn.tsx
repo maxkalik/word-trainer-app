@@ -11,7 +11,8 @@ const Btn: React.FC<ButtonProps> = ({
   filled,
   onPress,
   addStyle,
-  mode
+  mode,
+  titleColor
 }): JSX.Element => {
   const smallSize = size === 'small';
   const colorMode = mode ? colors[mode] : colors.default;
@@ -21,7 +22,9 @@ const Btn: React.FC<ButtonProps> = ({
     smallSize ? smallBtnStyles.container : largeBtnStyles.container
   ];
   const titleStyles = [
-    filled ? { color: colorMode.COLOR_BUTTON_TITLE_FILLED } : { color: colorMode.COLOR_BUTTON_TITLE },
+    filled
+      ? { color: titleColor || colorMode.COLOR_BUTTON_TITLE_FILLED }
+      : { color: colorMode.COLOR_BUTTON_TITLE },
     smallSize ? smallBtnStyles.btnTitle : largeBtnStyles.btnTitle
   ];
   return (

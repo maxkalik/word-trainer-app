@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   lined: {
-    borderBottomWidth: sizes.BORDER_GENERAL,
+    borderBottomWidth: sizes.BORDER_THIN,
     borderBottomColor: colors.default.COLOR_BORDER
   },
   focused: {
