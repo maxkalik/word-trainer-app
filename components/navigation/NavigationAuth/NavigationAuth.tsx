@@ -1,5 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import { screens } from './screens';
@@ -25,13 +24,6 @@ const TabNavigator = createBottomTabNavigator(screens, {
     labelStyle: {
       fontSize: fontSizes.H3
     }
-  },
-  defaultNavigationOptions: () => {
-    return {
-      tabBarIcon: ({ tintColor, focused }): JSX.Element => (
-        <View style={[styles.icon, { backgroundColor: focused ? tintColor : 'transparent' }]} />
-      )
-    };
   }
 });
 
