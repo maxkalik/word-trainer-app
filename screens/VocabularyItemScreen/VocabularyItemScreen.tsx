@@ -10,7 +10,11 @@ const VocabularyItemScreen: React.FC<{ navigation: any }> = ({ navigation }): JS
   const [mode] = useModeValue();
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors[mode].COLOR_BACKGROUND }]}>
-      <Header backButton onPressBackButton={(): void => navigation.goBack()} />
+      <Header
+        backButton
+        backButtonColor={colors[mode].COLOR_PRIMARY}
+        onPressBackButton={(): void => navigation.goBack()}
+      />
       <WordItem mainBtnTitle="Save" actionName="set" item={navigation.state.params} mode={mode} />
     </SafeAreaView>
   );

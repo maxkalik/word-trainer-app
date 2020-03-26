@@ -5,6 +5,8 @@ import { IconProps, InputProps } from './types';
 import { styles, clearBtnStyles } from './styles';
 import { colors } from '../../../util/constants';
 
+const primaryColor = colors.default.COLOR_PRIMARY;
+
 const Icon: React.FC<IconProps> = ({ onIconPress, touchableIcon, iconName, iconColor }): JSX.Element => {
   if (touchableIcon) {
     return (
@@ -54,14 +56,18 @@ const Input: React.FC<InputProps> = ({
   return (
     <View style={[styles.container, isLinedStyle, isFocusedStyle, generalModeStyle, style]}>
       <TextInput
-        style={[styles.inputField, styleInputField, { color: mode && colors[mode].COLOR_PRIMARY }]}
+        style={[
+          styles.inputField,
+          styleInputField,
+          { color: isLinedStyle ? primaryColor : mode && colors[mode].COLOR_PRIMARY }
+        ]}
         autoFocus={autoFocus}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         onChangeText={onChangeText}
         value={value}
         placeholder={placeholder}
-        placeholderTextColor={colors.COLOR_INPUT_PLACEHOLDER}
+        placeholderTextColor={isLinedStyle ? primaryColor : colors.default.COLOR_INPUT_PLACEHOLDER}
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         textContentType={textContentType}

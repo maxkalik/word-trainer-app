@@ -36,7 +36,8 @@ export const colors = {
     COLOR_BUTTON: 'black',
     COLOR_BUTTON_TITLE: 'royalblue',
     COLOR_BUTTON_TITLE_FILLED: 'white',
-    COLOR_BORDER: 'silver'
+    COLOR_BORDER: 'silver',
+    COLOR_INPUT_PLACEHOLDER: 'darkgray'
   },
   COLOR_PRIMARY: 'black',
   COLOR_SECONDARY: 'gray',

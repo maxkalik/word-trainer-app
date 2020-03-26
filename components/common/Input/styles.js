@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   },
   lined: {
     borderBottomWidth: sizes.BORDER_THIN,
-    borderBottomColor: colors.default.COLOR_BORDER
+    borderBottomColor: colors.default.COLOR_PRIMARY
   },
   focused: {
     borderRadius: sizes.RADIUS_SMALL_ELEMENTS,

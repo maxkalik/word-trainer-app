@@ -139,7 +139,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
             focused={handleFocusChange}
             key={name}
             mode={!isSignIn && !isSignUp ? mode : 'light'}
-            style={!mode && marginTop}
+            style={marginTop}
             secureTextEntry={name === 'password'}
             keyboardType={keyboardType}
             textContentType={textContentType}
