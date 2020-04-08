@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.wordtrainerapp">
+  package="com.worddeposit">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

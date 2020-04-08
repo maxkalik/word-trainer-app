@@ -1,4 +1,4 @@
-package com.wordtrainerapp;
+package com.worddeposit;
 
 import android.app.Application;
 import android.content.Context;

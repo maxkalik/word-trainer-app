@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "WordTrainerApp.app"
-               BlueprintName = "WordTrainerApp"
-               ReferencedContainer = "container:WordTrainerApp.xcodeproj">
+               BuildableName = "WordDeposit.app"
+               BlueprintName = "WordDeposit"
+               ReferencedContainer = "container:WordDeposit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "WordTrainerAppTests.xctest"
-               BlueprintName = "WordTrainerAppTests"
-               ReferencedContainer = "container:WordTrainerApp.xcodeproj">
+               BuildableName = "WordDepositTests.xctest"
+               BlueprintName = "WordDepositTests"
+               ReferencedContainer = "container:WordDeposit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -59,9 +59,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "WordTrainerApp.app"
-            BlueprintName = "WordTrainerApp"
-            ReferencedContainer = "container:WordTrainerApp.xcodeproj">
+            BuildableName = "WordDeposit.app"
+            BlueprintName = "WordDeposit"
+            ReferencedContainer = "container:WordDeposit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -70,9 +70,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "WordTrainerAppTests.xctest"
-               BlueprintName = "WordTrainerAppTests"
-               ReferencedContainer = "container:WordTrainerApp.xcodeproj">
+               BuildableName = "WordDepositTests.xctest"
+               BlueprintName = "WordDepositTests"
+               ReferencedContainer = "container:WordDeposit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -92,9 +92,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "WordTrainerApp.app"
-            BlueprintName = "WordTrainerApp"
-            ReferencedContainer = "container:WordTrainerApp.xcodeproj">
+            BuildableName = "WordDeposit.app"
+            BlueprintName = "WordDeposit"
+            ReferencedContainer = "container:WordDeposit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -115,9 +115,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "WordTrainerApp.app"
-            BlueprintName = "WordTrainerApp"
-            ReferencedContainer = "container:WordTrainerApp.xcodeproj">
+            BuildableName = "WordDeposit.app"
+            BlueprintName = "WordDeposit"
+            ReferencedContainer = "container:WordDeposit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
