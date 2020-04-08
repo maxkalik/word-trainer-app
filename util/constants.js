@@ -2,7 +2,7 @@
 
 export const colors = {
   dark: {
-    COLOR_BACKGROUND: 'black',
+    COLOR_BACKGROUND: '#1A1709',
     COLOR_PRIMARY: 'white',
     COLOR_ACTIVE: 'white',
     COLOR_ACTIVE_CHECKED: '#1f252e',
@@ -17,34 +17,35 @@ export const colors = {
   },
   light: {
     COLOR_BACKGROUND: 'white',
-    COLOR_PRIMARY: 'black',
+    COLOR_PRIMARY: '#1A1709',
     COLOR_ACTIVE: 'royalblue',
     COLOR_ACTIVE_CHECKED: 'lightblue',
-    COLOR_ACTIVE_CHECKED_TEXT: 'black',
+    COLOR_ACTIVE_CHECKED_TEXT: '#1A1709',
     COLOR_ACTIVE_INPUT_BACKGROUND: 'rgba(0, 0, 0, 0.1)',
-    COLOR_INACTIVE: 'black',
-    COLOR_BUTTON: 'black',
+    COLOR_INACTIVE: '#1A1709',
+    COLOR_BUTTON: '#1A1709',
     COLOR_BUTTON_TITLE: 'royalblue',
     COLOR_BUTTON_TITLE_FILLED: 'white',
     COLOR_BORDER: 'rgba(0, 0, 0, 0.2)',
     COLOR_BACKGROUND_NOTIFICATION: 'rgba(197, 214, 231, 0.9)'
   },
   default: {
-    COLOR_PRIMARY: 'black',
+    COLOR_PRIMARY: '#1A1709',
     COLOR_ACTIVE: 'royalblue',
+    COLOR_STYLED: '#FFCE00',
     COLOR_ACTIVE_INPUT_BACKGROUND: '#F5F5F5',
-    COLOR_BUTTON: 'black',
+    COLOR_BUTTON: '#1A1709',
     COLOR_BUTTON_TITLE: 'royalblue',
     COLOR_BUTTON_TITLE_FILLED: 'white',
     COLOR_BORDER: 'silver',
     COLOR_INPUT_PLACEHOLDER: 'darkgray'
   },
-  COLOR_PRIMARY: 'black',
+  COLOR_PRIMARY: '#1A1709',
   COLOR_SECONDARY: 'gray',
   COLOR_PRIMARY_ON_BG: 'white',
-  COLOR_DARK_BACKGROUND: 'black',
+  COLOR_DARK_BACKGROUND: '#1A1709',
   COLOR_LIGHT_BACKGROUND: 'white',
-  COLOR_BUTTON: 'black',
+  COLOR_BUTTON: '#1A1709',
   COLOR_INPUT_PLACEHOLDER: 'darkgray',
   COLOR_ACTIVE: 'royalblue',
   COLOR_ACTIVE_CHECKED: 'lightblue',
@@ -89,8 +90,8 @@ export const fontSizes = {
 // BACKGROUND COLORS
 
 export const backgroundColors = {
-  BACK_SIGNIN: 'yellow',
-  BACK_SIGNUP: 'yellow',
+  BACK_SIGNIN: '#FFCE00',
+  BACK_SIGNUP: '#FFCE00',
   BACK_NOTIFICATION: 'rgba(197, 214, 231, 0.9)'
 };
 
