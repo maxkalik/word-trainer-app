@@ -6,7 +6,6 @@ import { Message } from '../../components/common';
 import { styles } from './styles';
 import { colors } from '../../util/constants';
 
-
 const TrainersScreen: React.FC<{ navigation: any }> = ({ navigation }): JSX.Element => {
   const [mode] = useModeValue();
   const [words] = useWordsValue();

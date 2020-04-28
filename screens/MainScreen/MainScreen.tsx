@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import firebase from '../../firebase';
 import { StatusBar } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+import firebase from '../../firebase';
 import { useColorScheme } from 'react-native-appearance';
 import { Spinner } from '../../components/common';
 import Content from '../../components/Content/Content';
@@ -25,7 +26,8 @@ const MainScreen: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     colorScheme === 'light' ? setMode('light') : setMode('dark');
-  }, []);
+    SplashScreen.hide();
+  }, [colorScheme, setMode]);
 
   useEffect(() => {
     const modeContent = mode === 'light' ? 'dark-content' : 'light-content';

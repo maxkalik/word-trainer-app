@@ -4,7 +4,6 @@ import { Title } from '../common';
 import { useModeValue } from '../../state';
 import { styles } from './styles';
 
-
 const TrainersListHeader: React.FC<{ offset: any }> = ({ offset }): JSX.Element => {
   const [mode] = useModeValue();
   return (

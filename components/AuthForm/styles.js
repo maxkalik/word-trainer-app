@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { sizes, colors } from '../../util/constants';
-import { inputBordered } from '../../util/styles';
 
 export const styles = StyleSheet.create({
   container: {
@@ -26,15 +25,11 @@ export const styles = StyleSheet.create({
     flex: 1
   },
   btnAnonymus: {
-    // position: 'absolute',
-    // width: 240,
     bottom: sizes.HEIGHT_GENERAL + sizes.PADDING_GENERAL,
     borderColor: colors.default.COLOR_ACTIVE,
-    borderWidth: sizes.BORDER_GENERAL,
-    // marginBottom: sizes.PADDING_SMALL
+    borderWidth: sizes.BORDER_GENERAL
   },
   submitBtn: {
     width: '100%'
-    // marginBottom: sizes.PADDING_SMALL
   }
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { FadedView, Title } from '../../components/common';
+import { FadedView } from '../../components/common';
 import { styles } from './styles';
 
 const AuthTitle: React.FC<{ isFocused: boolean }> = ({ isFocused }): JSX.Element => (

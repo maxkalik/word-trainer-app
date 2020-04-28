@@ -12,9 +12,5 @@ export const styles = StyleSheet.create({
     color: colors.default.COLOR_PRIMARY,
     fontSize: fontSizes.WORD,
     marginBottom: sizes.PADDING_SMALL
-  },
-  // line: {
-  //   height: 4,
-  //   backgroundColor: 'black'
-  // }
+  }
 });
