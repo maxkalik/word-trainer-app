@@ -5,11 +5,24 @@ import { screens } from './screens';
 import { Icon24px } from '../../icons';
 import { tabIcons } from './helpers';
 import { styles } from './styles';
+import { useModeValue } from '../../../state';
+import { colors, sizes, fontSizes } from '../../../util/constants';
 
-const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} />;
+const TabBarComponent: React.FC = (props: any): JSX.Element => {
+  const [mode] = useModeValue();
+  const { COLOR_ACTIVE, COLOR_INACTIVE, COLOR_BACKGROUND } = colors[mode];
+  return (
+    <BottomTabBar
+      {...props}
+      activeTintColor={COLOR_ACTIVE}
+      inactiveTintColor={COLOR_INACTIVE}
+      style={[styles.container, { backgroundColor: COLOR_BACKGROUND }]}
+    />
+  );
+};
 
 const TabNavigator = createBottomTabNavigator(screens, {
-  tabBarComponent: props => <TabBarComponent {...props} style={styles.container} />,
+  tabBarComponent: props => <TabBarComponent {...props} />,
   resetOnBlur: true,
   defaultNavigationOptions: ({ navigation }) => {
     const { routeName } = navigation.state;
@@ -21,13 +34,11 @@ const TabNavigator = createBottomTabNavigator(screens, {
   },
   tabBarOptions: {
     keyboardHidesTabBar: false,
-    activeTintColor: 'royalblue',
-    inactiveTintColor: 'black',
-    style: { height: 70 },
-    activeBackgroundColor: 'none',
+    style: { height: sizes.HEIGHT_GENERAL },
+    activeBackgroundColor: 'transparent',
     labelStyle: {
-      fontSize: 12,
-      paddingBottom: 10
+      fontSize: fontSizes.SMALL,
+      paddingBottom: sizes.PADDING_SMALL
     }
   }
 });

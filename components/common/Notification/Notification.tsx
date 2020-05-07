@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Animated, Text, Platform, NativeModules, TouchableOpacity } from 'react-native';
-import { useNotificationValue } from '../../../state/notification';
+import { useModeValue, useNotificationValue } from '../../../state';
 import { styles } from './styles';
+import { colors } from '../../../util/constants';
 
 const { StatusBarManager } = NativeModules;
 
 const Notificaton: React.FC = (): JSX.Element | null => {
-  const [{ msg }, dispatchNotification] = useNotificationValue();
-  const isNotificationPresent = msg !== null && msg.length > 0;
+  const [mode] = useModeValue();
+  const [notification, setNotification] = useNotificationValue();
   const [visibility, setVisibility] = useState(false);
   const [offset] = useState(new Animated.Value(-120));
+  const isNotificationPresent = notification ? notification.length > 0 : false;
   const [statusIOSBarHeight, setStatusIOSBarHeight] = useState(0);
 
   useEffect(() => {
@@ -30,18 +32,22 @@ const Notificaton: React.FC = (): JSX.Element | null => {
         Animated.timing(offset, {
           toValue: -120
         })
-      ]).start(() => dispatchNotification({ msg: '' }));
+      ]).start(() => setNotification(''));
     }
-  }, [offset, statusIOSBarHeight, isNotificationPresent, dispatchNotification, visibility]);
+  }, [offset, statusIOSBarHeight, isNotificationPresent, setNotification, visibility]);
 
   if (!visibility) {
     return null;
   }
 
+  const dinamicStyles = { transform: [{ translateY: offset }] };
+  const modeStyles = { backgroundColor: colors[mode].COLOR_BACKGROUND_NOTIFICATION };
+  const titleStyles = { ...styles.title, color: colors[mode].COLOR_PRIMARY };
+
   return (
-    <Animated.View style={[styles.container, { transform: [{ translateY: offset }] }]}>
-      <TouchableOpacity style={styles.textContainer} onPress={() => dispatchNotification({ msg: '' })}>
-        <Text style={styles.title}>{msg}</Text>
+    <Animated.View style={[styles.container, dinamicStyles]}>
+      <TouchableOpacity style={[styles.textContainer, modeStyles]} onPress={() => setNotification('')}>
+        <Text style={titleStyles}>{notification}</Text>
       </TouchableOpacity>
     </Animated.View>
   );

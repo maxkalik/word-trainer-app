@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
+import { sizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingLeft: 15
+    paddingLeft: sizes.PADDING_GENERAL
   }
 });

@@ -6,10 +6,11 @@ const BottomToolBar: React.FC<BottomToolBarProps> = ({
   acceptBtnTitle,
   acceptBtnOnPress,
   cancelBtnTitle,
-  cancelBtnOnPress
+  cancelBtnOnPress,
+  mode
 }): JSX.Element => (
-  <BottomBarSection offsetValue={120}>
-    <Btn size="small" filled title={acceptBtnTitle} onPress={acceptBtnOnPress} />
+  <BottomBarSection offsetValue={120} mode={mode}>
+    <Btn size="small" filled title={acceptBtnTitle} onPress={acceptBtnOnPress} mode={mode} />
     <Btn size="small" title={cancelBtnTitle} onPress={cancelBtnOnPress} />
   </BottomBarSection>
 );

@@ -7,6 +7,7 @@ import { useNotificationValue, useUserValue, useWordsValue } from '../../state';
 import { checkStringIsPresent } from './helpers';
 import { initialState, TextInputsProps, WordItemProps } from './types';
 import { styles } from './styles';
+import { colors } from '../../util/constants';
 
 const inputFields: TextInputsProps[] = [
   {
@@ -19,20 +20,20 @@ const inputFields: TextInputsProps[] = [
   }
 ];
 
-const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): JSX.Element => {
+const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item, mode }): JSX.Element => {
   const [wordItem, setWordItem] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  const [{ words }] = useWordsValue();
-  const [, dispatchNotification] = useNotificationValue();
-  const [{ user }] = useUserValue();
+  const [words] = useWordsValue();
+  const [, setNotification] = useNotificationValue();
+  const [user] = useUserValue();
 
   const isWordEmpty = wordItem.word === '';
   const isTranslationEmpty = wordItem.translation === '';
   const isFieldsEmpty = isWordEmpty && isTranslationEmpty;
   const isEditing = actionName !== 'set';
   const isShowSaveBtn = isEditing || isFocused;
-  const isShowClearBtn = isEditing && (isFocused || !isFieldsEmpty);
+  const isShowClearBtn = isEditing && (isFocused && !isFieldsEmpty);
   const isWordPresent = checkStringIsPresent(words, wordItem.word);
 
   useEffect(() => {
@@ -51,15 +52,15 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
     setLoading(false);
     switch (flag) {
       case 'empty fields':
-        return dispatchNotification({ msg: 'Inputs should not be empty' });
+        return setNotification('Inputs should not be empty');
       case 'same word':
-        return dispatchNotification({ msg: `Word "${payload}" is already exsist.` });
+        return setNotification(`Word "${payload}" is already exsist.`);
       case 'error':
-        return dispatchNotification({ msg: `Error: "${payload}"` });
+        return setNotification(`Error: "${payload}"`);
       case 'success add':
-        return dispatchNotification({ msg: `Word "${payload}" has been successfully added.` });
+        return setNotification(`Word "${payload}" has been successfully added.`);
       case 'success save':
-        return dispatchNotification({ msg: `Word "${payload}" has been successfully saved.` });
+        return setNotification(`Word "${payload}" has been successfully saved.`);
       default:
         return;
     }
@@ -139,7 +140,7 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
         {inputFields.map(({ name, placeholder }: TextInputsProps) => (
           <TextInput
             key={name}
-            style={styles.input}
+            style={[styles.input, { color: colors[mode].COLOR_PRIMARY }]}
             placeholder={placeholder}
             placeholderTextColor={'grey'}
             onChangeText={(value: string) => handleInputChangeText(value, name)}
@@ -150,7 +151,9 @@ const WordItem: React.FC<WordItemProps> = ({ mainBtnTitle, actionName, item }): 
           />
         ))}
         <View style={styles.buttons}>
-          {isShowSaveBtn && <Btn filled loading={loading} onPress={handleButtonPress} title={mainBtnTitle} />}
+          {isShowSaveBtn && (
+            <Btn filled loading={loading} onPress={handleButtonPress} title={mainBtnTitle} mode={mode} />
+          )}
           {isShowClearBtn && (
             <Btn
               size="small"

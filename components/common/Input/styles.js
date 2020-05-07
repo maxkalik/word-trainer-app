@@ -1,34 +1,35 @@
 import { StyleSheet } from 'react-native';
+import { sizes, fontSizes, colors } from '../../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    height: 50,
+    height: sizes.HEIGHT_ELEMENTS,
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center'
   },
+  lined: {
+    borderBottomWidth: sizes.BORDER_THIN,
+    borderBottomColor: colors.default.COLOR_PRIMARY
+  },
   focused: {
-    backgroundColor: 'silver',
-    borderRadius: 10,
-    paddingHorizontal: 10
+    borderRadius: sizes.RADIUS_SMALL_ELEMENTS,
+    paddingHorizontal: sizes.PADDING_SMALL,
+    borderBottomWidth: 0,
+    borderBottomColor: 'transparent'
   },
   inputField: {
     flex: 1,
-    fontSize: 18,
-    color: 'black'
+    fontSize: fontSizes.PARAGRAPH,
+    color: colors.default.COLOR_PRIMARY
   }
 });
 
 export const clearBtnStyles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
+    justifyContent: 'center',
     alignItems: 'center',
-    width: 30,
-    justifyContent: 'center'
-    // borderWidth: 1,
-    // borderColor: 'black'
-  },
-  icon: {
-    fontSize: 24
+    width: 30
   }
 });

@@ -1,35 +1,36 @@
 import { StyleSheet } from 'react-native';
+import { colors, sizes, fontSizes } from '../../../util/constants';
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center'
   },
-  filled: { backgroundColor: 'black' }
+  filled: { backgroundColor: colors.COLOR_BUTTON }
 });
 
 const largeBtnStyles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    height: 70,
-    borderRadius: 35
+    height: sizes.HEIGHT_GENERAL,
+    borderRadius: sizes.RADIUS_ELEMENTS
   },
   btnTitle: {
     textAlign: 'center',
-    paddingHorizontal: 40,
-    fontSize: 24
+    paddingHorizontal: sizes.PADDING_GENERAL * 2,
+    fontSize: fontSizes.H2
   }
 });
 
 const smallBtnStyles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    height: 50,
-    borderRadius: 25
+    height: sizes.HEIGHT_ELEMENTS,
+    borderRadius: sizes.RADIUS_SMALL_ELEMENTS
   },
   btnTitle: {
     textAlign: 'center',
-    paddingHorizontal: 30,
-    fontSize: 18
+    paddingHorizontal: sizes.PADDING_GENERAL * 2,
+    fontSize: fontSizes.H3
   }
 });
 

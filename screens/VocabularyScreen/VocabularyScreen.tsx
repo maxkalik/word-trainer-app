@@ -6,15 +6,20 @@ import { Message, Spinner } from '../../components/common';
 import VocabularyHeader from '../../components/VocabularyHeader/VocabularyHeader';
 import VocabularyItems from '../../components/VocabularyItems/VocabularyItems';
 import BottomToolBar from '../../components/BottomToolBar/BottomToolBar';
-import { useNotificationValue, useUserValue, useWordsValue } from '../../state';
-import { WordTypes } from '../../types';
+import { useModeValue, useNotificationValue, useUserValue, useWordsValue } from '../../state';
+import { WordTypes } from '../../state/WordsState';
 import { findMatches } from './helpers';
 import { styles } from './styles';
+import { colors } from '../../util/constants';
 
-const VocabularyScreen: React.FC = (props: any): JSX.Element => {
-  const [, dispatchNotification] = useNotificationValue();
-  const [{ user }] = useUserValue();
-  const [{ words }] = useWordsValue();
+const VocabularyScreen: React.FC<{ navigation: any; isFocused: boolean }> = ({
+  navigation,
+  isFocused
+}): JSX.Element => {
+  const [mode] = useModeValue();
+  const [, setNotification] = useNotificationValue();
+  const [user] = useUserValue();
+  const [words] = useWordsValue();
 
   const [loading, setLoading] = useState(false);
   const [vocabularyWords, setVocabularyWords] = useState<WordTypes[]>(words);
@@ -32,10 +37,10 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
   }, [inputValue, words]);
 
   useLayoutEffect(() => {
-    if (props.isFocused) {
+    if (isFocused) {
       updateUI();
     }
-  }, [props.isFocused]);
+  }, [isFocused]);
 
   const updateUI = () => {
     setCheckedItems([]);
@@ -54,24 +59,28 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
 
   const onGetNotification = (message: string): void => {
     setLoading(false);
-    dispatchNotification({ msg: message });
+    setNotification(message);
   };
 
   const handleRemove = () => {
     setLoading(true);
-    checkedItems.forEach(item => {
-      firebase
-        .database()
-        .ref(`${user.uid}/words/${item}`)
-        .remove()
-        .then(() => {
-          onGetNotification('Words has been successfully removed.');
-        })
-        .catch(error => {
-          onGetNotification(`Error: "${error}"`);
-        });
-    });
-    setCheckedItems([]);
+    if (user !== null) {
+      checkedItems.forEach(item => {
+        firebase
+          .database()
+          .ref(`${user.uid}/words/${item}`)
+          .remove()
+          .then(() => {
+            onGetNotification('Words has been successfully removed.');
+          })
+          .catch(error => {
+            onGetNotification(`Error: "${error}"`);
+          });
+      });
+      setCheckedItems([]);
+    } else {
+      onGetNotification('Cannot delete this word. Restart an app');
+    }
   };
 
   const handleEditBtnPress = () => {
@@ -84,10 +93,11 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
     if (wordsLength) {
       return (
         <Message
+          mode={mode}
           title="You have no words yet"
           description="Append at least 10 words into your vocabulary"
           btnTitle="Add More Words"
-          btnOnPress={(): void => props.navigation.navigate('Add Word')}
+          btnOnPress={(): void => navigation.navigate('Add Word')}
         />
       );
     }
@@ -107,7 +117,7 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
           vocabularyWords={vocabularyWords}
           editMode={editMode}
           checkedItems={checkedItems}
-          onItemPress={item => props.navigation.navigate('Vocabulary Item', item)}
+          onItemPress={item => navigation.navigate('Vocabulary Item', item)}
           onCheckChange={id => handleCheckChange(id)}
         />
         {checkedItems.length > 0 && (
@@ -116,13 +126,18 @@ const VocabularyScreen: React.FC = (props: any): JSX.Element => {
             acceptBtnOnPress={handleRemove}
             cancelBtnTitle="Cancel"
             cancelBtnOnPress={() => setCheckedItems([])}
+            mode={mode}
           />
         )}
       </>
     );
   };
 
-  return <SafeAreaView style={styles.container}>{renderContent()}</SafeAreaView>;
+  return (
+    <SafeAreaView style={[styles.container, { backgroundColor: colors[mode].COLOR_BACKGROUND }]}>
+      {renderContent()}
+    </SafeAreaView>
+  );
 };
 
 export default withNavigationFocus(VocabularyScreen);

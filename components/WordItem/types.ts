@@ -1,4 +1,5 @@
-import { WordTypes } from 'types';
+import { WordTypes } from '../../state/WordsState';
+import { ModeTypes } from '../../state/ModeState';
 
 export const initialState: WordTypes = {
   id: '',
@@ -9,7 +10,8 @@ export const initialState: WordTypes = {
 export interface WordItemProps {
   mainBtnTitle: string;
   actionName: 'push' | 'set';
-  item?: WordTypes | undefined;
+  item?: WordTypes;
+  mode: ModeTypes;
 }
 
 export interface TextInputsProps {

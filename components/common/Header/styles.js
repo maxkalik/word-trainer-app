@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { sizes, colors } from '../../../constants';
+import { sizes } from '../../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,10 +9,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
     padding: sizes.PADDING_GENERAL
-  },
-  withBottomLine: {
-    borderBottomColor: colors.COLOR_THIN_BORDER,
-    borderBottomWidth: sizes.BORDER_THIN
   },
   backButton: {
     width: 40,

@@ -1,4 +1,6 @@
 import { GestureResponderEvent } from 'react-native';
+import { UserValueTypes } from '../../state/UserState';
+import { ModeTypes } from '../../state/ModeState';
 import { initialState } from './states';
 
 export interface SignInFieldsValueProps {
@@ -28,8 +30,14 @@ export interface SignInTextInputProps {
   validation: ValidationProps;
 }
 
+export type RequestTypes = 'signin' | 'signup' | 'link with credential';
+
 export interface AuthFormProps {
   onForgotPasswordPress?: (event: GestureResponderEvent) => void;
-  requestType: 'signin' | 'signup';
+  requestType: RequestTypes;
   submitButtonName: string;
+  user?: UserValueTypes;
+  mode?: ModeTypes;
+  inputsLined?: boolean;
+  btnSubmitTitleColor?: string;
 }

@@ -1,17 +1,30 @@
 import React from 'react';
 import { TouchableOpacity, ActivityIndicator, Text } from 'react-native';
 import { ButtonProps } from './types';
+import { colors } from '../../../util/constants';
 import { styles, largeBtnStyles, smallBtnStyles } from './styles';
 
-const Btn: React.FC<ButtonProps> = ({ loading, title, size, filled, onPress, addStyle }): JSX.Element => {
+const Btn: React.FC<ButtonProps> = ({
+  loading,
+  title,
+  size,
+  filled,
+  onPress,
+  addStyle,
+  mode,
+  titleColor
+}): JSX.Element => {
   const smallSize = size === 'small';
+  const colorMode = mode ? colors[mode] : colors.default;
   const containerStyles = [
     styles.container,
-    filled && styles.filled,
+    filled && { backgroundColor: colorMode.COLOR_BUTTON || colors.default.COLOR_BUTTON },
     smallSize ? smallBtnStyles.container : largeBtnStyles.container
   ];
   const titleStyles = [
-    filled ? { color: 'white' } : { color: 'royalblue' },
+    filled
+      ? { color: titleColor || colorMode.COLOR_BUTTON_TITLE_FILLED }
+      : { color: colorMode.COLOR_BUTTON_TITLE },
     smallSize ? smallBtnStyles.btnTitle : largeBtnStyles.btnTitle
   ];
   return (

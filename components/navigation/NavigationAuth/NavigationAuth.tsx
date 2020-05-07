@@ -3,25 +3,26 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import { screens } from './screens';
 import { styles } from './styles';
+import { colors, fontSizes } from '../../../util/constants';
 
-const TabBarComponent: React.FC = (props: any) => <BottomTabBar {...props} style={styles.container} />;
+const TabBarComponent: React.FC = (props: any) => (
+  <BottomTabBar
+    {...props}
+    style={styles.container}
+    activeTintColor={colors.default.COLOR_ACTIVE}
+    inactiveTintColor={colors.default.COLOR_PRIMARY}
+  />
+);
 
 const TabNavigator = createBottomTabNavigator(screens, {
   tabBarComponent: props => <TabBarComponent {...props} />,
-  resetOnBlur: true,
   tabBarOptions: {
-    showIcon: false,
+    showIcon: true,
     keyboardHidesTabBar: false,
-    activeTintColor: 'royalblue',
-    inactiveTintColor: 'black',
-    activeBackgroundColor: '#F5F5F5',
+    activeBackgroundColor: 'transparent',
     adaptive: false,
     labelStyle: {
-      fontSize: 16
-    },
-    tabStyle: {
-      justifyContent: 'center',
-      borderRadius: 10
+      fontSize: fontSizes.H3
     }
   }
 });

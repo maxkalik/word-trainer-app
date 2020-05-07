@@ -2,29 +2,28 @@ import React, { useState } from 'react';
 import { Animated } from 'react-native';
 import TrainersListHeader from '../TrainersListHeader/TrainersListHeader';
 import TrainerItem from '../TrainerItem/TrainerItem';
-import { WordTypes } from '../../types';
-import { sizes } from '../../constants';
+import { WordTypes } from '../../state/WordsState';
+import { sizes, trainerColors } from '../../util/constants';
 import { styles } from './styles';
 
-const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({ words, navigation }): JSX.Element => {
+const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({
+  words,
+  navigation
+}): JSX.Element => {
   const [offset] = useState(new Animated.Value(1));
 
   const trainers = [
     {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       screenName: 'Word to Translate',
-      imgSource: require('../../assets/images/png/trainer-translate-to-word.png'),
-      backgroundImg: require('../../assets/images/png/gradient-blue.png'),
-      title: 'Find correct translation',
-      words: words
+      imgSource: require('../../assets/images/png/trainer-word-to-translate.png'),
+      backgroundColor: trainerColors.COLOR_WORD_TO_TRANSLATE,
+      title: 'Find correct translation'
     },
     {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
       screenName: 'Translate to Word',
       title: 'Translate from your language',
-      imgSource: require('../../assets/images/png/trainer-word-to-translate.png'),
-      backgroundImg: require('../../assets/images/png/gradient-red.png'),
-      words: words
+      backgroundColor: trainerColors.COLOR_TRANSLATE_TO_WORD,
+      imgSource: require('../../assets/images/png/trainer-translate-to-word.png')
     }
   ];
 
@@ -38,12 +37,12 @@ const TrainersList: React.FC<{ words: WordTypes[]; navigation: any }> = ({ words
       renderItem={({ item }: any) => (
         <TrainerItem
           title={item.title}
-          onPress={() => navigation.navigate(item.screenName, item.words)}
+          onPress={() => navigation.navigate(item.screenName, words)}
           imgSource={item.imgSource}
-          backgroundImg={item.backgroundImg}
+          backgroundColor={item.backgroundColor}
         />
       )}
-      keyExtractor={({ id }: { id: string }) => id}
+      keyExtractor={({ screenName }: { screenName: string }) => screenName}
       onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: offset } } }], {
         useNativeDriver: true
       })}

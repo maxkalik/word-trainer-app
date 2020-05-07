@@ -1,9 +1,9 @@
-import { WordTypes } from '../../types';
+import { WordTypes } from '../../state/WordsState';
 
 export interface VocabularyItemsProps {
   vocabularyWords: WordTypes[];
   editMode: boolean;
   checkedItems: string[];
-  onItemPress: (id: WordTypes) => void;
-  onCheckChange: (item: string) => void;
+  onItemPress: (item: WordTypes) => void;
+  onCheckChange: (id: string) => void;
 }

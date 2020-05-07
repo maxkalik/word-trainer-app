@@ -3,7 +3,12 @@ import { TouchableOpacity, Text } from 'react-native';
 import { TrainerDeskItemProps } from './types';
 import { deskItemStyle, itemTextStyle } from './styles';
 
-const TrainerDeskItem: React.FC<TrainerDeskItemProps> = ({ name, onPress, isActive, disabled }): JSX.Element => {
+const TrainerDeskItem: React.FC<TrainerDeskItemProps> = ({
+  name,
+  onPress,
+  isActive,
+  disabled
+}): JSX.Element => {
   const deskStyles = [
     deskItemStyle.container,
     isActive === 'correct' && deskItemStyle.correct,

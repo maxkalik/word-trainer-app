@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import firebase from 'firebase';
-import { View, Text, SafeAreaView } from 'react-native';
-import { useNotificationValue, useUserValue } from '../../state';
-import { Scene, Btn } from '../../components/common';
+import { ScrollView, SafeAreaView } from 'react-native';
+import { Btn, Swithcer, Section, ListItem } from '../../components/common';
+import AuthForm from '../../components/AuthForm/AuthForm';
+import { useModeValue, useNotificationValue, useUserValue } from '../../state';
 import { styles } from './styles';
+import { colors, sizes } from '../../util/constants';
 
 const ProfileScreen: React.FC = (): JSX.Element => {
+  const [mode, setMode] = useModeValue();
+  const [, setNotification] = useNotificationValue();
   const [loading, setLoading] = useState(false);
-  const [, dispatchNotification] = useNotificationValue();
-  const [{ user }] = useUserValue();
+  const [user] = useUserValue();
+
+  const isAnonymous = user && user.isAnonymous;
+
+  const handleSwitchMode = () => {
+    setMode(mode === 'light' ? 'dark' : 'light');
+  };
 
   const handleSignOut = () => {
     setLoading(true);
@@ -17,26 +26,44 @@ const ProfileScreen: React.FC = (): JSX.Element => {
       setLoading(false);
     } catch (error) {
       console.log(error);
-      dispatchNotification({ msg: 'Internal error. Please restart application' });
+      setNotification('Internal error. Please restart application');
       setLoading(false);
     }
   };
 
+  const profileInfoSection = (
+    <Section title="Profile" mode={mode}>
+      <ListItem mode={mode} name="E-mail" value={user && user.email} />
+    </Section>
+  );
+
+  const registrationSection = (
+    <Section mode={mode} title="Registration">
+      <AuthForm mode={mode} submitButtonName="Sign Up" requestType="link with credential" user={user} />
+    </Section>
+  );
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Scene keyboardAvoidingView={true}>
-        <View style={styles.container}>
-          <View style={styles.info}>
-            <Text style={styles.email}>{user.email}</Text>
-          </View>
-          <Btn
-            title="Sign Out"
-            onPress={handleSignOut}
-            loading={loading}
-            // addStyle={styles.submitBtn}
+    <SafeAreaView style={[styles.container, { backgroundColor: colors[mode].COLOR_BACKGROUND }]}>
+      <ScrollView style={styles.content}>
+        {!isAnonymous && profileInfoSection}
+        <Section title="Settings" mode={mode}>
+          <Swithcer
+            onValueChange={handleSwitchMode}
+            value={mode === 'dark'}
+            titleOn="Dark mode on"
+            titleOff="Dark mode off"
           />
-        </View>
-      </Scene>
+        </Section>
+        {isAnonymous && registrationSection}
+        <Btn
+          title="Quit"
+          addStyle={{ marginBottom: sizes.PADDING_LARGE }}
+          size="small"
+          onPress={handleSignOut}
+          loading={loading}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };

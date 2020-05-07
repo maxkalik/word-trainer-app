@@ -1,40 +1,24 @@
 import { StyleSheet } from 'react-native';
+import { sizes, colors, fontSizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    // borderWidth: 1,
-    // borderColor: 'silver',
-    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     height: 200,
-    margin: 10,
-    borderRadius: 7,
-    overflow: 'hidden',
-    backgroundColor: 'blue',
-    position: 'relative'
-  },
-  image: {
-    // borderWidth: 1,
-    // borderColor: 'black',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    position: 'absolute',
-    zIndex: 120,
-    flex: 1,
-    height: '100%',
-    width: '100%',
-    padding: 10
+    borderRadius: sizes.RADIUS_ITEMS,
+    margin: sizes.PADDING_SMALL,
+    padding: sizes.PADDING_SMALL
   },
   illustration: {
-    flex: 1,
-    width: '100%'
+    flex: 1
   },
   title: {
     textAlign: 'center',
-    paddingHorizontal: 10,
-    paddingTop: 10,
-    paddingBottom: 15,
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white'
+    paddingHorizontal: sizes.PADDING_SMALL,
+    paddingTop: sizes.PADDING_SMALL,
+    paddingBottom: sizes.PADDING_GENERAL,
+    fontSize: fontSizes.H2,
+    color: colors.COLOR_PRIMARY_ON_BG
   }
 });

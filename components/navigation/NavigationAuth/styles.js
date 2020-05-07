@@ -1,11 +1,15 @@
 import { StyleSheet } from 'react-native';
-import { sizes } from '../../../constants';
+import { sizes } from '../../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    height: sizes.HEIGHT_GENERAL + 20,
     position: 'absolute',
     borderTopColor: 'transparent',
-    padding: 24
+    backgroundColor: 'transparent',
+    bottom: sizes.PADDING_GENERAL
+  },
+  icon: {
+    height: 2,
+    width: '100%'
   }
 });

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Animated } from 'react-native';
-import { sizes } from '../../../constants';
+import { sizes, colors } from '../../../util/constants';
 import { BottomBarSectionProps } from './types';
 import { styles } from './styles';
 
-const BottomBarSection: React.FC<BottomBarSectionProps> = ({ offsetValue, children }): JSX.Element => {
+const BottomBarSection: React.FC<BottomBarSectionProps> = ({ offsetValue, children, mode }): JSX.Element => {
   const [offset] = useState(new Animated.Value(offsetValue));
 
   useEffect(() => {
@@ -13,7 +13,13 @@ const BottomBarSection: React.FC<BottomBarSectionProps> = ({ offsetValue, childr
     }).start();
   }, [offset]);
 
-  return <Animated.View style={[styles.container, { transform: [{ translateY: offset }] }]}>{children}</Animated.View>;
+  const dinamicStyles = {
+    transform: [{ translateY: offset }],
+    backgroundColor: colors[mode].COLOR_BACKGROUND,
+    borderTopColor: colors[mode].COLOR_BORDER
+  };
+
+  return <Animated.View style={[styles.container, dinamicStyles]}>{children}</Animated.View>;
 };
 
 export default BottomBarSection;

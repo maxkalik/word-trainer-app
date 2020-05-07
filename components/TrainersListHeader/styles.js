@@ -1,15 +1,14 @@
 import { StyleSheet } from 'react-native';
+import { sizes, fontSizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    // borderWidth: 1,
-    // borderColor: 'black',
     textAlign: 'center',
-    paddingVertical: 20
+    paddingVertical: sizes.PADDING_LARGE,
+    paddingHorizontal: sizes.PADDING_GENERAL
   },
   title: {
-    textAlign: 'center',
-    fontSize: 24,
-    paddingHorizontal: 10
+    fontSize: fontSizes.H1,
+    fontWeight: '500'
   }
 });

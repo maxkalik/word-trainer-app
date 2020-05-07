@@ -1,11 +1,9 @@
 import { StyleSheet } from 'react-native';
-import { sizes } from '../../constants';
+import { sizes } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
-    // borderWidth: 1,
-    // borderColor: 'black',
-    padding: 10,
+    padding: sizes.PADDING_SMALL,
     marginBottom: sizes.HEIGHT_GENERAL
   }
 });

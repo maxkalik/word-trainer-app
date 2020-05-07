@@ -1,31 +1,35 @@
 import { StyleSheet } from 'react-native';
-import { sizes } from '../../constants';
+import { sizes, colors } from '../../util/constants';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: sizes.PADDING_GENERAL
+    justifyContent: 'center'
   },
-  fields: {
-    justifyContent: 'space-between',
-    width: '100%',
-    height: 120,
-    paddingHorizontal: 20
+  title: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: sizes.PADDING_LARGE
   },
-  input: {
-    height: 50,
-    fontSize: 16,
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    borderColor: 'silver'
+  textFields: {
+    flex: 1,
+    justifyContent: 'flex-end'
   },
   buttons: {
-    marginTop: 20,
-    paddingHorizontal: 20
+    marginTop: sizes.PADDING_LARGE,
+    flex: 1,
+    alignItems: 'center'
+  },
+  smallBtns: {
+    justifyContent: 'space-between',
+    flex: 1
+  },
+  btnAnonymus: {
+    bottom: sizes.HEIGHT_GENERAL + sizes.PADDING_GENERAL,
+    borderColor: colors.default.COLOR_ACTIVE,
+    borderWidth: sizes.BORDER_GENERAL
   },
   submitBtn: {
-    marginBottom: 10
+    width: '100%'
   }
 });

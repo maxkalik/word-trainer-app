@@ -1,8 +1,10 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
 import { Header, Input } from '../common';
+import VocabularyHeaderSettings from '../VocabularyHeaderSettings/VocabularyHeaderSettings';
 import { VocabularyHeaderProps } from './types';
+import { useModeValue } from '../../state/ModeState';
 import { styles } from './styles';
+import { colors } from '../../util/constants';
 
 const VocabularyHeader: React.FC<VocabularyHeaderProps> = ({
   onChangeInputText,
@@ -10,24 +12,25 @@ const VocabularyHeader: React.FC<VocabularyHeaderProps> = ({
   onClearBtnPress,
   onEditBtnPress,
   isEditBtnPressed
-}): JSX.Element => (
-  <Header withBottomLine>
-    <Input
-      placeholder="Find a word"
-      style={styles.input}
-      onChangeText={onChangeInputText}
-      value={value}
-      isEditMode={isEditBtnPressed}
-      iconName="close"
-      touchableIcon
-      onIconPress={onClearBtnPress}
-    />
-    <TouchableOpacity style={styles.editBtn} onPress={onEditBtnPress}>
-      <Text style={[styles.editBtnTxt, isEditBtnPressed && styles.doneBtnTxt]}>
-        {isEditBtnPressed ? 'Done' : 'Edit'}
-      </Text>
-    </TouchableOpacity>
-  </Header>
-);
+}): JSX.Element => {
+  const [mode] = useModeValue();
+  return (
+    <Header>
+      <Input
+        placeholder="Find a word"
+        style={styles.input}
+        onChangeText={onChangeInputText}
+        value={value}
+        isEditMode={isEditBtnPressed}
+        iconName="close"
+        iconColor={colors[mode].COLOR_PRIMARY}
+        touchableIcon
+        onIconPress={onClearBtnPress}
+        mode={mode}
+      />
+      <VocabularyHeaderSettings mode={mode} onPress={onEditBtnPress} isPressed={isEditBtnPressed} />
+    </Header>
+  );
+};
 
 export default VocabularyHeader;

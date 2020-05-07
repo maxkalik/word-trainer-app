@@ -1,13 +1,15 @@
 // Providers
-import NotificationProvider from './notification';
-import UserProvider from './user';
-import WordsProvider from './words';
+import ModeProvider from './ModeState';
+import NotificationProvider from './NotificationState';
+import UserProvider from './UserState';
+import WordsProvider from './WordsState';
 
-export { NotificationProvider, UserProvider, WordsProvider };
+export { ModeProvider, NotificationProvider, UserProvider, WordsProvider };
 
 // Hooks
-import { useWordsValue } from './words';
-import { useNotificationValue } from './notification';
-import { useUserValue } from './user';
+import { useModeValue } from './ModeState';
+import { useWordsValue } from './WordsState';
+import { useNotificationValue } from './NotificationState';
+import { useUserValue } from './UserState';
 
-export { useWordsValue, useNotificationValue, useUserValue };
+export { useModeValue, useWordsValue, useNotificationValue, useUserValue };
