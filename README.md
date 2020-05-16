@@ -1,12 +1,10 @@
-# Word Trainer
-
-### I was inspired by [Lingualeo](https://github.com/LinguaLeo). But I need to have universal model where I can use an application with any laguages.
+# Word Deposit App 
 
 Word Deposit App might be useful if you have decided to learn a new language. If you do not want to use some specific app and learn how to use it, then Word Deposit is definitely for you who want to make things easy. It will allow you to create your own vocabulary by adding new words in any language you want. This app is especially great if you are learning some language that is less spoken.
 
 My name is Max Kalik and I got an experience living in a new country with a new language. I had a lot of trouble learning new languages especially if this language not so popular in the world. I was learning a language which’s native speakers are less than 1.1 million in the world and I could not find any app which would help me to learn the language and allow me to memorize new words.
 
-This led me to an idea to develop the app which allows creating your own vocabulary using your native or language you know very well and the one you are learning.
+This led me to an idea to develop the app which allows creating your own vocabulary using your native or language you know very well and the one you are learning. I was inspired by [Lingualeo](https://github.com/LinguaLeo). But I need to have universal model where I can use an application with any laguages.
 
 How does it work?
 
@@ -22,13 +20,13 @@ I will be very thankful for your feedback and suggestions to improve the app and
 
 ## How to run
 
-To run iOS
+### To run iOS
 
 ```bash
 npx react-native run-ios
 ```
 
-To run Android
+### To run Android
 
 ```bash
 npx react-native run-android
