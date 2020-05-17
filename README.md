@@ -6,7 +6,7 @@ My name is Max Kalik and I got an experience living in a new country with a new 
 
 This led me to an idea to develop the app which allows creating your own vocabulary using your native or language you know very well and the one you are learning. I was inspired by [Lingualeo](https://github.com/LinguaLeo). But I need to have universal model where I can use an application with any laguages.
 
-##How does it work?
+**How does it work?**
 
 Add to vocabulary at least 10 words with translation.  After that, you can start your training to find out how well you remember new words. You will find in the navigation tab "Trainers" which will help you memorize the new words. There are a couple of trainers now. One will request you to choose the right meaning for the word from your language to the one you are learning, the other trainer - the other way around. The trainer will show the word and you will have to choose the right meaning from the list of five possible translations. If you chose the right meaning of the word, it will be marked green. If you made a mistake and chose the wrong answer, it will color your choice in red and highlight which is the right answer. Repeating and using trainers constantly will help you to learn faster and easier new words and repeat the ones you know well.
 
